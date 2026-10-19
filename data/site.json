@@ -1,0 +1,27 @@
+{
+  "profile": {
+    "name": "Surya",
+    "headline": "Builder of useful things",
+    "location": "Singapore",
+    "about": "Write a short introduction about yourself here: what you study or do, what you love building, and what kind of role you're looking for. Edit this in the admin page.",
+    "email": "",
+    "linkedin": "",
+    "github": "https://github.com/suryaaa03",
+    "photo": "",
+    "resume_file": "",
+    "open_to_work": true
+  },
+  "skills": [
+    {
+      "group": "Languages",
+      "items": ["Python", "JavaScript", "HTML & CSS"]
+    },
+    {
+      "group": "Tools",
+      "items": ["Git & GitHub"]
+    }
+  ],
+  "experience": [],
+  "education": [],
+  "projects": []
+}

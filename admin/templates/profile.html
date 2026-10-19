@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<h1>Profile, skills &amp; resume</h1>
+<form class="card" method="post" enctype="multipart/form-data">
+  <label>Full name<input type="text" name="name" value="{{ p.name }}" required></label>
+  <label>Headline <span class="hint">e.g. "Computer Science student · Data &amp; web projects"</span>
+    <input type="text" name="headline" value="{{ p.headline }}"></label>
+  <label>Location<input type="text" name="location" value="{{ p.location }}"></label>
+  <label>About me <span class="hint">2–4 sentences. Blank lines start a new paragraph.</span>
+    <textarea name="about">{{ p.about }}</textarea></label>
+  <label>Email <span class="hint">shown publicly as a "Contact me" button</span>
+    <input type="email" name="email" value="{{ p.email }}"></label>
+  <label>LinkedIn URL<input type="url" name="linkedin" value="{{ p.linkedin }}"></label>
+  <label>GitHub URL<input type="url" name="github" value="{{ p.github }}"></label>
+  <div class="check"><input type="checkbox" id="otw" name="open_to_work" {% if p.open_to_work %}checked{% endif %}>
+    <label for="otw" style="margin:0">Show "Open to opportunities" badge</label></div>
+
+  <label>Profile photo <span class="hint">optional · square image works best</span>
+    <input type="file" name="photo" accept="image/*"></label>
+  {% if p.photo %}<div class="check"><input type="checkbox" id="rp" name="remove_photo"><label for="rp" style="margin:0" class="hint">Remove current photo ({{ p.photo }})</label></div>{% endif %}
+
+  <label>Resume (PDF) <span class="hint">adds a "Download resume" button to your site</span>
+    <input type="file" name="resume_file" accept="application/pdf"></label>
+  {% if p.resume_file %}<div class="check"><input type="checkbox" id="rr" name="remove_resume_file"><label for="rr" style="margin:0" class="hint">Remove current resume ({{ p.resume_file }})</label></div>{% endif %}
+
+  <label>Skills <span class="hint">one group per line, like <code>Languages: Python, Java, SQL</code></span>
+    <textarea name="skills">{{ skills_text }}</textarea></label>
+
+  <p class="row" style="margin-top:20px">
+    <button class="btn primary">Save</button>
+    <a class="btn" href="{{ url_for('dashboard') }}">Cancel</a>
+  </p>
+</form>
+{% endblock %}

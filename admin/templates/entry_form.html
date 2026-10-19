@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ "Add" if is_new else "Edit" }} {{ spec.title|lower }}{% endblock %}
+{% block content %}
+<h1>{{ "Add" if is_new else "Edit" }} {{ spec.title|lower }}</h1>
+<form class="card" method="post" enctype="multipart/form-data">
+  {% for f in spec.fields %}
+    {% set value = entry.get(f.name) %}
+    {% if f.type == "checkbox" %}
+      <div class="check"><input type="checkbox" id="{{ f.name }}" name="{{ f.name }}" {% if value %}checked{% endif %}>
+        <label for="{{ f.name }}" style="margin:0">{{ f.label }}</label></div>
+    {% elif f.type == "image" %}
+      <label>{{ f.label }} <span class="hint">optional · PNG/JPG, a wide screenshot looks best</span>
+        <input type="file" name="{{ f.name }}" accept="image/*"></label>
+      {% if value %}
+        <div class="row"><img class="thumb" src="/preview/static/{{ value }}" alt="">
+          <div class="check" style="margin:0"><input type="checkbox" id="rm_{{ f.name }}" name="remove_{{ f.name }}">
+          <label for="rm_{{ f.name }}" style="margin:0" class="hint">Remove image</label></div></div>
+      {% endif %}
+    {% else %}
+      <label>{{ f.label }}
+      {% if f.type == "textarea" %}
+        <textarea name="{{ f.name }}">{{ value or "" }}</textarea>
+      {% elif f.type == "lines" %}
+        <textarea name="{{ f.name }}">{{ (value or [])|join("\n") }}</textarea>
+      {% elif f.type == "list" %}
+        <input type="text" name="{{ f.name }}" value="{{ (value or [])|join(', ') }}">
+      {% elif f.type == "select" %}
+        <select name="{{ f.name }}">
+          {% for opt in f.options %}<option {% if value == opt %}selected{% endif %}>{{ opt }}</option>{% endfor %}
+        </select>
+      {% else %}
+        <input type="{{ 'url' if f.type == 'url' else 'text' }}" name="{{ f.name }}" value="{{ value or '' }}" {% if f.required %}required{% endif %}>
+      {% endif %}
+      </label>
+    {% endif %}
+  {% endfor %}
+  <p class="row" style="margin-top:20px">
+    <button class="btn primary">Save</button>
+    <a class="btn" href="{{ url_for('dashboard') }}">Cancel</a>
+  </p>
+</form>
+{% endblock %}

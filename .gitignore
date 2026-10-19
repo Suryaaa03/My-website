@@ -1,0 +1,8 @@
+# Python clutter
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Not part of the website
+Claude Projects/

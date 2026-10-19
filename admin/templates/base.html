@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Admin{% endblock %} · Portfolio admin</title>
+  <style>
+    :root {
+      --bg: #f6f5f1; --card: #ffffff; --ink: #1c1b19; --muted: #6b6860;
+      --line: #e3e0d8; --accent: #1f6f5c; --accent-ink: #ffffff; --danger: #b3261e;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+           background: var(--bg); color: var(--ink); }
+    header { background: var(--ink); color: #fff; padding: 14px 24px; display: flex;
+             gap: 16px; align-items: center; flex-wrap: wrap; }
+    header strong { font-size: 16px; margin-right: auto; }
+    header a { color: #fff; text-decoration: none; opacity: .85; }
+    header a:hover { opacity: 1; }
+    main { max-width: 920px; margin: 0 auto; padding: 28px 16px 64px; }
+    h1 { font-size: 26px; margin: 0 0 4px; }
+    h2 { font-size: 18px; margin: 0; }
+    .muted { color: var(--muted); }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+            padding: 20px; margin: 18px 0; }
+    .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .spread { justify-content: space-between; }
+    .btn { display: inline-block; border: 1px solid var(--line); background: #fff; color: var(--ink);
+           padding: 7px 14px; border-radius: 8px; text-decoration: none; cursor: pointer; font: inherit; }
+    .btn:hover { border-color: var(--ink); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .btn.danger { color: var(--danger); }
+    .btn.small { padding: 3px 10px; font-size: 13px; }
+    form.inline { display: inline; }
+    ul.items { list-style: none; padding: 0; margin: 12px 0 0; }
+    ul.items li { display: flex; gap: 10px; align-items: center; padding: 10px 0;
+                  border-top: 1px solid var(--line); flex-wrap: wrap; }
+    ul.items li .grow { flex: 1; min-width: 200px; }
+    .tag { font-size: 12px; background: #eef4f1; color: var(--accent); padding: 2px 8px; border-radius: 99px; }
+    label { display: block; font-weight: 600; margin: 16px 0 6px; }
+    input[type=text], input[type=url], input[type=email], textarea, select {
+      width: 100%; padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px;
+      font: inherit; background: #fff; }
+    textarea { min-height: 110px; resize: vertical; }
+    .check { display: flex; gap: 8px; align-items: center; font-weight: 600; margin-top: 16px; }
+    .hint { font-weight: 400; color: var(--muted); font-size: 13px; }
+    .flash { padding: 10px 14px; border-radius: 8px; margin-bottom: 10px; background: #e7f3ee; color: #17513f; }
+    .flash.error { background: #fbeaea; color: var(--danger); }
+    img.thumb { width: 64px; height: 44px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Portfolio admin</strong>
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('profile') }}">Profile &amp; skills</a>
+    <a href="{{ url_for('preview') }}" target="_blank">Preview site ↗</a>
+  </header>
+  <main>
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

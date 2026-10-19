@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="row spread">
+  <div>
+    <h1>Hi {{ data.profile.name or "there" }} 👋</h1>
+    <p class="muted" style="margin:0">Every save rebuilds your website. When you're happy, push it to GitHub to publish.</p>
+  </div>
+  <div class="row">
+    <a class="btn" href="{{ url_for('preview') }}" target="_blank">Preview site ↗</a>
+    <form class="inline" method="post" action="{{ url_for('rebuild') }}"><button class="btn">Rebuild</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <div class="row spread">
+    <h2>Profile</h2>
+    <a class="btn" href="{{ url_for('profile') }}">Edit profile, skills &amp; resume</a>
+  </div>
+  <p class="muted" style="margin:8px 0 0">
+    {{ data.profile.headline }} · {{ data.profile.location }} ·
+    Resume PDF: {{ "uploaded ✓" if data.profile.resume_file else "not uploaded yet" }}
+  </p>
+</div>
+
+{% for key, spec in sections.items() %}
+<div class="card" id="{{ key }}">
+  <div class="row spread">
+    <h2>{{ spec.title if key != "projects" else "Projects" }} <span class="muted">({{ data[key]|length }})</span></h2>
+    <a class="btn primary" href="{{ url_for('edit_entry', section=key) }}">+ Add {{ spec.title|lower }}</a>
+  </div>
+  {% if data[key] %}
+  <ul class="items">
+    {% for item in data[key] %}
+    <li>
+      {% if key == "projects" and item.image %}<img class="thumb" src="/preview/static/{{ item.image }}" alt="">{% endif %}
+      <div class="grow">
+        <strong>{{ item.title or item.role or item.school }}</strong>
+        {% if key == "projects" %}
+          <span class="tag">{{ item.category }}</span>{% if item.featured %} <span class="tag">★ Featured</span>{% endif %}
+          <div class="muted">{{ item.summary }}</div>
+        {% elif key == "experience" %}
+          <div class="muted">{{ item.org }} · {{ item.start }} – {{ item.end }}</div>
+        {% else %}
+          <div class="muted">{{ item.qualification }} · {{ item.start }} – {{ item.end }}</div>
+        {% endif %}
+      </div>
+      <form class="inline" method="post" action="{{ url_for('move_entry', section=key, entry_id=item.id, direction='up') }}"><button class="btn small" title="Move up">↑</button></form>
+      <form class="inline" method="post" action="{{ url_for('move_entry', section=key, entry_id=item.id, direction='down') }}"><button class="btn small" title="Move down">↓</button></form>
+      <a class="btn small" href="{{ url_for('edit_entry', section=key, entry_id=item.id) }}">Edit</a>
+      <form class="inline" method="post" action="{{ url_for('delete_entry', section=key, entry_id=item.id) }}"
+            onsubmit="return confirm('Delete this entry?')"><button class="btn small danger">Delete</button></form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">Nothing here yet.</p>
+  {% endif %}
+</div>
+{% endfor %}
+{% endblock %}
