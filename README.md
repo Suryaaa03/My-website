@@ -26,6 +26,8 @@ A personal website that showcases my projects, experience, education and resume.
 | `templates/base.html` | Shared layout: top menu, fonts and contact footer on every page |
 | `templates/index.html` | The home page (hero, about, project cards, experience, education, skills) |
 | `templates/project.html` | The layout of each project's own page (`docs/projects/<name>/`) |
+| `templates/_macros.html` | Reusable pieces: the process mind map, results tables, charts and skill bubbles |
+| `admin/textformats.py` | Turns the admin page's plain-text boxes into mind maps, tables and charts (and back) |
 | `static/style.css` | All the colours, fonts and layout. Change `--accent` to re-colour the site |
 | `static/main.js` | Interactive bits: project filters, dark mode, scroll effects |
 | `static/projects/` | Cover images, reports and code for each project |
@@ -104,6 +106,15 @@ The first push opens a browser window asking you to **sign in to GitHub**. That'
 - `git push` — "Upload my snapshots to GitHub." GitHub Pages then republishes the site.
 
 ---
+
+## What each project page shows
+Overview → process mind map → what I did → results (key results, tables, conclusion, comparison charts and figures) → what I learnt → gallery → files.
+In the admin page, mind maps, tables and charts are typed as simple text. The format is explained right under each box, with examples in `admin/textformats.py`.
+
+## Other sections you can edit in the admin page
+- **Courses (learning journey):** add a course each semester. Courses with the same semester text are grouped together; set Status to *In progress* for current ones.
+- **Experience:** "Skills gained" appear as tags on the journey map.
+- **Profile & skills:** your phone number, and a plain-English explanation for each skill (shown when someone taps it).
 
 ## Tips
 - **Good project entries:** a one-line summary of the problem, highlights with numbers ("cut processing time by 40%"), the tech used, a screenshot, and a GitHub or demo link.

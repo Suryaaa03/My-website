@@ -26,6 +26,7 @@
         <a href="{{ root }}index.html#projects">Projects</a>
         {% if experience %}<a href="{{ root }}index.html#experience">Experience</a>{% endif %}
         {% if education %}<a href="{{ root }}index.html#education">Education</a>{% endif %}
+        {% if semesters %}<a href="{{ root }}index.html#learning">Learning</a>{% endif %}
         {% if skills %}<a href="{{ root }}index.html#skills">Skills</a>{% endif %}
         <a href="#contact">Contact</a>
       </nav>
@@ -49,6 +50,7 @@
         {% if profile.github %}<a class="btn" href="{{ profile.github }}" target="_blank" rel="noopener">GitHub ↗</a>{% endif %}
         {% if profile.resume_file %}<a class="btn" href="{{ root }}static/{{ profile.resume_file }}" target="_blank" rel="noopener">Resume (PDF)</a>{% endif %}
       </div>
+      <p class="contact-lines">{% if profile.email %}<a href="mailto:{{ profile.email }}">{{ profile.email }}</a>{% endif %}{% if profile.phone %}<span aria-hidden="true"> · </span><a href="tel:{{ profile.phone|replace(' ', '') }}">{{ profile.phone }}</a>{% endif %}</p>
       <p class="fine">© {{ year }} {{ profile.name }}</p>
     </div>
   </footer>

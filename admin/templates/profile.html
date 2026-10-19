@@ -11,6 +11,8 @@
     <textarea name="about">{{ p.about }}</textarea></label>
   <label>Email <span class="hint">shown publicly as a "Contact me" button</span>
     <input type="email" name="email" value="{{ p.email }}"></label>
+  <label>Phone <span class="hint">shown in the contact section at the bottom of every page</span>
+    <input type="text" name="phone" value="{{ p.phone }}"></label>
   <label>LinkedIn URL<input type="url" name="linkedin" value="{{ p.linkedin }}"></label>
   <label>GitHub URL<input type="url" name="github" value="{{ p.github }}"></label>
   <div class="check"><input type="checkbox" id="otw" name="open_to_work" {% if p.open_to_work %}checked{% endif %}>
@@ -24,8 +26,10 @@
     <input type="file" name="resume_file" accept="application/pdf"></label>
   {% if p.resume_file %}<div class="check"><input type="checkbox" id="rr" name="remove_resume_file"><label for="rr" style="margin:0" class="hint">Remove current resume ({{ p.resume_file }})</label></div>{% endif %}
 
-  <label>Skills <span class="hint">one group per line, like <code>Languages: Python, Java, SQL</code></span>
-    <textarea name="skills">{{ skills_text }}</textarea></label>
+  <label>Skills <span class="hint">one group per line, skills separated by semicolons, like <code>Languages: Python; Java; SQL</code></span>
+    <textarea name="skills" style="min-height:220px">{{ skills_text }}</textarea></label>
+  <label>Skill explanations <span class="hint">shown in a bubble when someone taps the skill · one per line, like <code>Python = A popular programming language...</code> · skills without one aren't clickable</span>
+    <textarea name="skill_notes" style="min-height:320px">{{ notes_text }}</textarea></label>
 
   <p class="row" style="margin-top:20px">
     <button class="btn primary">Save</button>

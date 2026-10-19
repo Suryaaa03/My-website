@@ -26,7 +26,7 @@
 {% for key, spec in sections.items() %}
 <div class="card" id="{{ key }}">
   <div class="row spread">
-    <h2>{{ spec.title if key != "projects" else "Projects" }} <span class="muted">({{ data[key]|length }})</span></h2>
+    <h2>{{ {"projects": "Projects", "courses": "Courses (learning journey)"}.get(key, spec.title) }} <span class="muted">({{ data[key]|length }})</span></h2>
     <a class="btn primary" href="{{ url_for('edit_entry', section=key) }}">+ Add {{ spec.title|lower }}</a>
   </div>
   {% if data[key] %}
@@ -39,6 +39,9 @@
         {% if key == "projects" %}
           <span class="tag">{{ item.category }}</span>{% if item.featured %} <span class="tag">★ Featured</span>{% endif %}
           <div class="muted">{{ item.summary }}</div>
+        {% elif key == "courses" %}
+          <span class="tag">{{ item.status }}</span>
+          <div class="muted">{{ item.code }} · {{ item.semester }}</div>
         {% elif key == "experience" %}
           <div class="muted">{{ item.org }} · {{ item.start }} – {{ item.end }}</div>
         {% else %}

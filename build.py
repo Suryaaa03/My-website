@@ -28,7 +28,7 @@ TEMPLATES = ROOT / "templates"              # the HTML "shape" of the site
 STATIC = ROOT / "static"                    # CSS, JavaScript, images, files
 OUT = ROOT / "docs"                         # the finished website (published)
 
-IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
+IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
 
 
 def slugify(text):
@@ -58,6 +58,34 @@ def prepare_projects(projects):
     return sorted(projects, key=lambda p: not p.get("featured"))
 
 
+def prepare_skills(skills):
+    """Each skill can be a plain name or {"name": ..., "note": ...}. Make them all the second kind."""
+    for group in skills:
+        group["items"] = [i if isinstance(i, dict) else {"name": i, "note": ""} for i in group.get("items", [])]
+    return skills
+
+
+def prepare_semesters(courses):
+    """Group courses by semester (keeping your order) for the Learning journey timeline.
+    A semester label looks like: "Year 1 · Semester 1 · AY2024/25 (Aug – Dec 2024)"."""
+    semesters = []
+    for c in courses:
+        if not semesters or semesters[-1]["label"] != c.get("semester", ""):
+            label = c.get("semester", "")
+            parts = [x.strip() for x in label.split("·")]
+            short = " · ".join(parts[:2]).replace("Semester", "Sem") if len(parts) >= 2 else label
+            dates = parts[2] if len(parts) >= 3 else ""
+            semesters.append({"label": label, "short": short, "dates": dates, "courses": [], "skills": [], "in_progress": False})
+        sem = semesters[-1]
+        sem["courses"].append(c)
+        if c.get("status") == "In progress":
+            sem["in_progress"] = True
+        for k in c.get("skills", []):
+            if k not in sem["skills"]:
+                sem["skills"].append(k)
+    return semesters
+
+
 def build():
     data = load_data()
     projects = prepare_projects(data.get("projects", []))
@@ -72,7 +100,8 @@ def build():
     env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=select_autoescape())
     common = dict(
         profile=data.get("profile", {}),
-        skills=data.get("skills", []),
+        skills=prepare_skills(data.get("skills", [])),
+        semesters=prepare_semesters(data.get("courses", [])),
         experience=data.get("experience", []),
         education=data.get("education", []),
         projects=projects,

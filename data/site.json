@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "Dhathathreyan Natarajan",
-    "headline": "Data Science & Economics at NUS · Python, machine learning and financial modelling",
+    "headline": "Data Science & Economics at NUS",
     "location": "Singapore",
     "about": "I'm a Data Science and Economics undergraduate at the National University of Singapore. I like taking messy, real-world data and turning it into something people can make decisions with, whether that's a forecast, a valuation or a policy recommendation.\n\nBefore university I served as a Combat Engineer Officer in the Singapore Armed Forces, where I led explosives training for 100 soldiers and took my unit through two major evaluations. It taught me to plan carefully, stay calm under pressure and own the outcome.\n\nSince then I've built a Python emissions-compliance optimiser for a shipping company's fleet, forecast humidity with LSTM and XGBoost models, built a retrieval-augmented generation (RAG) pipeline for maritime regulations, and valued companies with DCF models for stock pitch competitions. I also tutor mathematics at Tim Gan Math. I'm happiest where data science meets economics and finance.",
     "email": "dhathathreyan03@gmail.com",
@@ -9,92 +9,298 @@
     "github": "https://github.com/suryaaa03",
     "photo": "",
     "resume_file": "uploads/Dhathathreyan_Natarajan_Resume.pdf",
-    "open_to_work": true
+    "open_to_work": true,
+    "phone": "+65 8608 6576"
   },
   "skills": [
     {
       "group": "Programming",
       "items": [
-        "Python",
-        "Pandas",
-        "NumPy",
-        "scikit-learn",
-        "R",
-        "Flask",
-        "HTML, CSS & JavaScript"
+        {
+          "name": "Python",
+          "note": "A popular, readable programming language. I use it for data analysis, machine learning and automation."
+        },
+        {
+          "name": "Pandas",
+          "note": "A Python library for working with tables of data, like Excel but in code, so every analysis is repeatable."
+        },
+        {
+          "name": "NumPy",
+          "note": "Fast maths on large sets of numbers. Most Python data tools are built on top of it."
+        },
+        {
+          "name": "scikit-learn",
+          "note": "A Python toolkit of ready-made machine learning models, plus tools to test them fairly."
+        },
+        {
+          "name": "R",
+          "note": "A programming language built for statistics. I used it for my regression and predictive modelling projects."
+        },
+        {
+          "name": "Flask",
+          "note": "A lightweight Python framework for building web apps and APIs. This site's admin page runs on it."
+        },
+        {
+          "name": "Data structures & algorithms",
+          "note": "Ways of organising data (lists, trees, graphs, hash tables) and step-by-step methods that make programs fast."
+        },
+        {
+          "name": "HTML, CSS & JavaScript",
+          "note": "The languages of the web: structure, styling and interactivity. This website is built with them."
+        }
       ]
     },
     {
       "group": "Machine learning",
       "items": [
-        "Random Forest",
-        "XGBoost",
-        "LSTM (Keras)",
-        "Hybrid LSTM-XGBoost",
-        "Bayesian optimisation (Optuna)",
-        "k-NN",
-        "Decision trees",
-        "PCA / PCR",
-        "Cross-validation"
+        {
+          "name": "Random Forest",
+          "note": "Many decision trees vote together on the answer. Robust, and a strong baseline for predictions."
+        },
+        {
+          "name": "XGBoost",
+          "note": "Builds trees one after another, each fixing the previous one's mistakes. Often the most accurate model on table-style data."
+        },
+        {
+          "name": "LSTM (Keras)",
+          "note": "A neural network with memory, designed for sequences such as hourly weather or daily prices."
+        },
+        {
+          "name": "Hybrid LSTM-XGBoost",
+          "note": "An LSTM learns patterns over time, then hands those patterns to XGBoost to make the final prediction."
+        },
+        {
+          "name": "Bayesian optimisation (Optuna)",
+          "note": "A smart way to tune a model's settings: it learns from earlier trials which settings to try next, instead of guessing."
+        },
+        {
+          "name": "k-NN",
+          "note": "Predicts from the most similar past examples, e.g. a flat's price from the prices of the most similar flats."
+        },
+        {
+          "name": "Decision trees",
+          "note": "A flowchart of yes/no questions that ends in a prediction. Easy to explain to anyone."
+        },
+        {
+          "name": "PCA / PCR",
+          "note": "Squeezes many overlapping variables into a few combined ones that keep most of the information, then runs a regression on them."
+        },
+        {
+          "name": "Cross-validation",
+          "note": "Testing a model on several slices of data it hasn't seen, for an honest estimate of how well it will really perform."
+        }
       ]
     },
     {
       "group": "Statistics & time series",
       "items": [
-        "Linear regression",
-        "Box-Cox transformation",
-        "Residual diagnostics",
-        "Stepwise selection (AIC)",
-        "Multicollinearity (VIF)",
-        "Stationarity testing (ADF, KPSS)",
-        "ACF / PACF"
+        {
+          "name": "Linear regression",
+          "note": "Measures how an outcome moves with its drivers, e.g. how much each extra square metre adds to a flat's price."
+        },
+        {
+          "name": "Box-Cox transformation",
+          "note": "A test for the best way to reshape skewed data (for example, taking logs) so a model's assumptions hold."
+        },
+        {
+          "name": "Residual diagnostics",
+          "note": "Checking a model's errors for patterns. A good model leaves errors that look like random noise."
+        },
+        {
+          "name": "Stepwise selection (AIC)",
+          "note": "Adding or removing variables one at a time, keeping a change only if the model explains more without becoming needlessly complex."
+        },
+        {
+          "name": "Multicollinearity (VIF)",
+          "note": "Detects when input variables overlap so much that the model can't tell their separate effects apart."
+        },
+        {
+          "name": "Stationarity testing (ADF, KPSS)",
+          "note": "Checks whether a time series behaves consistently over time, which many forecasting methods rely on."
+        },
+        {
+          "name": "ACF / PACF",
+          "note": "Charts of how strongly a value relates to its own past values. They reveal cycles, like a daily pattern in humidity."
+        },
+        {
+          "name": "Probability & mathematical statistics",
+          "note": "The theory of uncertainty and estimation: distributions, maximum likelihood, confidence intervals and hypothesis tests."
+        }
       ]
     },
     {
       "group": "AI & LLM",
       "items": [
-        "RAG pipelines",
-        "LangChain",
-        "ChromaDB",
-        "Hugging Face",
-        "Sentence embeddings",
-        "Prompt design"
+        {
+          "name": "RAG pipelines",
+          "note": "Retrieval-augmented generation: the AI first looks up relevant documents, then answers using only them, so answers are grounded and checkable."
+        },
+        {
+          "name": "LangChain",
+          "note": "A Python framework for connecting language models to documents, prompts and other tools."
+        },
+        {
+          "name": "ChromaDB",
+          "note": "A database that stores text as numbers (embeddings) so you can search by meaning rather than exact words."
+        },
+        {
+          "name": "Hugging Face",
+          "note": "A platform hosting thousands of open-source AI models that can be used directly from code."
+        },
+        {
+          "name": "Sentence embeddings",
+          "note": "Turning sentences into lists of numbers so that texts with similar meanings sit close together."
+        },
+        {
+          "name": "Prompt design",
+          "note": "Writing clear instructions for an AI model so it produces accurate, well-structured output."
+        }
       ]
     },
     {
       "group": "Finance",
       "items": [
-        "DCF valuation",
-        "Comparable company analysis",
-        "Scenario & sensitivity analysis",
-        "Financial statements",
-        "Bookkeeping (XERO)",
-        "Bank reconciliations"
+        {
+          "name": "DCF valuation",
+          "note": "Values a company today by forecasting its future cash flows and discounting them back to the present."
+        },
+        {
+          "name": "Comparable company analysis",
+          "note": "Values a company against similar listed companies using ratios such as P/E and EV/EBITDA."
+        },
+        {
+          "name": "Football field chart",
+          "note": "A chart that lines up the value ranges from different valuation methods, to see where a price target sits."
+        },
+        {
+          "name": "Scenario & sensitivity analysis",
+          "note": "Testing how results change under bear, base and bull cases or different assumptions, to understand risk."
+        },
+        {
+          "name": "Financial statements",
+          "note": "The income statement, balance sheet and cash flow statement: how a company reports its performance and health."
+        },
+        {
+          "name": "Bookkeeping (XERO)",
+          "note": "Recording a business's transactions accurately in XERO accounting software."
+        },
+        {
+          "name": "Bank reconciliations",
+          "note": "Matching a company's records against its bank statements to catch errors or missing items."
+        }
       ]
     },
     {
       "group": "Excel",
       "items": [
-        "Financial modelling",
-        "Pivot tables & charts",
-        "Formulas",
-        "Data analysis"
+        {
+          "name": "Financial modelling",
+          "note": "Building spreadsheet models that project a company's financials and work out what it's worth."
+        },
+        {
+          "name": "Pivot tables & charts",
+          "note": "Quickly summarising and visualising large tables in Excel."
+        },
+        {
+          "name": "Formulas",
+          "note": "Automating calculations so a model updates instantly when an input changes."
+        },
+        {
+          "name": "Data analysis",
+          "note": "Cleaning, exploring and drawing conclusions from data in Excel."
+        }
+      ]
+    },
+    {
+      "group": "Maths & economics",
+      "items": [
+        {
+          "name": "Linear algebra & calculus",
+          "note": "The maths underneath data science: vectors, matrices, derivatives and optimisation."
+        },
+        {
+          "name": "Data visualisation",
+          "note": "Turning data into clear charts that show patterns at a glance."
+        },
+        {
+          "name": "Numerical computation",
+          "note": "The algorithms computers use to solve maths problems approximately but efficiently."
+        },
+        {
+          "name": "Microeconomics & game theory",
+          "note": "How people and firms make decisions, compete and respond to incentives."
+        },
+        {
+          "name": "Econometrics (in progress)",
+          "note": "Statistics applied to economic data to measure cause and effect, using Stata."
+        },
+        {
+          "name": "Convex optimisation (in progress)",
+          "note": "Finding the best solution to large problems efficiently. It's the engine behind many machine learning algorithms."
+        },
+        {
+          "name": "Financial economics (in progress)",
+          "note": "How investors price assets under uncertainty: portfolios, bonds and derivatives."
+        }
       ]
     },
     {
       "group": "Tools",
       "items": [
-        "Git & GitHub",
-        "Jupyter & Google Colab",
-        "Docker",
-        "Folium (mapping)"
+        {
+          "name": "Git & GitHub",
+          "note": "Version control: saves every change to code and makes collaboration easy. This website is hosted on GitHub."
+        },
+        {
+          "name": "Jupyter & Google Colab",
+          "note": "Interactive notebooks that mix code, results and notes. Great for exploring data."
+        },
+        {
+          "name": "Docker",
+          "note": "Packages an app with everything it needs so it runs the same way on any computer."
+        },
+        {
+          "name": "Folium (mapping)",
+          "note": "A Python library for drawing interactive maps. I used it to plot shipping routes."
+        },
+        {
+          "name": "Stata (in progress)",
+          "note": "Statistics software widely used in economics research."
+        }
+      ]
+    },
+    {
+      "group": "Leadership & communication",
+      "items": [
+        {
+          "name": "Team leadership",
+          "note": "Led explosives training for 100 soldiers as an officer, and led my team in the Temasek-NUS stock pitch."
+        },
+        {
+          "name": "Teaching",
+          "note": "Explaining maths to students at different levels as a tutor at Tim Gan Math."
+        },
+        {
+          "name": "Science communication",
+          "note": "Explaining technical ideas simply to non-specialists (SP1541)."
+        },
+        {
+          "name": "Design thinking",
+          "note": "A people-centred way to solve problems: understand users, prototype quickly, test and improve (DTK1234)."
+        }
       ]
     },
     {
       "group": "Languages",
       "items": [
-        "English (native)",
-        "Tamil (native)"
+        {
+          "name": "English (native)",
+          "note": ""
+        },
+        {
+          "name": "Tamil (native)",
+          "note": ""
+        }
       ]
     }
   ],
@@ -109,6 +315,11 @@
       "bullets": [
         "Gauge each student's comfort level first, then connect new ideas to what they already know using real-world examples and simple language.",
         "Break topics into smaller steps with frequent checks for students who need support, and stretch stronger students with harder questions."
+      ],
+      "skills": [
+        "Teaching",
+        "Communication",
+        "Adapting to each learner"
       ]
     },
     {
@@ -122,6 +333,12 @@
         "Designed and built a Python optimiser (Pandas, NumPy) for FuelEU Maritime, IMO and EU ETS compliance, streamlining the team's emissions and carbon-cost calculations across the fleet.",
         "Developed an Excel fleet database with an embedded DCF model to value fuel options, retrofits and energy-saving devices; traced and resolved inconsistencies in full-fleet outputs before results reached senior management.",
         "Researched long-term vessel retrofit strategies and the transition to alternative fuels such as biofuels, turning the analysis into recommendations for senior stakeholders including the CFO."
+      ],
+      "skills": [
+        "Python optimiser",
+        "DCF in Excel",
+        "FuelEU / IMO / EU ETS",
+        "Reporting to the CFO"
       ]
     },
     {
@@ -134,6 +351,12 @@
       "bullets": [
         "Managed monthly accounts payable, accounts receivable and bank reconciliations in XERO; prepared ledger balances and P&L statements in Excel.",
         "Processed bills, invoices and bank statements in Excel for import into XERO, maintaining accurate client records."
+      ],
+      "skills": [
+        "XERO",
+        "Bank reconciliations",
+        "P&L statements",
+        "Excel"
       ]
     },
     {
@@ -146,6 +369,12 @@
       "bullets": [
         "Commanded a unit through training and 2 major evaluations; planned and led explosives training for 100 soldiers.",
         "Represented the unit in Exercise Wallaby, a 3-week overseas exercise in Australia, coordinating with other units."
+      ],
+      "skills": [
+        "Leadership",
+        "Planning under pressure",
+        "Training 100 soldiers",
+        "Coordination"
       ]
     }
   ],
@@ -157,7 +386,7 @@
       "start": "Aug 2024",
       "end": "May 2028 (expected)",
       "details": [
-        "Relevant modules: DSE1101 Introductory Data Science for Economics, IT1244 Artificial Intelligence: Technology and Impact, ST3131 Regression Analysis (projects below)."
+        "Course-by-course breakdown in the Learning journey section below."
       ]
     },
     {
@@ -173,6 +402,343 @@
       ]
     }
   ],
+  "courses": [
+    {
+      "id": "cs1010s",
+      "semester": "Year 1 · Semester 1 · AY2024/25 (Aug – Dec 2024)",
+      "code": "CS1010S",
+      "title": "Programming Methodology",
+      "description": "Problem solving with code: variables, functions, control flow and recursion, plus testing and debugging programs.",
+      "skills": [
+        "Python",
+        "Problem solving",
+        "Debugging"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "dse1101",
+      "semester": "Year 1 · Semester 1 · AY2024/25 (Aug – Dec 2024)",
+      "code": "DSE1101",
+      "title": "Introductory Data Science for Economics",
+      "description": "Data science for economic data: wrangling, supervised and unsupervised learning, and model validation, all in R.",
+      "skills": [
+        "R",
+        "Machine learning",
+        "Model validation"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "ma2002",
+      "semester": "Year 1 · Semester 1 · AY2024/25 (Aug – Dec 2024)",
+      "code": "MA2002",
+      "title": "Calculus",
+      "description": "Limits, derivatives, integrals and first-order differential equations, with applications.",
+      "skills": [
+        "Calculus"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "hsi1000",
+      "semester": "Year 1 · Semester 1 · AY2024/25 (Aug – Dec 2024)",
+      "code": "HSI1000",
+      "title": "How Science Works, Why Science Works",
+      "description": "What makes science reliable, how to evaluate claims in a post-truth era, and the science of climate change.",
+      "skills": [
+        "Evaluating evidence"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "hsh1000",
+      "semester": "Year 1 · Semester 1 · AY2024/25 (Aug – Dec 2024)",
+      "code": "HSH1000",
+      "title": "The Human Condition",
+      "description": "Reading creative and analytical works from different eras to examine morality, society and identity.",
+      "skills": [
+        "Critical thinking",
+        "Writing"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "it1244",
+      "semester": "Year 1 · Semester 2 · AY2024/25 (Jan – May 2025)",
+      "code": "IT1244",
+      "title": "Artificial Intelligence: Technology and Impact",
+      "description": "How AI works, where it beats and falls short of humans, and the risks of deploying it. Built an AI proof-of-concept: my humidity forecasting project.",
+      "skills": [
+        "Machine learning",
+        "Deep learning",
+        "AI risk"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "st2131",
+      "semester": "Year 1 · Semester 2 · AY2024/25 (Jan – May 2025)",
+      "code": "ST2131",
+      "title": "Probability",
+      "description": "Conditional probability, random variables, joint distributions, expectation and the central limit theorem.",
+      "skills": [
+        "Probability",
+        "Distributions"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "ma2001",
+      "semester": "Year 1 · Semester 2 · AY2024/25 (Jan – May 2025)",
+      "code": "MA2001",
+      "title": "Linear Algebra I",
+      "description": "Systems of equations, matrices, determinants, vector spaces, eigenvalues and linear transformations.",
+      "skills": [
+        "Linear algebra"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "ec1101e",
+      "semester": "Year 1 · Semester 2 · AY2024/25 (Jan – May 2025)",
+      "code": "EC1101E",
+      "title": "Introduction to Economic Analysis",
+      "description": "The core concepts, methods and models of economics, applied to everyday life and current issues.",
+      "skills": [
+        "Economic reasoning"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "dtk1234",
+      "semester": "Year 1 · Semester 2 · AY2024/25 (Jan – May 2025)",
+      "code": "DTK1234",
+      "title": "Design Thinking",
+      "description": "A people-centred approach to creative problem solving: learn from users, generate ideas fast and test them.",
+      "skills": [
+        "Design thinking",
+        "Prototyping"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "hss1000",
+      "semester": "Year 1 · Semester 2 · AY2024/25 (Jan – May 2025)",
+      "code": "HSS1000",
+      "title": "Understanding Social Complexity",
+      "description": "Foundations of social science: how researchers gather and interpret evidence on social issues in Singapore and beyond.",
+      "skills": [
+        "Social research"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "hsa1000",
+      "semester": "Year 1 · Semester 2 · AY2024/25 (Jan – May 2025)",
+      "code": "HSA1000",
+      "title": "Asian Interconnections",
+      "description": "A comparative look at Asian societies and their diversity, with group field studies.",
+      "skills": [
+        "Regional analysis",
+        "Teamwork"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "dsa2101",
+      "semester": "Year 2 · Semester 1 · AY2025/26 (Aug – Dec 2025)",
+      "code": "DSA2101",
+      "title": "Essential Data Analytics Tools: Data Visualisation",
+      "description": "The workflow from raw data to insight: cleaning, exploring, analysing and visualising data, including time and geographic data.",
+      "skills": [
+        "Data visualisation",
+        "Data cleaning",
+        "Exploratory analysis"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "dsa2102",
+      "semester": "Year 2 · Semester 1 · AY2025/26 (Aug – Dec 2025)",
+      "code": "DSA2102",
+      "title": "Essential Data Analytics Tools: Numerical Computation",
+      "description": "The numerical methods behind data science, implemented in code and applied to real data problems.",
+      "skills": [
+        "Numerical methods",
+        "Scientific computing"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "ma2311",
+      "semester": "Year 2 · Semester 1 · AY2025/26 (Aug – Dec 2025)",
+      "code": "MA2311",
+      "title": "Techniques in Advanced Calculus",
+      "description": "Series, vectors, functions of several variables, partial derivatives, Lagrange multipliers and multiple integrals.",
+      "skills": [
+        "Multivariable calculus",
+        "Optimisation"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "ec2101",
+      "semester": "Year 2 · Semester 1 · AY2025/26 (Aug – Dec 2025)",
+      "code": "EC2101",
+      "title": "Microeconomic Analysis I",
+      "description": "Intermediate microeconomics applied to managerial and public policy decisions.",
+      "skills": [
+        "Microeconomics",
+        "Policy analysis"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "sp1541",
+      "semester": "Year 2 · Semester 1 · AY2025/26 (Aug – Dec 2025)",
+      "code": "SP1541",
+      "title": "Communication Practices in Popular Science",
+      "description": "Explaining science clearly to non-specialists, in writing and in speech, through public engagement activities.",
+      "skills": [
+        "Science communication",
+        "Public speaking"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "hsi2011",
+      "semester": "Year 2 · Semester 1 · AY2025/26 (Aug – Dec 2025)",
+      "code": "HSI2011",
+      "title": "The World of Quantum",
+      "description": "An introduction to quantum theory, its counterintuitive phenomena, its history and emerging quantum technologies.",
+      "skills": [
+        "Scientific literacy"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "cfg1004",
+      "semester": "Year 2 · Semester 1 · AY2025/26 (Aug – Dec 2025)",
+      "code": "CFG1004",
+      "title": "Financial Readiness for Young Professionals",
+      "description": "Financial management principles, investing fundamentals and the psychology of money.",
+      "skills": [
+        "Investing basics",
+        "Behavioural finance"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "cfg1003",
+      "semester": "Year 2 · Semester 1 · AY2025/26 (Aug – Dec 2025)",
+      "code": "CFG1003",
+      "title": "Introduction to Financial Wellbeing",
+      "description": "Designing a personal system for money: automation, good versus bad debt, saving and investing.",
+      "skills": [
+        "Personal finance"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "st3131",
+      "semester": "Year 2 · Semester 2 · AY2025/26 (Jan – May 2026)",
+      "code": "ST3131",
+      "title": "Regression Analysis",
+      "description": "Multiple linear regression, model building and diagnostics, ANOVA, and the linear model as a special case of the GLM.",
+      "skills": [
+        "Regression",
+        "Model diagnostics",
+        "ANOVA"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "cs2040",
+      "semester": "Year 2 · Semester 2 · AY2025/26 (Jan – May 2026)",
+      "code": "CS2040",
+      "title": "Data Structures and Algorithms",
+      "description": "Designing and implementing linked lists, stacks, queues, hash tables, heaps, trees and graphs, plus searching, sorting and complexity analysis.",
+      "skills": [
+        "Data structures",
+        "Algorithms",
+        "Complexity analysis"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "ec3101",
+      "semester": "Year 2 · Semester 2 · AY2025/26 (Jan – May 2026)",
+      "code": "EC3101",
+      "title": "Microeconomic Analysis II",
+      "description": "General equilibrium, choice under uncertainty, game theory, oligopoly, network economics and asymmetric information.",
+      "skills": [
+        "Game theory",
+        "Information economics"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "clc1101",
+      "semester": "Year 2 · Semester 2 · AY2025/26 (Jan – May 2026)",
+      "code": "CLC1101",
+      "title": "Engaging and Building Communities",
+      "description": "Community development in theory and practice: asset-based approaches, participatory methods and consensus building.",
+      "skills": [
+        "Community engagement",
+        "Facilitation"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "ec3304",
+      "semester": "Year 3 · Semester 1 · AY2026/27 (Aug – Dec 2026)",
+      "code": "EC3304",
+      "title": "Econometrics II",
+      "description": "Econometric methods for micro and macro data, with the focus on applying them independently to real problems in Stata.",
+      "skills": [
+        "Econometrics",
+        "Stata"
+      ],
+      "status": "In progress"
+    },
+    {
+      "id": "ec3333",
+      "semester": "Year 3 · Semester 1 · AY2026/27 (Aug – Dec 2026)",
+      "code": "EC3333",
+      "title": "Financial Economics I",
+      "description": "Decisions under uncertainty, portfolio analysis, equilibrium asset pricing, fixed income and derivatives.",
+      "skills": [
+        "Portfolio theory",
+        "Asset pricing"
+      ],
+      "status": "In progress"
+    },
+    {
+      "id": "dsa3102",
+      "semester": "Year 3 · Semester 1 · AY2026/27 (Aug – Dec 2026)",
+      "code": "DSA3102",
+      "title": "Essential Data Analytics Tools: Convex Optimisation",
+      "description": "Modelling and solving large optimisation problems in data science: convexity, proximal and coordinate descent methods, and duality.",
+      "skills": [
+        "Convex optimisation",
+        "Iterative algorithms"
+      ],
+      "status": "In progress"
+    },
+    {
+      "id": "st2132",
+      "semester": "Year 3 · Semester 1 · AY2026/27 (Aug – Dec 2026)",
+      "code": "ST2132",
+      "title": "Mathematical Statistics",
+      "description": "The theory of statistical inference: maximum likelihood, estimator properties, confidence intervals and hypothesis tests.",
+      "skills": [
+        "Statistical inference",
+        "Maximum likelihood"
+      ],
+      "status": "In progress"
+    }
+  ],
   "projects": [
     {
       "id": "aa20ceb412",
@@ -183,20 +749,143 @@
       "summary": "A shipbroking platform that pairs an AI market briefing (RAG) with route optimisation and fuel-strategy analysis.",
       "role": "Built the retrieval-augmented generation (RAG) pipeline",
       "team": "Team project with peers",
-      "description": "Shipbrokers negotiate fixtures between shipowners and charterers using a mix of regulations, market reports and route knowledge scattered across dozens of documents. For the ARROW case competition our team built a web platform that brings this together: define a cargo and route, plan the voyage, compare fuel strategies, and get an AI-written market briefing grounded in real regulatory and market documents.\n\nMy part was the RAG pipeline behind the briefings and the AI assistant, which answers questions with maritime information drawn only from the document library.",
+      "description": "Shipbrokers negotiate fixtures between shipowners and charterers using regulations, market reports and route knowledge scattered across dozens of documents. For the ARROW case competition our team built a web platform that brings this together: define a cargo and route, plan the voyage, compare fuel strategies, and get an AI-written market briefing grounded in real regulatory and market documents.\n\nMy part was the RAG pipeline behind the briefings and the AI assistant, which answers questions using only information drawn from the document library.",
+      "mindmap": [
+        {
+          "label": "Problem",
+          "items": [
+            "Brokers juggle regulations, reports and routes",
+            "Information scattered across many documents"
+          ]
+        },
+        {
+          "label": "Knowledge base",
+          "items": [
+            "15 regulatory and market PDFs",
+            "Port and war-zone data",
+            "Fuel price inputs"
+          ]
+        },
+        {
+          "label": "RAG pipeline (my part)",
+          "items": [
+            "Chunk and embed (MiniLM)",
+            "Chroma vector store",
+            "Retrieve by voyage inputs",
+            "Mistral-7B writes the briefing"
+          ]
+        },
+        {
+          "label": "Platform",
+          "items": [
+            "Flask API in Docker",
+            "Web dashboard",
+            "AI chat assistant"
+          ]
+        },
+        {
+          "label": "Optimisers",
+          "items": [
+            "3,789 sea routes ranked",
+            "Fuel strategy ROI"
+          ]
+        },
+        {
+          "label": "Output",
+          "items": [
+            "800–900-word broker briefing",
+            "Source documents listed"
+          ]
+        }
+      ],
       "approach": [
         "Indexed a library of 15 maritime documents (SOLAS, MARPOL, the ISM and ISPS codes, BIMCO charter parties, ISO 8217 fuel standards and Veson market reports) into a Chroma vector store using all-MiniLM-L6-v2 sentence embeddings.",
-        "Retrieved the most relevant passages for each voyage's inputs (ports, cargo, fuel type, laycan dates) and listed the source documents alongside each answer.",
+        "Retrieved the most relevant passages for each voyage's inputs (ports, cargo, fuel type and laycan dates) and listed the source documents alongside each answer.",
         "Prompted Mistral-7B-Instruct (via Hugging Face) to write a structured 800–900-word broker briefing covering route risks, cargo market conditions, fuel and compliance costs, negotiation leverage and valuation ranges, using only the retrieved context.",
         "Served the pipeline as a Flask API, packaged with Docker, that feeds the platform's dashboard and chat assistant.",
         "The team's route optimiser generated 3,789 candidate sea routes between export and import ports (direct and via hub ports), flagged high-risk war zones and ranked routes by distance, port charges and expected demurrage.",
-        "The fuel-strategy module compares a baseline fuel mix against alternative fuels and energy-saving devices over the vessel's life, with carbon pooling prices, discounting, ROI and price-sensitivity analysis."
+        "The fuel-strategy module compares a baseline fuel mix with alternative fuels and energy-saving devices over a vessel's life, including carbon pooling prices, discounting, ROI and price sensitivity."
       ],
       "highlights": [
         "End-to-end prototype: web dashboard, RAG briefing API and route optimiser working together",
-        "Briefings cite the regulatory and market documents they draw from, so brokers can check every claim",
+        "Every briefing lists the regulatory and market documents it draws from, so brokers can check each claim",
         "3,789 pre-computed routes, mapped interactively with Folium"
       ],
+      "tables": [
+        {
+          "title": "RAG pipeline configuration",
+          "columns": [
+            "Component",
+            "Choice",
+            "Why"
+          ],
+          "rows": [
+            [
+              "Embedding model",
+              "all-MiniLM-L6-v2",
+              "Small and fast, good semantic search quality"
+            ],
+            [
+              "Vector store",
+              "ChromaDB (persistent)",
+              "Search by meaning; stays on disk between runs"
+            ],
+            [
+              "Language model",
+              "Mistral-7B-Instruct v0.3",
+              "Open-source, runs through the Hugging Face API"
+            ],
+            [
+              "Temperature",
+              "0.3",
+              "Keeps answers factual rather than creative"
+            ],
+            [
+              "Max output",
+              "1,500 tokens",
+              "Room for an 800–900-word structured briefing"
+            ],
+            [
+              "Grounding rule",
+              "Answer only from retrieved context",
+              "Prevents made-up facts"
+            ]
+          ]
+        },
+        {
+          "title": "Platform modules",
+          "columns": [
+            "Module",
+            "What it does",
+            "Built with"
+          ],
+          "rows": [
+            [
+              "Market briefing (RAG)",
+              "Writes a negotiation briefing for a route and cargo",
+              "LangChain, ChromaDB, Mistral-7B, Flask"
+            ],
+            [
+              "Route optimiser",
+              "Ranks routes by distance, port costs and war-zone risk",
+              "searoute, Shapely, Folium"
+            ],
+            [
+              "Fuel strategy",
+              "Compares fuel and retrofit scenarios with ROI and DCF",
+              "JavaScript, Chart.js"
+            ],
+            [
+              "Market sidebar",
+              "Shows Baltic indices, fuel prices and charter rates",
+              "JavaScript"
+            ]
+          ]
+        }
+      ],
+      "charts": [],
+      "conclusion": "The prototype showed that a small open-source model can produce useful, trustworthy briefings when retrieval does the heavy lifting. Because Mistral-7B was restricted to the retrieved passages and every answer lists its sources, each claim in a briefing can be traced back to the regulation or market report it came from. Together with route ranking and fuel-strategy analysis, the platform covers the main questions a broker asks before negotiating a fixture.",
+      "learnings": "This was my first time building a RAG system end to end. I learnt that answer quality depends far more on what you retrieve than on the model itself: how documents are split into chunks, which inputs you search with, and how strictly the prompt keeps the model within its context. I also picked up practical engineering habits, like keeping API keys out of the code, packaging a service in Docker so teammates can run it, and designing an API that a front end built by someone else can call. Working on one part of a larger team system taught me to agree on interfaces early.",
       "tech": [
         "Python",
         "LangChain",
@@ -211,14 +900,19 @@
       ],
       "github_url": "https://github.com/ChowchowWorks/Arrow-Case-Competition",
       "demo_url": "",
-      "image": "projects/arrow-maritime-platform/cover.jpg",
+      "image": "projects/arrow-maritime-platform/cover.svg",
+      "figures": [],
       "files": [
+        {
+          "label": "Platform home page",
+          "path": "projects/arrow-maritime-platform/home.jpg"
+        },
         {
           "label": "Fuel scenario inputs",
           "path": "projects/arrow-maritime-platform/fuel-scenarios.jpg"
         },
         {
-          "label": "Fuel mix optimisation & price sensitivity",
+          "label": "Fuel mix optimisation and price sensitivity",
           "path": "projects/arrow-maritime-platform/fuel-mix.jpg"
         }
       ],
@@ -226,40 +920,271 @@
     },
     {
       "id": "f25de49f3c",
-      "slug": "capcom-stock-pitch",
-      "title": "Capcom Equity Research: Nanyang Capital Stock Pitch",
+      "slug": "stock-pitch-capcom-corteva",
+      "title": "Nanyang Capital Stock Pitch: Capcom vs Corteva",
       "category": "Competition",
       "year": "2026",
-      "summary": "A BUY call on Capcom (TSE: 9697) with a ¥4,800 base-case target, built on a full three-statement and DCF model.",
-      "role": "Built the financial model and investment thesis",
-      "team": "",
-      "description": "Capcom's share price had fallen about 27% from its peak after the troubled launch of Monster Hunter Wilds, as investors worried that FY2025 had been the top of the cycle. For the Nanyang Capital Stock Pitch 2026 I argued the market was wrong: catalog sales were accelerating, guidance pointed to a 13th straight year of record profit, and upcoming launches weren't priced in.\n\nI built the valuation from Capcom's annual and integrated reports: segment-level revenue projections, three financial statements, a DCF, peer comparison and probability-weighted scenarios.",
+      "summary": "We built full buy cases for two very different stocks, Capcom and Corteva, then chose to pitch Corteva (BUY, US$66.33 target).",
+      "role": "Valuation models and investment theses",
+      "team": "Team",
+      "description": "A stock pitch only gets one pick, so we analysed two candidates in full before committing: Capcom (TSE: 9697), the Japanese games publisher behind Resident Evil and Monster Hunter, and Corteva (NYSE: CTVA), the US seed and crop protection company spun out of DowDuPont.\n\nEach got the full treatment: a revenue model built from business segments, a discounted cash flow (DCF) valuation, a peer comparison and a risk review. With both cases side by side, we decided to pitch Corteva.",
+      "mindmap": [
+        {
+          "label": "Screening",
+          "items": [
+            "Capcom (TSE: 9697)",
+            "Corteva (NYSE: CTVA)"
+          ]
+        },
+        {
+          "label": "Capcom case",
+          "items": [
+            "Segment revenue build to FY2028",
+            "DCF + peers + scenarios",
+            "Variant view on the Monster Hunter Wilds sell-off"
+          ]
+        },
+        {
+          "label": "Corteva case",
+          "items": [
+            "Seed and crop protection drivers",
+            "DCF with 2.5% terminal growth",
+            "Comparables football field",
+            "Moat and Porter's five forces"
+          ]
+        },
+        {
+          "label": "Risk",
+          "items": [
+            "Bear, base and bull cases",
+            "Risk matrices with mitigants"
+          ]
+        },
+        {
+          "label": "Decision",
+          "items": [
+            "Compare upside and downside",
+            "Pitch Corteva: BUY, US$66.33"
+          ]
+        }
+      ],
       "approach": [
-        "Compiled five years of financials (FY2021–FY2025) and projected revenue by segment (Digital Contents, Arcade Operations, Amusement Equipment, Other) to FY2028, driven by unit sales of major titles and catalog growth.",
-        "Built the income statement, balance sheet and cash flow projections, then valued the company by DCF (WACC 8.7%, terminal growth 2.5%) weighted with comparable-company multiples and scenario analysis.",
-        "Benchmarked Capcom against gaming peers on EV/EBITDA, P/E, operating margin and revenue growth to test whether its valuation premium was justified.",
-        "Wrote a variant view on five market concerns and mapped catalysts (Resident Evil Requiem launch, Monster Hunter Wilds DLC, Switch 2 ports) against consensus estimates.",
-        "Set bear, base and bull cases with explicit revenue, margin, EPS and exit-multiple assumptions, plus a structured risk matrix with mitigants."
+        "Capcom: compiled five years of financials and projected revenue by segment (Digital Contents, Arcade Operations, Amusement Equipment, Other) to FY2028, driven by unit sales of major titles and catalog growth.",
+        "Capcom: valued the company with a DCF (WACC 8.7%, terminal growth 2.5%) weighted with peer multiples and probability-weighted bear, base and bull scenarios, and wrote a variant view on five market concerns.",
+        "Corteva: split revenue into seed and crop protection, forecast each by region from price, volume and currency effects, and modelled restructuring savings and their effect on margins.",
+        "Corteva: built a DCF (CAPM cost of equity, 2.5% terminal growth) with a WACC and terminal-growth sensitivity table, then cross-checked it against a football field of peer multiples.",
+        "Assessed each company's competitive position (moat, Porter's five forces) and key risks, then compared the two cases on upside, downside and conviction."
       ],
       "highlights": [
-        "Recommendation: BUY, 12-month base-case target ¥4,800 (+30.8% from ¥3,670)",
-        "Probability-weighted target of ¥4,550 across bear (¥2,800), base (¥4,800) and bull (¥5,400) cases",
-        "Full model shared below: assumptions, statements, valuation, sensitivity and thesis tabs"
+        "Final pick: Corteva, BUY with a US$66.33 target (+25.7%)",
+        "Corteva's downside valuation (US$56.10) still sat above its share price",
+        "Capcom case: BUY with a ¥4,800 base target (+30.8%), but a bear case of −24%"
       ],
+      "tables": [
+        {
+          "title": "The two cases side by side",
+          "columns": [
+            "",
+            "Capcom",
+            "Corteva (chosen)"
+          ],
+          "rows": [
+            [
+              "Sector",
+              "Video games (Japan)",
+              "Seeds and crop protection (US)"
+            ],
+            [
+              "Recommendation",
+              "BUY",
+              "BUY"
+            ],
+            [
+              "Share price at analysis",
+              "¥3,670",
+              "US$52.76"
+            ],
+            [
+              "Base-case target",
+              "¥4,800",
+              "US$66.33"
+            ],
+            [
+              "Upside",
+              "+30.8%",
+              "+25.7%"
+            ],
+            [
+              "Downside case",
+              "¥2,800 (−24%)",
+              "US$56.10 (+6%)"
+            ],
+            [
+              "Valuation method",
+              "DCF 50%, comps 30%, scenarios 20%",
+              "DCF, cross-checked with a comps football field"
+            ],
+            [
+              "Terminal growth",
+              "2.5%",
+              "2.5%"
+            ]
+          ],
+          "highlight_col": 2
+        },
+        {
+          "title": "Corteva vs agricultural peers",
+          "columns": [
+            "Company",
+            "P/E",
+            "EV/EBITDA",
+            "EBITDA margin",
+            "YTD share price"
+          ],
+          "rows": [
+            [
+              "Corteva",
+              "41.3",
+              "15.4",
+              "14.9%",
+              "+10.7%"
+            ],
+            [
+              "Bayer",
+              "28.6",
+              "5.9",
+              "20.7%",
+              "−21.8%"
+            ],
+            [
+              "FMC",
+              "5.3",
+              "27.1",
+              "10.3%",
+              "+0.2%"
+            ],
+            [
+              "Nutrien",
+              "28.7",
+              "8.4",
+              "15.6%",
+              "−15.6%"
+            ],
+            [
+              "KWS Saat",
+              "11.5",
+              "8.3",
+              "16.7%",
+              "+21.9%"
+            ],
+            [
+              "Nufarm",
+              "104.3",
+              "9.9",
+              "8.4%",
+              "−26.0%"
+            ]
+          ],
+          "highlight": [
+            0
+          ],
+          "note": "Multiples as of August 2024. BASF is excluded because its P/E was not meaningful at the time."
+        }
+      ],
+      "charts": [
+        {
+          "type": "range",
+          "title": "Corteva: where the US$66.33 target sits (implied share price, US$)",
+          "prefix": "$",
+          "decimals": 2,
+          "bars": [
+            {
+              "label": "EV / Revenue",
+              "low": 26.1,
+              "high": 67.15
+            },
+            {
+              "label": "EV / EBITDA",
+              "low": 25.7,
+              "high": 75.62
+            },
+            {
+              "label": "Price / Sales",
+              "low": 13.77,
+              "high": 48.69
+            },
+            {
+              "label": "DCF",
+              "low": 56.1,
+              "high": 66.33,
+              "accent": true
+            }
+          ],
+          "markers": [
+            {
+              "label": "Share price $52.76",
+              "value": 52.76
+            },
+            {
+              "label": "Target $66.33",
+              "value": 66.33,
+              "accent": true
+            }
+          ],
+          "note": "Comparable-company bars show the 25th–75th percentile of implied share prices; the DCF bar runs from the downside case to the base case."
+        },
+        {
+          "type": "bar",
+          "title": "Capcom: 12-month price target by scenario (¥)",
+          "prefix": "¥",
+          "decimals": 0,
+          "bars": [
+            {
+              "label": "Bear (20% probability)",
+              "value": 2800
+            },
+            {
+              "label": "Base (55%)",
+              "value": 4800,
+              "accent": true
+            },
+            {
+              "label": "Bull (25%)",
+              "value": 5400
+            }
+          ],
+          "reference": {
+            "label": "Share price ¥3,670",
+            "value": 3670
+          }
+        }
+      ],
+      "conclusion": "Both companies came out as BUYs. Capcom offered more upside in the base case (+30.8%) but a wider spread of outcomes: its bear case implied a 24% loss if game launches disappointed. Corteva's base case offered +25.7%, its target sat slightly above the median of the peer-multiple ranges, and even its downside valuation of US$56.10 was above the share price at the time. After weighing both, we pitched Corteva.",
+      "learnings": "Running two full analyses side by side taught me that a stock pitch is as much about the downside as the upside. I learnt to build revenue from business-segment drivers instead of extrapolating totals, to cross-check a DCF against market multiples (a football field makes it obvious when a target is out of line), and how sensitive a DCF is to WACC and terminal growth. Writing the variant view for Capcom forced me to state exactly where we disagreed with the market and what would prove us right.",
       "tech": [
         "Excel",
         "DCF valuation",
         "Comparable company analysis",
+        "Football field chart",
         "Scenario analysis",
         "Financial statements"
       ],
       "github_url": "",
       "demo_url": "",
-      "image": "projects/capcom-stock-pitch/cover.jpg",
+      "image": "projects/stock-pitch-capcom-corteva/cover.svg",
+      "figures": [],
       "files": [
         {
+          "label": "Corteva equity research report (PDF)",
+          "path": "projects/stock-pitch-capcom-corteva/Corteva_Equity_Research_Report.pdf"
+        },
+        {
+          "label": "Corteva key financials and comparables (Excel)",
+          "path": "projects/stock-pitch-capcom-corteva/Corteva_Key_Financials_and_Comps.xlsx"
+        },
+        {
           "label": "Capcom valuation model (Excel)",
-          "path": "projects/capcom-stock-pitch/Capcom_Valuation_Model.xlsx"
+          "path": "projects/stock-pitch-capcom-corteva/Capcom_Valuation_Model.xlsx"
         }
       ],
       "featured": true
@@ -274,18 +1199,157 @@
       "role": "Built the forecasting models; wrote the Pandas preprocessing pipeline and the stationarity and correlation analysis",
       "team": "Team of 4 (IT1244, NUS)",
       "description": "Relative humidity matters for weather forecasting, public health and environmental monitoring, but it's hard to predict because weather variables interact in complex, non-linear ways. Using 100,057 hourly observations from 2010 to 2021, we built and compared four machine learning models to forecast humidity 1, 6 and 24 hours ahead, without using current humidity as an input.",
+      "mindmap": [
+        {
+          "label": "Data",
+          "items": [
+            "100,057 hourly readings (2010–2021)",
+            "6 weather features"
+          ]
+        },
+        {
+          "label": "Explore",
+          "items": [
+            "Correlation map",
+            "ACF / PACF: 24-hour cycle",
+            "ADF and KPSS tests"
+          ]
+        },
+        {
+          "label": "Prepare",
+          "items": [
+            "Remove impossible values",
+            "Standardise features",
+            "1, 6 and 24-hour lag windows",
+            "No target leakage"
+          ]
+        },
+        {
+          "label": "Models",
+          "items": [
+            "Random Forest baseline",
+            "XGBoost",
+            "LSTM (Keras)",
+            "Hybrid LSTM-XGBoost"
+          ]
+        },
+        {
+          "label": "Tune and validate",
+          "items": [
+            "Optuna Bayesian optimisation",
+            "Time-series cross-validation"
+          ]
+        },
+        {
+          "label": "Evaluate",
+          "items": [
+            "MAE at each horizon",
+            "Best: XGBoost"
+          ]
+        }
+      ],
       "approach": [
-        "Explored the data first: correlation matrix, ACF and PACF plots, ADF and KPSS stationarity tests, and rolling statistics, which revealed strong 24-hour seasonality.",
-        "Wrote the preprocessing pipeline in Pandas: removed physically impossible readings, standardised features and built 1-, 6- and 24-hour lag windows without leaking the target.",
+        "Explored the data first: correlation matrix, ACF and PACF plots, ADF and KPSS stationarity tests and rolling statistics, which revealed a strong 24-hour cycle.",
+        "Wrote the preprocessing pipeline in Pandas: removed physically impossible readings, standardised features and built 1, 6 and 24-hour lag windows without leaking the target.",
         "Built a Random Forest baseline, then XGBoost with seasonal, lag, difference and interaction features, validated with time-series cross-validation.",
         "Built LSTM models in Keras and tuned units, dropout, learning rate, batch size and epochs separately for each horizon using Bayesian optimisation (Optuna).",
-        "Built a hybrid model that feeds features learned by the LSTM into a tuned XGBoost model."
+        "Built a hybrid model that feeds patterns learned by the LSTM into a tuned XGBoost model."
       ],
       "highlights": [
         "XGBoost was the best model at every horizon: MAE 0.046 (1h), 0.064 (6h) and 0.080 (24h)",
-        "Errors are comparable to the 5–10% typical of human forecasters",
-        "Showed the hybrid LSTM-XGBoost didn't beat its parts, and explained why"
+        "Errors comparable to the 5–10% typical of human forecasters",
+        "The hybrid LSTM-XGBoost didn't beat its parts, and we explained why"
       ],
+      "tables": [
+        {
+          "title": "Mean absolute error by model and forecast horizon (lower is better)",
+          "columns": [
+            "Model",
+            "1 hour",
+            "6 hours",
+            "24 hours"
+          ],
+          "rows": [
+            [
+              "Random Forest (baseline)",
+              "0.054",
+              "0.070",
+              "0.086"
+            ],
+            [
+              "XGBoost",
+              "0.046",
+              "0.064",
+              "0.080"
+            ],
+            [
+              "LSTM",
+              "0.047",
+              "0.065",
+              "0.084"
+            ],
+            [
+              "Hybrid LSTM-XGBoost",
+              "0.047",
+              "0.075",
+              "0.084"
+            ]
+          ],
+          "highlight": [
+            1
+          ],
+          "note": "Relative humidity runs from 0 to 1, so an MAE of 0.046 means predictions were off by about 4.6 percentage points on average."
+        }
+      ],
+      "charts": [
+        {
+          "type": "grouped",
+          "title": "Forecast error by horizon (MAE, lower is better)",
+          "decimals": 3,
+          "lower_is_better": true,
+          "groups": [
+            "1 hour",
+            "6 hours",
+            "24 hours"
+          ],
+          "series": [
+            {
+              "label": "Random Forest",
+              "values": [
+                0.054,
+                0.07,
+                0.086
+              ]
+            },
+            {
+              "label": "XGBoost",
+              "values": [
+                0.046,
+                0.064,
+                0.08
+              ]
+            },
+            {
+              "label": "LSTM",
+              "values": [
+                0.047,
+                0.065,
+                0.084
+              ]
+            },
+            {
+              "label": "Hybrid",
+              "values": [
+                0.047,
+                0.075,
+                0.084
+              ]
+            }
+          ]
+        }
+      ],
+      "conclusion": "XGBoost delivered the lowest error at every horizon. Its tree structure makes the most of engineered lag, difference and interaction features, and its built-in regularisation copes well with noisy weather data. The LSTM matched it at one hour but drifted further out, and the hybrid didn't outperform either model on its own, probably because the extra layer added complexity without new information. All models got worse as the horizon grew, as expected. The biggest limitation was that current humidity wasn't allowed as an input; real forecasting would add it, along with radar or satellite data.",
+      "learnings": "Time-series data punishes shortcuts. I learnt to check stationarity and seasonality before modelling, to split data in time order, and to build lag features without leaking the answer into the inputs. I saw that a well-engineered gradient-boosting model can beat a deep network on tabular data, and that a more complex model (our hybrid) has to earn its place on the test set. I also learnt to tune hyperparameters with Bayesian optimisation instead of guesswork. Splitting the work across four people taught me the value of a reproducible notebook with clear run instructions.",
       "tech": [
         "Python",
         "Pandas",
@@ -298,15 +1362,12 @@
       ],
       "github_url": "https://github.com/ChowchowWorks/Weather-Prediction",
       "demo_url": "",
-      "image": "projects/weather-humidity-prediction/cover.jpg",
+      "image": "projects/weather-humidity-prediction/cover.svg",
+      "figures": [],
       "files": [
         {
           "label": "Project report (PDF)",
           "path": "projects/weather-humidity-prediction/Humidity_Forecasting_Report.pdf"
-        },
-        {
-          "label": "Method pipeline",
-          "path": "projects/weather-humidity-prediction/pipeline.jpg"
         }
       ],
       "featured": true
@@ -320,19 +1381,197 @@
       "summary": "A statistically rigorous linear model of Singapore HDB resale prices that explains 88.6% of price variation.",
       "role": "Individual project",
       "team": "Individual (ST3131 Regression Analysis, NUS)",
-      "description": "The goal was to build the best possible linear regression model for HDB resale prices that also satisfies the standard regression assumptions, so its coefficients can be trusted and interpreted. The data covers 2,456 resale transactions from July 2020 (data.gov.sg).",
+      "description": "The goal was to build the best linear regression model for HDB resale prices that also satisfies the standard regression assumptions, so its coefficients can be trusted and interpreted. The data covers 2,456 resale transactions from July 2020 (data.gov.sg).",
+      "mindmap": [
+        {
+          "label": "Data",
+          "items": [
+            "2,456 resale flats (July 2020)",
+            "11 variables"
+          ]
+        },
+        {
+          "label": "Explore",
+          "items": [
+            "Right-skewed prices (skew 1.04)",
+            "Town and flat-type boxplots",
+            "Collinearity check"
+          ]
+        },
+        {
+          "label": "Engineer",
+          "items": [
+            "Remaining lease in years",
+            "Storey midpoint",
+            "Merge sparse flat types"
+          ]
+        },
+        {
+          "label": "Model",
+          "items": [
+            "Baseline M₀",
+            "Box-Cox: λ = −0.38",
+            "Log model chosen",
+            "Stepwise AIC"
+          ]
+        },
+        {
+          "label": "Check",
+          "items": [
+            "Residual diagnostics",
+            "VIF",
+            "Cook's distance"
+          ]
+        },
+        {
+          "label": "Interpret",
+          "items": [
+            "% price effect per variable",
+            "Town premiums and discounts"
+          ]
+        }
+      ],
       "approach": [
         "Explored the price distribution (right-skewed, skewness 1.04) and engineered features: remaining lease in decimal years, storey midpoints and flat age.",
-        "Detected perfect multicollinearity between remaining lease, flat age and lease start date (|r| = 0.9993) and kept only one of them.",
+        "Found perfect multicollinearity between remaining lease, flat age and lease start date (|r| = 0.9993) and kept only one of them.",
         "Fitted a baseline model, then used Box-Cox analysis (optimal λ = −0.38) to compare log and reciprocal square-root transformations, choosing the log for interpretability.",
         "Ran stepwise AIC selection, VIF checks, influence diagnostics (Cook's distance) and full residual checks for normality, constant variance, linearity and independence.",
-        "Interpreted every coefficient as a percentage price effect, e.g. +0.89% per extra square metre and a 43% premium for the Central Area."
+        "Interpreted every coefficient as a percentage price effect."
       ],
       "highlights": [
         "Adjusted R² of 0.886, up from 0.841 for the untransformed baseline",
         "Average prediction error (MAPE) of 8.62%",
-        "All regression assumptions checked and satisfied; no highly influential points"
+        "All key regression assumptions checked; no highly influential points (max Cook's D = 0.089)"
       ],
+      "tables": [
+        {
+          "title": "Comparing the candidate models",
+          "columns": [
+            "Model",
+            "Response",
+            "Adjusted R²",
+            "AIC",
+            "Shapiro-Wilk W"
+          ],
+          "rows": [
+            [
+              "M₀ (baseline)",
+              "price",
+              "0.8405",
+              "61,118",
+              "0.9607"
+            ],
+            [
+              "M₀ log (chosen)",
+              "log(price)",
+              "0.8858",
+              "−3,686",
+              "0.9764"
+            ],
+            [
+              "M₀ Box-Cox",
+              "1/√price",
+              "0.8922",
+              "−38,949",
+              "0.9788"
+            ]
+          ],
+          "highlight": [
+            1
+          ],
+          "note": "The Box-Cox model fit marginally better, but its coefficients can't be read as price effects, so I chose the log model."
+        },
+        {
+          "title": "What drives the price (final model)",
+          "columns": [
+            "Factor",
+            "Effect on resale price"
+          ],
+          "rows": [
+            [
+              "Floor area",
+              "+0.89% per extra square metre"
+            ],
+            [
+              "Storey",
+              "+0.83% per floor higher"
+            ],
+            [
+              "Remaining lease",
+              "+1.24% per extra year"
+            ],
+            [
+              "Executive vs 1-room flat",
+              "+46.2%"
+            ],
+            [
+              "4-room vs 1-room flat",
+              "+37.8%"
+            ],
+            [
+              "Central Area vs Ang Mo Kio",
+              "+43.4%"
+            ],
+            [
+              "Sembawang vs Ang Mo Kio",
+              "−32.8%"
+            ]
+          ],
+          "note": "Each effect holds the other factors constant."
+        }
+      ],
+      "charts": [
+        {
+          "type": "bar",
+          "title": "Town premium or discount vs Ang Mo Kio (%)",
+          "suffix": "%",
+          "decimals": 1,
+          "bars": [
+            {
+              "label": "Central Area",
+              "value": 43.4
+            },
+            {
+              "label": "Marine Parade",
+              "value": 39.7
+            },
+            {
+              "label": "Bukit Timah",
+              "value": 37.8
+            },
+            {
+              "label": "Queenstown",
+              "value": 25.1
+            },
+            {
+              "label": "Bishan",
+              "value": 23.9
+            },
+            {
+              "label": "Woodlands",
+              "value": -20.0
+            },
+            {
+              "label": "Sengkang",
+              "value": -25.5
+            },
+            {
+              "label": "Bukit Panjang",
+              "value": -25.8
+            },
+            {
+              "label": "Choa Chu Kang",
+              "value": -31.0
+            },
+            {
+              "label": "Sembawang",
+              "value": -32.8
+            }
+          ]
+        }
+      ],
+      "conclusion": "The final log-linear model explains 88.6% of the variation in resale prices and predicts within 8.62% on average. It satisfies the key assumptions: residuals are approximately normal with constant variance, relationships are linear, and multicollinearity is under control. The only caveat is mild autocorrelation (Durbin-Watson 1.28), which is expected because nearby towns move together. The results match Singapore's familiar price gradient: central and southern towns command large premiums while northern and western towns are more affordable.",
+      "learnings": "This project taught me that a good regression model is one you can defend, not just the one with the highest R². Box-Cox pointed to a transformation that fit slightly better, but I chose the log because its coefficients translate directly into percentage price effects people can use. I learnt the full adequacy-checking routine (residual plots, normality and independence tests, VIF and Cook's distance) and how to justify decisions such as dropping perfectly collinear variables. Compared with my first-year HDB project, it showed me the difference between predicting well and explaining why.",
       "tech": [
         "R",
         "Linear regression",
@@ -342,7 +1581,13 @@
       ],
       "github_url": "",
       "demo_url": "",
-      "image": "projects/hdb-regression-st3131/cover.jpg",
+      "image": "projects/hdb-regression-st3131/cover.svg",
+      "figures": [
+        {
+          "label": "Predicted vs actual resale prices: points close to the line mean accurate predictions",
+          "path": "projects/hdb-regression-st3131/predicted-vs-actual.jpg"
+        }
+      ],
       "files": [
         {
           "label": "Statistical report (PDF)",
@@ -351,10 +1596,6 @@
         {
           "label": "R code",
           "path": "projects/hdb-regression-st3131/ST3131_HDB_Regression.R"
-        },
-        {
-          "label": "Price distribution and Q-Q plot",
-          "path": "projects/hdb-regression-st3131/eda.jpg"
         }
       ],
       "featured": false
@@ -368,18 +1609,127 @@
       "summary": "Comparing linear regression, decision trees, k-NN and principal component regression to predict HDB resale prices.",
       "role": "Individual project",
       "team": "Individual (DSE1101, NUS)",
-      "description": "Buyers and sellers make better decisions when they understand what drives HDB resale prices. Working with a dataset of flat characteristics, I reduced 230 candidate predictors to 133, then built and compared four predictive models, judging them by RMSE and margin of error against the mean price of about $497,000.",
+      "description": "Buyers and sellers make better decisions when they understand what drives HDB resale prices. Working with a dataset of flat characteristics, I reduced 230 candidate predictors to 133, then built and compared four predictive models, judging them by RMSE and by margin of error against the mean price of about $497,000.",
+      "mindmap": [
+        {
+          "label": "Data",
+          "items": [
+            "HDB flat characteristics",
+            "230 → 133 predictors",
+            "4,000 / 2,000 train-test split"
+          ]
+        },
+        {
+          "label": "Prepare",
+          "items": [
+            "Log-transform price",
+            "Drop zero-variance features"
+          ]
+        },
+        {
+          "label": "Models",
+          "items": [
+            "Linear (forward selection)",
+            "Decision tree",
+            "k-NN",
+            "PCA → PCR"
+          ]
+        },
+        {
+          "label": "Validate",
+          "items": [
+            "10-fold cross-validation",
+            "Tune cp, k and components"
+          ]
+        },
+        {
+          "label": "Evaluate",
+          "items": [
+            "RMSE in dollars",
+            "Margin of error vs mean price"
+          ]
+        }
+      ],
       "approach": [
         "Log-transformed the right-skewed resale price to stabilise variance and reduce the pull of extreme values.",
-        "Used a 4,000/2,000 train-test split and 10-fold cross-validation for every model.",
-        "Built a linear model with forward selection (91 predictors), a decision tree tuned on the complexity parameter, and k-NN tuned on k.",
-        "Applied PCA to keep 95% of the variance, cutting 133 predictors to 69 components, and fitted a principal component regression."
+        "Used a 4,000 / 2,000 train-test split and 10-fold cross-validation for every model.",
+        "Built a linear model with forward selection (91 predictors), a decision tree tuned on its complexity parameter, and k-NN tuned on k.",
+        "Applied PCA to keep 95% of the variance, cutting 133 predictors to 69 components, then fitted a principal component regression."
       ],
       "highlights": [
         "Principal component regression was the most accurate: RMSE $40,092, an 8.06% margin of error",
-        "Beat linear regression (10.34%), decision tree (11.07%) and k-NN (15.12%)",
-        "Discussed limitations and next steps, such as ridge regression and adding economic factors like housing grants"
+        "Beat linear regression (10.34%), the decision tree (11.07%) and k-NN (15.12%)"
       ],
+      "tables": [
+        {
+          "title": "Model comparison on the test set",
+          "columns": [
+            "Model",
+            "Key setting",
+            "RMSE",
+            "Margin of error"
+          ],
+          "rows": [
+            [
+              "Linear regression",
+              "Forward selection, 91 predictors",
+              "$51,451",
+              "10.34%"
+            ],
+            [
+              "Decision tree",
+              "cp = 0.00011, 226 leaves",
+              "$55,071",
+              "11.07%"
+            ],
+            [
+              "k-NN",
+              "k = 3",
+              "$75,196",
+              "15.12%"
+            ],
+            [
+              "Principal component regression",
+              "69 components (95% of variance)",
+              "$40,092",
+              "8.06%"
+            ]
+          ],
+          "highlight": [
+            3
+          ],
+          "note": "Margin of error = RMSE ÷ mean resale price ($497,486)."
+        }
+      ],
+      "charts": [
+        {
+          "type": "bar",
+          "title": "Prediction error by model (RMSE, lower is better)",
+          "prefix": "$",
+          "decimals": 0,
+          "lower_is_better": true,
+          "bars": [
+            {
+              "label": "Linear regression",
+              "value": 51451
+            },
+            {
+              "label": "Decision tree",
+              "value": 55071
+            },
+            {
+              "label": "k-NN",
+              "value": 75196
+            },
+            {
+              "label": "PCR",
+              "value": 40092
+            }
+          ]
+        }
+      ],
+      "conclusion": "Principal component regression was the clear winner: by compressing 133 overlapping predictors into 69 components, it removed noise and produced the tightest predictions, with most points close to the perfect-prediction line. Linear regression and the decision tree performed similarly (10–11% error), while k-NN struggled with so many features. The remaining error suggests that economic factors outside the dataset matter too, such as housing grants like the 2019 Enhanced CPF Housing Grant.",
+      "learnings": "This was my first full machine learning project. I learnt the core workflow: split the data first, validate with cross-validation, tune each model's key setting and compare on a held-out test set using a metric people understand (RMSE in dollars). Cutting 133 predictors to 69 components showed me how much redundancy real data carries, and k-NN's weak result showed how some methods break down with many features. I also made, and caught, a classic mistake: accidentally leaving the price inside the training features. Now I check for data leakage every time.",
       "tech": [
         "R",
         "Linear regression",
@@ -390,7 +1740,13 @@
       ],
       "github_url": "",
       "demo_url": "",
-      "image": "projects/hdb-ml-dse1101/cover.jpg",
+      "image": "projects/hdb-ml-dse1101/cover.svg",
+      "figures": [
+        {
+          "label": "Actual vs predicted prices for all four models (red line = perfect prediction)",
+          "path": "projects/hdb-ml-dse1101/model-comparison.jpg"
+        }
+      ],
       "files": [
         {
           "label": "Project report (PDF)",
@@ -412,18 +1768,121 @@
       "summary": "NTU x MOM essay competition: a data-driven country similarity index and a policy proposal for Singapore.",
       "role": "Built the machine learning similarity index; co-wrote the policy analysis",
       "team": "Co-authored with Clarence Chow",
-      "description": "Singapore's female labour force participation rate (61.25% in 2024) lags global leaders like Iceland (70.3%). Policies only transfer well between similar countries, so before studying what other countries do, we used data to find the countries most like Singapore.\n\nWe then evaluated their parental leave, childcare, equal pay and four-day-week policies through three economic frameworks, and designed a proposal suited to Singapore.",
+      "description": "Singapore's female labour force participation rate (FLFPR) was 61.25% in 2024, behind global leaders like Iceland at 70.3%. Policies only transfer well between similar countries, so before studying what other countries do, we used data to find the countries most like Singapore.\n\nWe then evaluated their parental leave, childcare, equal pay and four-day week policies through three economic frameworks, and designed a proposal suited to Singapore.",
+      "mindmap": [
+        {
+          "label": "Question",
+          "items": [
+            "How can Singapore raise its FLFPR?"
+          ]
+        },
+        {
+          "label": "Data",
+          "items": [
+            "FLFPR trends",
+            "Female working hours",
+            "GDP per capita",
+            "Cost of living and purchasing power"
+          ]
+        },
+        {
+          "label": "Similarity index (my part)",
+          "items": [
+            "Fuzzy-match country names",
+            "Impute missing values",
+            "Correlation-weighted distance",
+            "Rank countries"
+          ]
+        },
+        {
+          "label": "Comparators",
+          "items": [
+            "Iceland",
+            "New Zealand",
+            "Vietnam"
+          ]
+        },
+        {
+          "label": "Frameworks",
+          "items": [
+            "Human Capital Theory",
+            "Feminist Economics",
+            "Institutional Path Dependence"
+          ]
+        },
+        {
+          "label": "Proposal",
+          "items": [
+            "Workplace childcare co-operatives",
+            "AI scheduling",
+            "32-hour work week"
+          ]
+        }
+      ],
       "approach": [
         "Combined country-level data on female participation trends, female working hours, GDP per capita, purchasing power, cost of living and a broader similarity index.",
-        "Cleaned and matched country names across sources with fuzzy matching, and imputed missing values from the nearest similar countries.",
-        "Weighted each metric by its correlation with female participation and scored every country's distance from Singapore, identifying Iceland, New Zealand and Vietnam as the closest comparators.",
-        "Evaluated their policies using Human Capital Theory, Feminist Economics and Institutional Path Dependence.",
+        "Cleaned and matched country names across sources with fuzzy matching, and filled missing values using the most similar countries.",
+        "Weighted each metric by its correlation with female participation and scored every country's distance from Singapore, which identified Iceland, New Zealand and Vietnam as the closest comparators.",
+        "Evaluated their policies through Human Capital Theory, Feminist Economics and Institutional Path Dependence.",
         "Proposed Community-Supported Workplace Childcare Co-operatives: employer-supported, government-subsidised childcare hubs with AI-driven scheduling and a 32-hour work week."
       ],
       "highlights": [
-        "Data-driven selection of comparator countries rather than picking them by intuition",
-        "A concrete, Singapore-specific policy proposal grounded in evidence from Iceland, New Zealand, Vietnam and Quebec"
+        "Comparator countries chosen with data rather than intuition",
+        "A concrete, Singapore-specific proposal grounded in evidence from Iceland, New Zealand, Vietnam and Quebec"
       ],
+      "tables": [
+        {
+          "title": "What we learnt from each comparator",
+          "columns": [
+            "Country",
+            "Key policies",
+            "What it showed"
+          ],
+          "rows": [
+            [
+              "Iceland",
+              "Gender-neutral parental leave, subsidised childcare, 4-day week trials (2015–2019)",
+              "Flexible work kept productivity while raising men's share of caregiving"
+            ],
+            [
+              "New Zealand",
+              "Flexible leave, free early childhood education, Unilever 4-day week trial (2022)",
+              "Cheaper childcare and flexibility keep mothers attached to work"
+            ],
+            [
+              "Vietnam",
+              "Employer-supported childcare",
+              "Firms themselves can make childcare accessible"
+            ],
+            [
+              "Quebec (reference)",
+              "Universal childcare",
+              "Associated with a 7.7% rise in FLFPR"
+            ]
+          ]
+        }
+      ],
+      "charts": [
+        {
+          "type": "bar",
+          "title": "Female labour force participation rate (%)",
+          "suffix": "%",
+          "decimals": 2,
+          "bars": [
+            {
+              "label": "Singapore (2024)",
+              "value": 61.25,
+              "accent": true
+            },
+            {
+              "label": "Iceland",
+              "value": 70.3
+            }
+          ]
+        }
+      ],
+      "conclusion": "Our comparison found a common thread: countries with higher female participation reduce the 'motherhood penalty' by making childcare affordable and work flexible. We combined Iceland's flexibility with Vietnam's employer-led model into a proposal for Singapore, Community-Supported Workplace Childcare Co-operatives, which fits the Smart Nation vision and Singapore's collectivist culture. Quebec's 7.7% rise in FLFPR after introducing universal childcare suggests the potential impact.",
+      "learnings": "I learnt that 'which countries should we learn from?' can be answered with data rather than intuition. Building the similarity index taught me practical data wrangling: matching country names across sources, filling gaps sensibly and choosing weights that reflect what matters for the question. Writing with Clarence taught me to turn quantitative findings into an argument policymakers can follow, grounded in economic theory.",
       "tech": [
         "Python",
         "Pandas",
@@ -434,7 +1893,8 @@
       ],
       "github_url": "",
       "demo_url": "",
-      "image": "",
+      "image": "projects/mom-flfpr-essay/cover.svg",
+      "figures": [],
       "files": [
         {
           "label": "Full essay (PDF)",
@@ -456,13 +1916,41 @@
       "summary": "A Python system that pulls live and historical equity data and generates rule-based trading signals.",
       "role": "Solo project",
       "team": "Individual",
-      "description": "An ongoing personal project to build a disciplined, testable trading system rather than trading on gut feel.",
+      "description": "An ongoing personal project to build a disciplined, testable trading system instead of trading on gut feel.",
+      "mindmap": [
+        {
+          "label": "Data",
+          "items": [
+            "Live and historical prices",
+            "Broker and market-data APIs"
+          ]
+        },
+        {
+          "label": "Signals",
+          "items": [
+            "Moving averages",
+            "RSI"
+          ]
+        },
+        {
+          "label": "Testing",
+          "items": [
+            "Parameter sensitivity",
+            "Out-of-sample tests",
+            "Backtesting"
+          ]
+        }
+      ],
       "approach": [
         "Pull live and historical equity data through broker and market-data APIs.",
         "Generate rule-based signals from indicators such as moving averages and RSI.",
         "Design parameter-sensitivity and out-of-sample tests before backtesting, to avoid overfitting to past data."
       ],
       "highlights": [],
+      "tables": [],
+      "charts": [],
+      "conclusion": "Still in progress. Results will be added once out-of-sample testing is complete.",
+      "learnings": "Even before backtesting, I've learnt why so many strategies fail on new data: it's easy to tune parameters until the past looks great. Designing the sensitivity and out-of-sample tests first keeps me honest about whether a signal is real.",
       "tech": [
         "Python",
         "Market-data APIs",
@@ -471,7 +1959,8 @@
       ],
       "github_url": "",
       "demo_url": "",
-      "image": "",
+      "image": "projects/algorithmic-trading-system/cover.svg",
+      "figures": [],
       "files": [],
       "featured": false
     },
@@ -485,20 +1974,53 @@
       "role": "Team Leader",
       "team": "Team",
       "description": "As team leader, I steered our research into investment opportunities and the valuation behind our pitch.",
+      "mindmap": [
+        {
+          "label": "Research",
+          "items": [
+            "Screen investment opportunities"
+          ]
+        },
+        {
+          "label": "Valuation",
+          "items": [
+            "DCF model"
+          ]
+        },
+        {
+          "label": "Benchmarking",
+          "items": [
+            "Football field vs 5 competitors"
+          ]
+        },
+        {
+          "label": "Leadership",
+          "items": [
+            "Coordinate the team",
+            "Deliver the pitch"
+          ]
+        }
+      ],
       "approach": [
         "Led the team's research into candidate investment opportunities.",
         "Built a DCF valuation of our chosen company.",
         "Created a football field chart benchmarking the company against 5 competitors."
       ],
       "highlights": [],
+      "tables": [],
+      "charts": [],
+      "conclusion": "",
+      "learnings": "Leading the team taught me to split a large piece of analysis into parts people can own, keep everyone working from the same assumptions, and pull it together into one clear recommendation.",
       "tech": [
         "Excel",
         "DCF valuation",
-        "Comparable company analysis"
+        "Comparable company analysis",
+        "Football field chart"
       ],
       "github_url": "",
       "demo_url": "",
-      "image": "",
+      "image": "projects/temasek-nus-stock-pitch/cover.svg",
+      "figures": [],
       "files": [],
       "featured": false
     },
@@ -512,18 +2034,49 @@
       "role": "Team Member",
       "team": "Team of 5",
       "description": "We worked with a member of the hard-of-hearing community throughout, so the solution was shaped by the people it was meant to help.",
+      "mindmap": [
+        {
+          "label": "Understand",
+          "items": [
+            "Worked with a member of the hard-of-hearing community"
+          ]
+        },
+        {
+          "label": "Design",
+          "items": [
+            "Concept"
+          ]
+        },
+        {
+          "label": "Build",
+          "items": [
+            "Prototype"
+          ]
+        },
+        {
+          "label": "Showcase",
+          "items": [
+            "Final showcase"
+          ]
+        }
+      ],
       "approach": [
         "Worked with a member of the hard-of-hearing community to understand their needs.",
         "Took the solution from concept to a final showcase as a team of 5."
       ],
       "highlights": [],
+      "tables": [],
+      "charts": [],
+      "conclusion": "",
+      "learnings": "The biggest lesson was to design with people, not just for them. Having a member of the community involved from the start kept us focused on problems that actually mattered to her.",
       "tech": [
         "Design thinking",
         "Prototyping"
       ],
       "github_url": "",
       "demo_url": "",
-      "image": "",
+      "image": "projects/tech-for-good-2022/cover.svg",
+      "figures": [],
       "files": [],
       "featured": false
     }

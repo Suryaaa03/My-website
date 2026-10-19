@@ -26,6 +26,7 @@
         <a href="../../index.html#projects">Projects</a>
         <a href="../../index.html#experience">Experience</a>
         <a href="../../index.html#education">Education</a>
+        <a href="../../index.html#learning">Learning</a>
         <a href="../../index.html#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -58,7 +59,7 @@
   </header>
 
   
-  <figure class="wrap project-cover reveal"><img src="../../static/projects/hdb-ml-dse1101/cover.jpg" alt="Predicting HDB Resale Prices with Machine Learning"></figure>
+  <figure class="wrap project-cover reveal"><img src="../../static/projects/hdb-ml-dse1101/cover.svg" alt=""></figure>
   
 
   <div class="wrap project-body">
@@ -66,21 +67,207 @@
       
       <section class="reveal">
         <h2 class="label">Overview</h2>
-        <div class="prose small"><p>Buyers and sellers make better decisions when they understand what drives HDB resale prices. Working with a dataset of flat characteristics, I reduced 230 candidate predictors to 133, then built and compared four predictive models, judging them by RMSE and margin of error against the mean price of about $497,000.</p></div>
+        <div class="prose small"><p>Buyers and sellers make better decisions when they understand what drives HDB resale prices. Working with a dataset of flat characteristics, I reduced 230 candidate predictors to 133, then built and compared four predictive models, judging them by RMSE and by margin of error against the mean price of about $497,000.</p></div>
+      </section>
+      
+
+      
+      <section class="reveal">
+        <h2 class="label">The process at a glance</h2>
+        
+<div class="mindmap" role="figure" aria-label="Process mind map for Predicting HDB Resale Prices with Machine Learning">
+  <div class="mm-root"><span>Predicting HDB Resale Prices with Machine Learning</span></div>
+  <ul class="mm-branches">
+    
+    <li style="--i: 0; --hue: 160">
+      <span class="mm-node">Data</span>
+      
+      <ul class="mm-leaves"><li>HDB flat characteristics</li><li>230 → 133 predictors</li><li>4,000 / 2,000 train-test split</li></ul>
+      
+    </li>
+    
+    <li style="--i: 1; --hue: 212">
+      <span class="mm-node">Prepare</span>
+      
+      <ul class="mm-leaves"><li>Log-transform price</li><li>Drop zero-variance features</li></ul>
+      
+    </li>
+    
+    <li style="--i: 2; --hue: 264">
+      <span class="mm-node">Models</span>
+      
+      <ul class="mm-leaves"><li>Linear (forward selection)</li><li>Decision tree</li><li>k-NN</li><li>PCA → PCR</li></ul>
+      
+    </li>
+    
+    <li style="--i: 3; --hue: 316">
+      <span class="mm-node">Validate</span>
+      
+      <ul class="mm-leaves"><li>10-fold cross-validation</li><li>Tune cp, k and components</li></ul>
+      
+    </li>
+    
+    <li style="--i: 4; --hue: 8">
+      <span class="mm-node">Evaluate</span>
+      
+      <ul class="mm-leaves"><li>RMSE in dollars</li><li>Margin of error vs mean price</li></ul>
+      
+    </li>
+    
+  </ul>
+</div>
+
       </section>
       
 
       
       <section class="reveal">
         <h2 class="label">What I did</h2>
-        <ol class="steps"><li>Log-transformed the right-skewed resale price to stabilise variance and reduce the pull of extreme values.</li><li>Used a 4,000/2,000 train-test split and 10-fold cross-validation for every model.</li><li>Built a linear model with forward selection (91 predictors), a decision tree tuned on the complexity parameter, and k-NN tuned on k.</li><li>Applied PCA to keep 95% of the variance, cutting 133 predictors to 69 components, and fitted a principal component regression.</li></ol>
+        <ol class="steps"><li>Log-transformed the right-skewed resale price to stabilise variance and reduce the pull of extreme values.</li><li>Used a 4,000 / 2,000 train-test split and 10-fold cross-validation for every model.</li><li>Built a linear model with forward selection (91 predictors), a decision tree tuned on its complexity parameter, and k-NN tuned on k.</li><li>Applied PCA to keep 95% of the variance, cutting 133 predictors to 69 components, then fitted a principal component regression.</li></ol>
+      </section>
+      
+
+      
+      <section class="results-section">
+        <h2 class="label reveal">Results &amp; conclusions</h2>
+        <ul class="results reveal"><li>Principal component regression was the most accurate: RMSE $40,092, an 8.06% margin of error</li><li>Beat linear regression (10.34%), the decision tree (11.07%) and k-NN (15.12%)</li></ul>
+        <div class="reveal">
+<figure class="data-table">
+  <figcaption>Model comparison on the test set</figcaption>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Model</th><th scope="col">Key setting</th><th scope="col">RMSE</th><th scope="col">Margin of error</th></tr></thead>
+      <tbody>
+        
+        <tr>
+          
+            <th scope="row">Linear regression</th>
+          
+            <td>Forward selection, 91 predictors</td>
+          
+            <td>$51,451</td>
+          
+            <td>10.34%</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Decision tree</th>
+          
+            <td>cp = 0.00011, 226 leaves</td>
+          
+            <td>$55,071</td>
+          
+            <td>11.07%</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">k-NN</th>
+          
+            <td>k = 3</td>
+          
+            <td>$75,196</td>
+          
+            <td>15.12%</td>
+          
+        </tr>
+        
+        <tr class="hl">
+          
+            <th scope="row">Principal component regression</th>
+          
+            <td>69 components (95% of variance)</td>
+          
+            <td>$40,092</td>
+          
+            <td>8.06%</td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">Margin of error = RMSE ÷ mean resale price ($497,486).</p>
+</figure>
+</div>
+        
+        <div class="conclusion reveal">
+          <h3>Conclusion</h3>
+          <p>Principal component regression was the clear winner: by compressing 133 overlapping predictors into 69 components, it removed noise and produced the tightest predictions, with most points close to the perfect-prediction line. Linear regression and the decision tree performed similarly (10–11% error), while k-NN struggled with so many features. The remaining error suggests that economic factors outside the dataset matter too, such as housing grants like the 2019 Enhanced CPF Housing Grant.</p>
+        </div>
+        
+        <div class="reveal">
+<figure class="chart chart-bar">
+  <figcaption>Prediction error by model (RMSE, lower is better)</figcaption>
+
+  
+    
+    
+    
+    
+    
+    
+    <div class="bars" style="--zero: 0.0%">
+      
+      
+      
+      <div class="bar-row">
+        <span class="bar-label">Linear regression</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="left: 0.0%; width: 64.54954950433934%"></span>
+        </span>
+        <span class="bar-value">$51,451</span>
+      </div>
+      
+      
+      <div class="bar-row">
+        <span class="bar-label">Decision tree</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="left: 0.0%; width: 69.09113993417955%"></span>
+        </span>
+        <span class="bar-value">$55,071</span>
+      </div>
+      
+      
+      <div class="bar-row">
+        <span class="bar-label">k-NN</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="left: 0.0%; width: 94.33962264150942%"></span>
+        </span>
+        <span class="bar-value">$75,196</span>
+      </div>
+      
+      
+      <div class="bar-row accent">
+        <span class="bar-label">PCR</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="left: 0.0%; width: 50.298741301976115%"></span>
+        </span>
+        <span class="bar-value">$40,092</span>
+      </div>
+      
+    </div>
+
+  
+  
+</figure>
+</div>
+        
+        <figure class="figure reveal">
+          <a class="lb" href="../../static/projects/hdb-ml-dse1101/model-comparison.jpg" data-caption="Actual vs predicted prices for all four models (red line = perfect prediction)"><img src="../../static/projects/hdb-ml-dse1101/model-comparison.jpg" alt="Actual vs predicted prices for all four models (red line = perfect prediction)"></a>
+          <figcaption>Actual vs predicted prices for all four models (red line = perfect prediction)</figcaption>
+        </figure>
+        
       </section>
       
 
       
       <section class="reveal">
-        <h2 class="label">Results</h2>
-        <ul class="results"><li>Principal component regression was the most accurate: RMSE $40,092, an 8.06% margin of error</li><li>Beat linear regression (10.34%), decision tree (11.07%) and k-NN (15.12%)</li><li>Discussed limitations and next steps, such as ridge regression and adding economic factors like housing grants</li></ul>
+        <h2 class="label">What I learnt</h2>
+        <div class="learnt"><p>This was my first full machine learning project. I learnt the core workflow: split the data first, validate with cross-validation, tune each model&#39;s key setting and compare on a held-out test set using a metric people understand (RMSE in dollars). Cutting 133 predictors to 69 components showed me how much redundancy real data carries, and k-NN&#39;s weak result showed how some methods break down with many features. I also made, and caught, a classic mistake: accidentally leaving the price inside the training features. Now I check for data leakage every time.</p></div>
       </section>
       
 
@@ -100,10 +287,10 @@
         <h2 class="label">Dive deeper</h2>
         <ul class="files">
           
-          <li><a href="../../static/projects/hdb-ml-dse1101/DSE1101_HDB_Resale_Report.pdf" target="_blank" rel="noopener" download>
+          <li><a href="../../static/projects/hdb-ml-dse1101/DSE1101_HDB_Resale_Report.pdf" target="_blank" rel="noopener">
             <span class="ext">PDF</span><span>Project report (PDF)</span></a></li>
           
-          <li><a href="../../static/projects/hdb-ml-dse1101/DSE1101_HDB_Resale_Models.R" target="_blank" rel="noopener" download>
+          <li><a href="../../static/projects/hdb-ml-dse1101/DSE1101_HDB_Resale_Models.R" target="_blank" rel="noopener">
             <span class="ext">R</span><span>R code</span></a></li>
           
           
@@ -131,6 +318,7 @@
         <a class="btn" href="https://github.com/suryaaa03" target="_blank" rel="noopener">GitHub ↗</a>
         <a class="btn" href="../../static/uploads/Dhathathreyan_Natarajan_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
       </div>
+      <p class="contact-lines"><a href="mailto:dhathathreyan03@gmail.com">dhathathreyan03@gmail.com</a><span aria-hidden="true"> · </span><a href="tel:+6586086576">+65 8608 6576</a></p>
       <p class="fine">© 2026 Dhathathreyan Natarajan</p>
     </div>
   </footer>

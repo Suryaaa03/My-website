@@ -26,6 +26,7 @@
         <a href="../../index.html#projects">Projects</a>
         <a href="../../index.html#experience">Experience</a>
         <a href="../../index.html#education">Education</a>
+        <a href="../../index.html#learning">Learning</a>
         <a href="../../index.html#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -58,7 +59,7 @@
   </header>
 
   
-  <figure class="wrap project-cover reveal"><img src="../../static/projects/arrow-maritime-platform/cover.jpg" alt="ARROW: Maritime Intelligence Platform"></figure>
+  <figure class="wrap project-cover reveal"><img src="../../static/projects/arrow-maritime-platform/cover.svg" alt=""></figure>
   
 
   <div class="wrap project-body">
@@ -66,21 +67,219 @@
       
       <section class="reveal">
         <h2 class="label">Overview</h2>
-        <div class="prose small"><p>Shipbrokers negotiate fixtures between shipowners and charterers using a mix of regulations, market reports and route knowledge scattered across dozens of documents. For the ARROW case competition our team built a web platform that brings this together: define a cargo and route, plan the voyage, compare fuel strategies, and get an AI-written market briefing grounded in real regulatory and market documents.</p><p>My part was the RAG pipeline behind the briefings and the AI assistant, which answers questions with maritime information drawn only from the document library.</p></div>
+        <div class="prose small"><p>Shipbrokers negotiate fixtures between shipowners and charterers using regulations, market reports and route knowledge scattered across dozens of documents. For the ARROW case competition our team built a web platform that brings this together: define a cargo and route, plan the voyage, compare fuel strategies, and get an AI-written market briefing grounded in real regulatory and market documents.</p><p>My part was the RAG pipeline behind the briefings and the AI assistant, which answers questions using only information drawn from the document library.</p></div>
+      </section>
+      
+
+      
+      <section class="reveal">
+        <h2 class="label">The process at a glance</h2>
+        
+<div class="mindmap" role="figure" aria-label="Process mind map for ARROW">
+  <div class="mm-root"><span>ARROW</span></div>
+  <ul class="mm-branches">
+    
+    <li style="--i: 0; --hue: 160">
+      <span class="mm-node">Problem</span>
+      
+      <ul class="mm-leaves"><li>Brokers juggle regulations, reports and routes</li><li>Information scattered across many documents</li></ul>
+      
+    </li>
+    
+    <li style="--i: 1; --hue: 212">
+      <span class="mm-node">Knowledge base</span>
+      
+      <ul class="mm-leaves"><li>15 regulatory and market PDFs</li><li>Port and war-zone data</li><li>Fuel price inputs</li></ul>
+      
+    </li>
+    
+    <li style="--i: 2; --hue: 264">
+      <span class="mm-node">RAG pipeline (my part)</span>
+      
+      <ul class="mm-leaves"><li>Chunk and embed (MiniLM)</li><li>Chroma vector store</li><li>Retrieve by voyage inputs</li><li>Mistral-7B writes the briefing</li></ul>
+      
+    </li>
+    
+    <li style="--i: 3; --hue: 316">
+      <span class="mm-node">Platform</span>
+      
+      <ul class="mm-leaves"><li>Flask API in Docker</li><li>Web dashboard</li><li>AI chat assistant</li></ul>
+      
+    </li>
+    
+    <li style="--i: 4; --hue: 8">
+      <span class="mm-node">Optimisers</span>
+      
+      <ul class="mm-leaves"><li>3,789 sea routes ranked</li><li>Fuel strategy ROI</li></ul>
+      
+    </li>
+    
+    <li style="--i: 5; --hue: 60">
+      <span class="mm-node">Output</span>
+      
+      <ul class="mm-leaves"><li>800–900-word broker briefing</li><li>Source documents listed</li></ul>
+      
+    </li>
+    
+  </ul>
+</div>
+
       </section>
       
 
       
       <section class="reveal">
         <h2 class="label">What I did</h2>
-        <ol class="steps"><li>Indexed a library of 15 maritime documents (SOLAS, MARPOL, the ISM and ISPS codes, BIMCO charter parties, ISO 8217 fuel standards and Veson market reports) into a Chroma vector store using all-MiniLM-L6-v2 sentence embeddings.</li><li>Retrieved the most relevant passages for each voyage&#39;s inputs (ports, cargo, fuel type, laycan dates) and listed the source documents alongside each answer.</li><li>Prompted Mistral-7B-Instruct (via Hugging Face) to write a structured 800–900-word broker briefing covering route risks, cargo market conditions, fuel and compliance costs, negotiation leverage and valuation ranges, using only the retrieved context.</li><li>Served the pipeline as a Flask API, packaged with Docker, that feeds the platform&#39;s dashboard and chat assistant.</li><li>The team&#39;s route optimiser generated 3,789 candidate sea routes between export and import ports (direct and via hub ports), flagged high-risk war zones and ranked routes by distance, port charges and expected demurrage.</li><li>The fuel-strategy module compares a baseline fuel mix against alternative fuels and energy-saving devices over the vessel&#39;s life, with carbon pooling prices, discounting, ROI and price-sensitivity analysis.</li></ol>
+        <ol class="steps"><li>Indexed a library of 15 maritime documents (SOLAS, MARPOL, the ISM and ISPS codes, BIMCO charter parties, ISO 8217 fuel standards and Veson market reports) into a Chroma vector store using all-MiniLM-L6-v2 sentence embeddings.</li><li>Retrieved the most relevant passages for each voyage&#39;s inputs (ports, cargo, fuel type and laycan dates) and listed the source documents alongside each answer.</li><li>Prompted Mistral-7B-Instruct (via Hugging Face) to write a structured 800–900-word broker briefing covering route risks, cargo market conditions, fuel and compliance costs, negotiation leverage and valuation ranges, using only the retrieved context.</li><li>Served the pipeline as a Flask API, packaged with Docker, that feeds the platform&#39;s dashboard and chat assistant.</li><li>The team&#39;s route optimiser generated 3,789 candidate sea routes between export and import ports (direct and via hub ports), flagged high-risk war zones and ranked routes by distance, port charges and expected demurrage.</li><li>The fuel-strategy module compares a baseline fuel mix with alternative fuels and energy-saving devices over a vessel&#39;s life, including carbon pooling prices, discounting, ROI and price sensitivity.</li></ol>
+      </section>
+      
+
+      
+      <section class="results-section">
+        <h2 class="label reveal">Results &amp; conclusions</h2>
+        <ul class="results reveal"><li>End-to-end prototype: web dashboard, RAG briefing API and route optimiser working together</li><li>Every briefing lists the regulatory and market documents it draws from, so brokers can check each claim</li><li>3,789 pre-computed routes, mapped interactively with Folium</li></ul>
+        <div class="reveal">
+<figure class="data-table">
+  <figcaption>RAG pipeline configuration</figcaption>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Component</th><th scope="col">Choice</th><th scope="col">Why</th></tr></thead>
+      <tbody>
+        
+        <tr>
+          
+            <th scope="row">Embedding model</th>
+          
+            <td>all-MiniLM-L6-v2</td>
+          
+            <td>Small and fast, good semantic search quality</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Vector store</th>
+          
+            <td>ChromaDB (persistent)</td>
+          
+            <td>Search by meaning; stays on disk between runs</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Language model</th>
+          
+            <td>Mistral-7B-Instruct v0.3</td>
+          
+            <td>Open-source, runs through the Hugging Face API</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Temperature</th>
+          
+            <td>0.3</td>
+          
+            <td>Keeps answers factual rather than creative</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Max output</th>
+          
+            <td>1,500 tokens</td>
+          
+            <td>Room for an 800–900-word structured briefing</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Grounding rule</th>
+          
+            <td>Answer only from retrieved context</td>
+          
+            <td>Prevents made-up facts</td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  
+</figure>
+</div><div class="reveal">
+<figure class="data-table">
+  <figcaption>Platform modules</figcaption>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Module</th><th scope="col">What it does</th><th scope="col">Built with</th></tr></thead>
+      <tbody>
+        
+        <tr>
+          
+            <th scope="row">Market briefing (RAG)</th>
+          
+            <td>Writes a negotiation briefing for a route and cargo</td>
+          
+            <td>LangChain, ChromaDB, Mistral-7B, Flask</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Route optimiser</th>
+          
+            <td>Ranks routes by distance, port costs and war-zone risk</td>
+          
+            <td>searoute, Shapely, Folium</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Fuel strategy</th>
+          
+            <td>Compares fuel and retrofit scenarios with ROI and DCF</td>
+          
+            <td>JavaScript, Chart.js</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Market sidebar</th>
+          
+            <td>Shows Baltic indices, fuel prices and charter rates</td>
+          
+            <td>JavaScript</td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  
+</figure>
+</div>
+        
+        <div class="conclusion reveal">
+          <h3>Conclusion</h3>
+          <p>The prototype showed that a small open-source model can produce useful, trustworthy briefings when retrieval does the heavy lifting. Because Mistral-7B was restricted to the retrieved passages and every answer lists its sources, each claim in a briefing can be traced back to the regulation or market report it came from. Together with route ranking and fuel-strategy analysis, the platform covers the main questions a broker asks before negotiating a fixture.</p>
+        </div>
+        
+        
+        
       </section>
       
 
       
       <section class="reveal">
-        <h2 class="label">Results</h2>
-        <ul class="results"><li>End-to-end prototype: web dashboard, RAG briefing API and route optimiser working together</li><li>Briefings cite the regulatory and market documents they draw from, so brokers can check every claim</li><li>3,789 pre-computed routes, mapped interactively with Folium</li></ul>
+        <h2 class="label">What I learnt</h2>
+        <div class="learnt"><p>This was my first time building a RAG system end to end. I learnt that answer quality depends far more on what you retrieve than on the model itself: how documents are split into chunks, which inputs you search with, and how strictly the prompt keeps the model within its context. I also picked up practical engineering habits, like keeping API keys out of the code, packaging a service in Docker so teammates can run it, and designing an API that a front end built by someone else can call. Working on one part of a larger team system taught me to agree on interfaces early.</p></div>
       </section>
       
 
@@ -89,9 +288,11 @@
         <h2 class="label">Gallery</h2>
         <div class="gallery">
           
-          <figure><a href="../../static/projects/arrow-maritime-platform/fuel-scenarios.jpg" target="_blank" rel="noopener"><img src="../../static/projects/arrow-maritime-platform/fuel-scenarios.jpg" alt="Fuel scenario inputs" loading="lazy"></a><figcaption>Fuel scenario inputs</figcaption></figure>
+          <figure><a class="lb" href="../../static/projects/arrow-maritime-platform/home.jpg" data-caption="Platform home page"><img src="../../static/projects/arrow-maritime-platform/home.jpg" alt="Platform home page" loading="lazy"></a><figcaption>Platform home page</figcaption></figure>
           
-          <figure><a href="../../static/projects/arrow-maritime-platform/fuel-mix.jpg" target="_blank" rel="noopener"><img src="../../static/projects/arrow-maritime-platform/fuel-mix.jpg" alt="Fuel mix optimisation &amp; price sensitivity" loading="lazy"></a><figcaption>Fuel mix optimisation &amp; price sensitivity</figcaption></figure>
+          <figure><a class="lb" href="../../static/projects/arrow-maritime-platform/fuel-scenarios.jpg" data-caption="Fuel scenario inputs"><img src="../../static/projects/arrow-maritime-platform/fuel-scenarios.jpg" alt="Fuel scenario inputs" loading="lazy"></a><figcaption>Fuel scenario inputs</figcaption></figure>
+          
+          <figure><a class="lb" href="../../static/projects/arrow-maritime-platform/fuel-mix.jpg" data-caption="Fuel mix optimisation and price sensitivity"><img src="../../static/projects/arrow-maritime-platform/fuel-mix.jpg" alt="Fuel mix optimisation and price sensitivity" loading="lazy"></a><figcaption>Fuel mix optimisation and price sensitivity</figcaption></figure>
           
         </div>
       </section>
@@ -120,7 +321,7 @@
 
   <nav class="wrap pager" aria-label="More projects">
     <span></span>
-    <a class="next" href="../../projects/capcom-stock-pitch/index.html"><span>Next →</span>Capcom Equity Research: Nanyang Capital Stock Pitch</a>
+    <a class="next" href="../../projects/stock-pitch-capcom-corteva/index.html"><span>Next →</span>Nanyang Capital Stock Pitch: Capcom vs Corteva</a>
   </nav>
 </article>
 
@@ -136,6 +337,7 @@
         <a class="btn" href="https://github.com/suryaaa03" target="_blank" rel="noopener">GitHub ↗</a>
         <a class="btn" href="../../static/uploads/Dhathathreyan_Natarajan_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
       </div>
+      <p class="contact-lines"><a href="mailto:dhathathreyan03@gmail.com">dhathathreyan03@gmail.com</a><span aria-hidden="true"> · </span><a href="tel:+6586086576">+65 8608 6576</a></p>
       <p class="fine">© 2026 Dhathathreyan Natarajan</p>
     </div>
   </footer>

@@ -26,6 +26,7 @@
         <a href="../../index.html#projects">Projects</a>
         <a href="../../index.html#experience">Experience</a>
         <a href="../../index.html#education">Education</a>
+        <a href="../../index.html#learning">Learning</a>
         <a href="../../index.html#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -58,7 +59,7 @@
   </header>
 
   
-  <figure class="wrap project-cover reveal"><img src="../../static/projects/weather-humidity-prediction/cover.jpg" alt="Weather Humidity Forecasting"></figure>
+  <figure class="wrap project-cover reveal"><img src="../../static/projects/weather-humidity-prediction/cover.svg" alt=""></figure>
   
 
   <div class="wrap project-body">
@@ -72,27 +73,274 @@
 
       
       <section class="reveal">
+        <h2 class="label">The process at a glance</h2>
+        
+<div class="mindmap" role="figure" aria-label="Process mind map for Weather Humidity Forecasting">
+  <div class="mm-root"><span>Weather Humidity Forecasting</span></div>
+  <ul class="mm-branches">
+    
+    <li style="--i: 0; --hue: 160">
+      <span class="mm-node">Data</span>
+      
+      <ul class="mm-leaves"><li>100,057 hourly readings (2010–2021)</li><li>6 weather features</li></ul>
+      
+    </li>
+    
+    <li style="--i: 1; --hue: 212">
+      <span class="mm-node">Explore</span>
+      
+      <ul class="mm-leaves"><li>Correlation map</li><li>ACF / PACF: 24-hour cycle</li><li>ADF and KPSS tests</li></ul>
+      
+    </li>
+    
+    <li style="--i: 2; --hue: 264">
+      <span class="mm-node">Prepare</span>
+      
+      <ul class="mm-leaves"><li>Remove impossible values</li><li>Standardise features</li><li>1, 6 and 24-hour lag windows</li><li>No target leakage</li></ul>
+      
+    </li>
+    
+    <li style="--i: 3; --hue: 316">
+      <span class="mm-node">Models</span>
+      
+      <ul class="mm-leaves"><li>Random Forest baseline</li><li>XGBoost</li><li>LSTM (Keras)</li><li>Hybrid LSTM-XGBoost</li></ul>
+      
+    </li>
+    
+    <li style="--i: 4; --hue: 8">
+      <span class="mm-node">Tune and validate</span>
+      
+      <ul class="mm-leaves"><li>Optuna Bayesian optimisation</li><li>Time-series cross-validation</li></ul>
+      
+    </li>
+    
+    <li style="--i: 5; --hue: 60">
+      <span class="mm-node">Evaluate</span>
+      
+      <ul class="mm-leaves"><li>MAE at each horizon</li><li>Best: XGBoost</li></ul>
+      
+    </li>
+    
+  </ul>
+</div>
+
+      </section>
+      
+
+      
+      <section class="reveal">
         <h2 class="label">What I did</h2>
-        <ol class="steps"><li>Explored the data first: correlation matrix, ACF and PACF plots, ADF and KPSS stationarity tests, and rolling statistics, which revealed strong 24-hour seasonality.</li><li>Wrote the preprocessing pipeline in Pandas: removed physically impossible readings, standardised features and built 1-, 6- and 24-hour lag windows without leaking the target.</li><li>Built a Random Forest baseline, then XGBoost with seasonal, lag, difference and interaction features, validated with time-series cross-validation.</li><li>Built LSTM models in Keras and tuned units, dropout, learning rate, batch size and epochs separately for each horizon using Bayesian optimisation (Optuna).</li><li>Built a hybrid model that feeds features learned by the LSTM into a tuned XGBoost model.</li></ol>
+        <ol class="steps"><li>Explored the data first: correlation matrix, ACF and PACF plots, ADF and KPSS stationarity tests and rolling statistics, which revealed a strong 24-hour cycle.</li><li>Wrote the preprocessing pipeline in Pandas: removed physically impossible readings, standardised features and built 1, 6 and 24-hour lag windows without leaking the target.</li><li>Built a Random Forest baseline, then XGBoost with seasonal, lag, difference and interaction features, validated with time-series cross-validation.</li><li>Built LSTM models in Keras and tuned units, dropout, learning rate, batch size and epochs separately for each horizon using Bayesian optimisation (Optuna).</li><li>Built a hybrid model that feeds patterns learned by the LSTM into a tuned XGBoost model.</li></ol>
       </section>
       
 
       
-      <section class="reveal">
-        <h2 class="label">Results</h2>
-        <ul class="results"><li>XGBoost was the best model at every horizon: MAE 0.046 (1h), 0.064 (6h) and 0.080 (24h)</li><li>Errors are comparable to the 5–10% typical of human forecasters</li><li>Showed the hybrid LSTM-XGBoost didn&#39;t beat its parts, and explained why</li></ul>
-      </section>
-      
-
-      
-      <section class="reveal">
-        <h2 class="label">Gallery</h2>
-        <div class="gallery">
+      <section class="results-section">
+        <h2 class="label reveal">Results &amp; conclusions</h2>
+        <ul class="results reveal"><li>XGBoost was the best model at every horizon: MAE 0.046 (1h), 0.064 (6h) and 0.080 (24h)</li><li>Errors comparable to the 5–10% typical of human forecasters</li><li>The hybrid LSTM-XGBoost didn&#39;t beat its parts, and we explained why</li></ul>
+        <div class="reveal">
+<figure class="data-table">
+  <figcaption>Mean absolute error by model and forecast horizon (lower is better)</figcaption>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Model</th><th scope="col">1 hour</th><th scope="col">6 hours</th><th scope="col">24 hours</th></tr></thead>
+      <tbody>
+        
+        <tr>
           
-          <figure><a href="../../static/projects/weather-humidity-prediction/pipeline.jpg" target="_blank" rel="noopener"><img src="../../static/projects/weather-humidity-prediction/pipeline.jpg" alt="Method pipeline" loading="lazy"></a><figcaption>Method pipeline</figcaption></figure>
+            <th scope="row">Random Forest (baseline)</th>
           
+            <td>0.054</td>
+          
+            <td>0.070</td>
+          
+            <td>0.086</td>
+          
+        </tr>
+        
+        <tr class="hl">
+          
+            <th scope="row">XGBoost</th>
+          
+            <td>0.046</td>
+          
+            <td>0.064</td>
+          
+            <td>0.080</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">LSTM</th>
+          
+            <td>0.047</td>
+          
+            <td>0.065</td>
+          
+            <td>0.084</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Hybrid LSTM-XGBoost</th>
+          
+            <td>0.047</td>
+          
+            <td>0.075</td>
+          
+            <td>0.084</td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">Relative humidity runs from 0 to 1, so an MAE of 0.046 means predictions were off by about 4.6 percentage points on average.</p>
+</figure>
+</div>
+        
+        <div class="conclusion reveal">
+          <h3>Conclusion</h3>
+          <p>XGBoost delivered the lowest error at every horizon. Its tree structure makes the most of engineered lag, difference and interaction features, and its built-in regularisation copes well with noisy weather data. The LSTM matched it at one hour but drifted further out, and the hybrid didn&#39;t outperform either model on its own, probably because the extra layer added complexity without new information. All models got worse as the horizon grew, as expected. The biggest limitation was that current humidity wasn&#39;t allowed as an input; real forecasting would add it, along with radar or satellite data.</p>
         </div>
+        
+        <div class="reveal">
+<figure class="chart chart-grouped">
+  <figcaption>Forecast error by horizon (MAE, lower is better)</figcaption>
+
+  
+    
+    
+    <div class="groups">
+      
+      
+      
+      
+      <div class="group">
+        <p class="group-title">1 hour</p>
+        
+        
+        <div class="bar-row" style="--s: 0">
+          <span class="bar-label">Random Forest</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 58.13953488372092%"></span></span>
+          <span class="bar-value">0.054</span>
+        </div>
+        
+        
+        <div class="bar-row accent" style="--s: 1">
+          <span class="bar-label">XGBoost</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 49.52627045650301%"></span></span>
+          <span class="bar-value">0.046</span>
+        </div>
+        
+        
+        <div class="bar-row" style="--s: 2">
+          <span class="bar-label">LSTM</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 50.602928509905254%"></span></span>
+          <span class="bar-value">0.047</span>
+        </div>
+        
+        
+        <div class="bar-row" style="--s: 3">
+          <span class="bar-label">Hybrid</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 50.602928509905254%"></span></span>
+          <span class="bar-value">0.047</span>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      <div class="group">
+        <p class="group-title">6 hours</p>
+        
+        
+        <div class="bar-row" style="--s: 0">
+          <span class="bar-label">Random Forest</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 75.36606373815677%"></span></span>
+          <span class="bar-value">0.070</span>
+        </div>
+        
+        
+        <div class="bar-row accent" style="--s: 1">
+          <span class="bar-label">XGBoost</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 68.90611541774332%"></span></span>
+          <span class="bar-value">0.064</span>
+        </div>
+        
+        
+        <div class="bar-row" style="--s: 2">
+          <span class="bar-label">LSTM</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 69.98277347114556%"></span></span>
+          <span class="bar-value">0.065</span>
+        </div>
+        
+        
+        <div class="bar-row" style="--s: 3">
+          <span class="bar-label">Hybrid</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 80.74935400516794%"></span></span>
+          <span class="bar-value">0.075</span>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      <div class="group">
+        <p class="group-title">24 hours</p>
+        
+        
+        <div class="bar-row" style="--s: 0">
+          <span class="bar-label">Random Forest</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 92.59259259259258%"></span></span>
+          <span class="bar-value">0.086</span>
+        </div>
+        
+        
+        <div class="bar-row accent" style="--s: 1">
+          <span class="bar-label">XGBoost</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 86.13264427217915%"></span></span>
+          <span class="bar-value">0.080</span>
+        </div>
+        
+        
+        <div class="bar-row" style="--s: 2">
+          <span class="bar-label">LSTM</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 90.43927648578811%"></span></span>
+          <span class="bar-value">0.084</span>
+        </div>
+        
+        
+        <div class="bar-row" style="--s: 3">
+          <span class="bar-label">Hybrid</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: 90.43927648578811%"></span></span>
+          <span class="bar-value">0.084</span>
+        </div>
+        
+      </div>
+      
+    </div>
+    <p class="chart-note">Highlighted bar = best (lowest error) in each group.</p>
+
+  
+  
+</figure>
+</div>
+        
       </section>
+      
+
+      
+      <section class="reveal">
+        <h2 class="label">What I learnt</h2>
+        <div class="learnt"><p>Time-series data punishes shortcuts. I learnt to check stationarity and seasonality before modelling, to split data in time order, and to build lag features without leaking the answer into the inputs. I saw that a well-engineered gradient-boosting model can beat a deep network on tabular data, and that a more complex model (our hybrid) has to earn its place on the test set. I also learnt to tune hyperparameters with Bayesian optimisation instead of guesswork. Splitting the work across four people taught me the value of a reproducible notebook with clear run instructions.</p></div>
+      </section>
+      
+
       
     </div>
 
@@ -109,7 +357,7 @@
         <h2 class="label">Dive deeper</h2>
         <ul class="files">
           
-          <li><a href="../../static/projects/weather-humidity-prediction/Humidity_Forecasting_Report.pdf" target="_blank" rel="noopener" download>
+          <li><a href="../../static/projects/weather-humidity-prediction/Humidity_Forecasting_Report.pdf" target="_blank" rel="noopener">
             <span class="ext">PDF</span><span>Project report (PDF)</span></a></li>
           
           <li><a href="https://github.com/ChowchowWorks/Weather-Prediction" target="_blank" rel="noopener"><span class="ext">GIT</span><span>Source code on GitHub ↗</span></a></li>
@@ -120,7 +368,7 @@
   </div>
 
   <nav class="wrap pager" aria-label="More projects">
-    <a href="../../projects/capcom-stock-pitch/index.html"><span>← Previous</span>Capcom Equity Research: Nanyang Capital Stock Pitch</a>
+    <a href="../../projects/stock-pitch-capcom-corteva/index.html"><span>← Previous</span>Nanyang Capital Stock Pitch: Capcom vs Corteva</a>
     <a class="next" href="../../projects/hdb-regression-st3131/index.html"><span>Next →</span>HDB Resale Price Regression Model</a>
   </nav>
 </article>
@@ -137,6 +385,7 @@
         <a class="btn" href="https://github.com/suryaaa03" target="_blank" rel="noopener">GitHub ↗</a>
         <a class="btn" href="../../static/uploads/Dhathathreyan_Natarajan_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
       </div>
+      <p class="contact-lines"><a href="mailto:dhathathreyan03@gmail.com">dhathathreyan03@gmail.com</a><span aria-hidden="true"> · </span><a href="tel:+6586086576">+65 8608 6576</a></p>
       <p class="fine">© 2026 Dhathathreyan Natarajan</p>
     </div>
   </footer>

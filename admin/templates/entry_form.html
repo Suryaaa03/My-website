@@ -8,6 +8,11 @@
     {% if f.type == "checkbox" %}
       <div class="check"><input type="checkbox" id="{{ f.name }}" name="{{ f.name }}" {% if value %}checked{% endif %}>
         <label for="{{ f.name }}" style="margin:0">{{ f.label }}</label></div>
+    {% elif f.type in ("mindmap", "tables", "charts") %}
+      <label>{{ f.label }}
+        {% if f.type == "tables" %}<span class="hint">blank line between tables · <code># Title</code> · <code>Col | Col | Col</code> · rows the same way · <code>*</code> at the start highlights a row · <code>&gt; note</code></span>
+        {% elif f.type == "charts" %}<span class="hint">blank line between charts · first line = title · bars: <code>Label: 123</code> · ranges: <code>Label: 10 - 20</code> · grouped: <code>groups: A, B</code> then <code>Series: 1, 2</code> · options: <code>@ lower-is-better, prefix=$, decimals=0</code> · see admin/textformats.py</span>{% endif %}
+        <textarea name="{{ f.name }}" style="min-height:{{ 160 if f.type == 'mindmap' else 240 }}px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px">{{ as_text[f.name] }}</textarea></label>
     {% elif f.type == "files" %}
       <label>{{ f.label }} <span class="hint">PDF, code, Excel, slides or images · you can pick several at once</span>
         <input type="file" name="{{ f.name }}" multiple></label>

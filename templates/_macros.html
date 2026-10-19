@@ -1,0 +1,137 @@
+{# =====================================================================
+   Reusable building blocks (Jinja "macros"), used by the page templates.
+   Think of a macro as a function that returns HTML.
+   ===================================================================== #}
+
+{# ---- format a number, e.g. fmt(40092, {"prefix": "$", "decimals": 0}) -> $40,092 ---- #}
+{% macro fmt(v, c) -%}
+{%- set d = c.decimals if c.decimals is defined else 1 -%}
+{%- set s = ("{:,.%df}"|format(d)).format(v|abs) -%}
+{{ "−" if v < 0 else "" }}{{ c.prefix or "" }}{{ s }}{{ c.suffix or "" }}
+{%- endmacro %}
+
+
+{# ---- Process mind map: the project in the middle, stages branching out ---- #}
+{% macro mindmap(title, branches) %}
+<div class="mindmap" role="figure" aria-label="Process mind map for {{ title }}">
+  <div class="mm-root"><span>{{ title }}</span></div>
+  <ul class="mm-branches">
+    {% for b in branches %}
+    <li style="--i: {{ loop.index0 }}; --hue: {{ (loop.index0 * 52 + 160) % 360 }}">
+      <span class="mm-node">{{ b.label }}</span>
+      {% if b["items"] %}
+      <ul class="mm-leaves">{% for item in b["items"] %}<li>{{ item }}</li>{% endfor %}</ul>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endmacro %}
+
+
+{# ---- A results table. highlight = list of row numbers to emphasise (e.g. the best model) ---- #}
+{% macro table(t) %}
+<figure class="data-table">
+  {% if t.title %}<figcaption>{{ t.title }}</figcaption>{% endif %}
+  <div class="table-scroll">
+    <table>
+      <thead><tr>{% for c in t.columns %}<th scope="col"{% if t.highlight_col == loop.index0 %} class="hl-col"{% endif %}>{{ c }}</th>{% endfor %}</tr></thead>
+      <tbody>
+        {% for row in t.rows %}
+        <tr{% if loop.index0 in (t.highlight or []) %} class="hl"{% endif %}>
+          {% for cell in row %}
+            {% if loop.first %}<th scope="row">{{ cell }}</th>{% else %}<td{% if t.highlight_col == loop.index0 %} class="hl-col"{% endif %}>{{ cell }}</td>{% endif %}
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if t.note %}<p class="table-note">{{ t.note }}</p>{% endif %}
+</figure>
+{% endmacro %}
+
+
+{# ---- Charts drawn with plain HTML + CSS (no images), so they stay sharp and follow dark mode ---- #}
+{% macro chart(c) %}
+<figure class="chart chart-{{ c.type }}">
+  <figcaption>{{ c.title }}</figcaption>
+
+  {% if c.type == "bar" %}
+    {% set vals = c.bars|map(attribute="value")|list %}
+    {% set pos = [vals|max, (c.reference.value if c.reference else 0), 0]|max %}
+    {% set neg = [-(vals|min), 0]|max %}
+    {% set span = (pos + neg) * 1.06 %}
+    {% set zero = neg * 1.03 / span * 100 %}
+    {% set best = (vals|min) if c.lower_is_better else none %}
+    <div class="bars{% if neg > 0 %} diverging{% endif %}" style="--zero: {{ zero }}%">
+      {% if c.reference %}
+      <div class="ref" style="left: calc(var(--label-w) + (100% - var(--label-w) - var(--value-w)) * {{ (zero + c.reference.value / span * 100) / 100 }})"><span>{{ c.reference.label }}</span></div>
+      {% endif %}
+      {% for b in c.bars %}
+      {% set w = (b.value|abs) / span * 100 %}
+      <div class="bar-row{% if b.accent or (best is not none and b.value == best) %} accent{% endif %}{% if b.value < 0 %} neg{% endif %}">
+        <span class="bar-label">{{ b.label }}</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="{% if b.value < 0 %}right: {{ 100 - zero }}%{% else %}left: {{ zero }}%{% endif %}; width: {{ w }}%"></span>
+        </span>
+        <span class="bar-value">{{ fmt(b.value, c) }}</span>
+      </div>
+      {% endfor %}
+    </div>
+
+  {% elif c.type == "grouped" %}
+    {% set ns = namespace(mx=0) %}
+    {% for s in c.series %}{% for v in s["values"] %}{% if v > ns.mx %}{% set ns.mx = v %}{% endif %}{% endfor %}{% endfor %}
+    <div class="groups">
+      {% for g in c.groups %}
+      {% set gi = loop.index0 %}
+      {% set ns2 = namespace(best=none) %}
+      {% for s in c.series %}{% set v = s["values"][gi] %}{% if ns2.best is none or (c.lower_is_better and v < ns2.best) or (not c.lower_is_better and v > ns2.best) %}{% set ns2.best = v %}{% endif %}{% endfor %}
+      <div class="group">
+        <p class="group-title">{{ g }}</p>
+        {% for s in c.series %}
+        {% set v = s["values"][gi] %}
+        <div class="bar-row{% if v == ns2.best %} accent{% endif %}" style="--s: {{ loop.index0 }}">
+          <span class="bar-label">{{ s.label }}</span>
+          <span class="bar-track"><span class="bar-fill" style="left: 0; width: {{ v / (ns.mx * 1.08) * 100 }}%"></span></span>
+          <span class="bar-value">{{ fmt(v, c) }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+    {% if c.lower_is_better %}<p class="chart-note">Highlighted bar = best (lowest error) in each group.</p>{% endif %}
+
+  {% elif c.type == "range" %}
+    {% set highs = c.bars|map(attribute="high")|list + (c.markers or [])|map(attribute="value")|list %}
+    {% set mx = (highs|max) * 1.08 %}
+    <div class="ranges" style="--rows: {{ c.bars|length }}">
+      <div class="range-plot"></div>
+      {% for m in c.markers or [] %}
+      <div class="marker{% if m.accent %} accent{% endif %}" style="left: calc(var(--label-w) + (100% - var(--label-w) - var(--value-w)) * {{ m.value / mx }})"><span>{{ m.label }}</span></div>
+      {% endfor %}
+      {% for b in c.bars %}
+      <div class="bar-row{% if b.accent %} accent{% endif %}">
+        <span class="bar-label">{{ b.label }}</span>
+        <span class="bar-track"><span class="bar-fill" style="left: {{ b.low / mx * 100 }}%; width: {{ (b.high - b.low) / mx * 100 }}%"></span></span>
+        <span class="bar-value">{{ fmt(b.low, c) }}–{{ fmt(b.high, c) }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% if c.note %}<p class="chart-note">{{ c.note }}</p>{% endif %}
+</figure>
+{% endmacro %}
+
+
+{# ---- A skill chip that opens a small explanation bubble when clicked ---- #}
+{% macro skill_chip(s) %}
+{%- set name = s.name if s is mapping else s -%}
+{%- set note = s.note if s is mapping else "" -%}
+{% if note %}
+<li class="skill"><button type="button" class="skill-btn" aria-expanded="false">{{ name }}</button><span class="bubble" role="tooltip" hidden>{{ note }}</span></li>
+{% else %}
+<li class="skill"><span class="skill-btn plain">{{ name }}</span></li>
+{% endif %}
+{% endmacro %}

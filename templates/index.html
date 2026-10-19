@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "_macros.html" as m %}
 {% block title %}{{ profile.name }}{% if profile.headline %} · {{ profile.headline }}{% endif %}{% endblock %}
 
 {% block content %}
@@ -69,21 +70,33 @@
       {% endif %}
     </section>
 
-    <!-- ============ EXPERIENCE ============ -->
+    <!-- ============ EXPERIENCE: a flowing journey map ============ -->
     {% if experience %}
     <section class="wrap section" id="experience">
-      <div class="section-head reveal"><h2 class="label">Experience</h2></div>
-      <ol class="timeline">
-        {% for e in experience %}
-        <li class="reveal">
-          <p class="when">{{ e.start }}{% if e.end %} – {{ e.end }}{% endif %}</p>
-          <div>
-            <h3>{{ e.role }} <span class="at">· {{ e.org }}</span></h3>
-            {% if e.summary %}<p>{{ e.summary }}</p>{% endif %}
-            {% if e.bullets %}<ul class="bullets">{% for b in e.bullets %}<li>{{ b }}</li>{% endfor %}</ul>{% endif %}
+      <div class="section-head reveal">
+        <h2 class="label">Experience</h2>
+        <p class="lede">My journey so far. Tap a stop to see what I did there.</p>
+      </div>
+      <ol class="journey">
+        {% for e in experience|reverse %}
+        <li class="stop reveal" style="--i: {{ loop.index0 }}">
+          <span class="stop-dot" aria-hidden="true"></span>
+          <div class="stop-card">
+            <p class="when">{{ e.start }}{% if e.end %} – {{ e.end }}{% endif %}{% if e.end == "Present" %} <span class="now">Now</span>{% endif %}</p>
+            <h3>{{ e.role }}</h3>
+            <p class="org">{{ e.org }}</p>
+            {% if e.skills %}<ul class="leaves">{% for s in e.skills %}<li>{{ s }}</li>{% endfor %}</ul>{% endif %}
+            {% if e.summary or e.bullets %}
+            <button class="stop-toggle" type="button" aria-expanded="false">What I did <span aria-hidden="true">+</span></button>
+            <div class="stop-details" hidden>
+              {% if e.summary %}<p>{{ e.summary }}</p>{% endif %}
+              {% if e.bullets %}<ul class="bullets">{% for b in e.bullets %}<li>{{ b }}</li>{% endfor %}</ul>{% endif %}
+            </div>
+            {% endif %}
           </div>
         </li>
         {% endfor %}
+        <li class="stop stop-next reveal"><span class="stop-dot" aria-hidden="true"></span><div class="stop-card"><p class="when">Next</p><h3>What's next?</h3>{% if profile.email %}<p class="org"><a href="mailto:{{ profile.email }}">Let's talk →</a></p>{% endif %}</div></li>
       </ol>
     </section>
     {% endif %}
@@ -107,15 +120,54 @@
     </section>
     {% endif %}
 
+    <!-- ============ LEARNING JOURNEY: courses by semester ============ -->
+    {% if semesters %}
+    <section class="wrap section" id="learning">
+      <div class="section-head reveal">
+        <h2 class="label">Learning journey</h2>
+        <p class="lede">What I've studied at NUS each semester, and the skills each one gave me. Open a course for details.</p>
+      </div>
+      <ol class="semesters">
+        {% for s in semesters %}
+        <li class="semester reveal{% if s.in_progress %} current{% endif %}">
+          <div class="sem-marker">
+            <span class="sem-year">{{ s.short }}</span>
+            <span class="sem-dates">{{ s.dates }}</span>
+            {% if s.in_progress %}<span class="now">In progress</span>{% endif %}
+          </div>
+          <div class="sem-body">
+            <p class="sem-skills-title">Skills gained</p>
+            <ul class="tags">{% for k in s.skills %}<li>{{ k }}</li>{% endfor %}</ul>
+            <div class="courses">
+              {% for c in s.courses %}
+              <details class="course">
+                <summary><span class="code">{{ c.code }}</span><span class="ctitle">{{ c.title }}</span>{% if c.status == "In progress" %}<span class="status">In progress</span>{% endif %}</summary>
+                <div class="course-body">
+                  <p>{{ c.description }}</p>
+                  <a href="https://nusmods.com/courses/{{ c.code }}" target="_blank" rel="noopener">Course page on NUSMods ↗</a>
+                </div>
+              </details>
+              {% endfor %}
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+    {% endif %}
+
     <!-- ============ SKILLS ============ -->
     {% if skills %}
     <section class="wrap section" id="skills">
-      <div class="section-head reveal"><h2 class="label">Skills</h2></div>
+      <div class="section-head reveal">
+        <h2 class="label">Skills</h2>
+        <p class="lede">Tap any skill for a plain-English explanation.</p>
+      </div>
       <div class="skills">
         {% for s in skills %}
         <div class="skill-group reveal">
           <h3>{{ s.group }}</h3>
-          <ul class="tags big">{% for i in s["items"] %}<li>{{ i }}</li>{% endfor %}</ul>
+          <ul class="skill-list">{% for i in s["items"] %}{{ m.skill_chip(i) }}{% endfor %}</ul>
         </div>
         {% endfor %}
       </div>

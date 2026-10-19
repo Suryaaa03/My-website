@@ -26,6 +26,7 @@
         <a href="../../index.html#projects">Projects</a>
         <a href="../../index.html#experience">Experience</a>
         <a href="../../index.html#education">Education</a>
+        <a href="../../index.html#learning">Learning</a>
         <a href="../../index.html#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -58,7 +59,7 @@
   </header>
 
   
-  <figure class="wrap project-cover reveal"><img src="../../static/projects/hdb-regression-st3131/cover.jpg" alt="HDB Resale Price Regression Model"></figure>
+  <figure class="wrap project-cover reveal"><img src="../../static/projects/hdb-regression-st3131/cover.svg" alt=""></figure>
   
 
   <div class="wrap project-body">
@@ -66,33 +67,334 @@
       
       <section class="reveal">
         <h2 class="label">Overview</h2>
-        <div class="prose small"><p>The goal was to build the best possible linear regression model for HDB resale prices that also satisfies the standard regression assumptions, so its coefficients can be trusted and interpreted. The data covers 2,456 resale transactions from July 2020 (data.gov.sg).</p></div>
+        <div class="prose small"><p>The goal was to build the best linear regression model for HDB resale prices that also satisfies the standard regression assumptions, so its coefficients can be trusted and interpreted. The data covers 2,456 resale transactions from July 2020 (data.gov.sg).</p></div>
+      </section>
+      
+
+      
+      <section class="reveal">
+        <h2 class="label">The process at a glance</h2>
+        
+<div class="mindmap" role="figure" aria-label="Process mind map for HDB Resale Price Regression Model">
+  <div class="mm-root"><span>HDB Resale Price Regression Model</span></div>
+  <ul class="mm-branches">
+    
+    <li style="--i: 0; --hue: 160">
+      <span class="mm-node">Data</span>
+      
+      <ul class="mm-leaves"><li>2,456 resale flats (July 2020)</li><li>11 variables</li></ul>
+      
+    </li>
+    
+    <li style="--i: 1; --hue: 212">
+      <span class="mm-node">Explore</span>
+      
+      <ul class="mm-leaves"><li>Right-skewed prices (skew 1.04)</li><li>Town and flat-type boxplots</li><li>Collinearity check</li></ul>
+      
+    </li>
+    
+    <li style="--i: 2; --hue: 264">
+      <span class="mm-node">Engineer</span>
+      
+      <ul class="mm-leaves"><li>Remaining lease in years</li><li>Storey midpoint</li><li>Merge sparse flat types</li></ul>
+      
+    </li>
+    
+    <li style="--i: 3; --hue: 316">
+      <span class="mm-node">Model</span>
+      
+      <ul class="mm-leaves"><li>Baseline M₀</li><li>Box-Cox: λ = −0.38</li><li>Log model chosen</li><li>Stepwise AIC</li></ul>
+      
+    </li>
+    
+    <li style="--i: 4; --hue: 8">
+      <span class="mm-node">Check</span>
+      
+      <ul class="mm-leaves"><li>Residual diagnostics</li><li>VIF</li><li>Cook&#39;s distance</li></ul>
+      
+    </li>
+    
+    <li style="--i: 5; --hue: 60">
+      <span class="mm-node">Interpret</span>
+      
+      <ul class="mm-leaves"><li>% price effect per variable</li><li>Town premiums and discounts</li></ul>
+      
+    </li>
+    
+  </ul>
+</div>
+
       </section>
       
 
       
       <section class="reveal">
         <h2 class="label">What I did</h2>
-        <ol class="steps"><li>Explored the price distribution (right-skewed, skewness 1.04) and engineered features: remaining lease in decimal years, storey midpoints and flat age.</li><li>Detected perfect multicollinearity between remaining lease, flat age and lease start date (|r| = 0.9993) and kept only one of them.</li><li>Fitted a baseline model, then used Box-Cox analysis (optimal λ = −0.38) to compare log and reciprocal square-root transformations, choosing the log for interpretability.</li><li>Ran stepwise AIC selection, VIF checks, influence diagnostics (Cook&#39;s distance) and full residual checks for normality, constant variance, linearity and independence.</li><li>Interpreted every coefficient as a percentage price effect, e.g. +0.89% per extra square metre and a 43% premium for the Central Area.</li></ol>
+        <ol class="steps"><li>Explored the price distribution (right-skewed, skewness 1.04) and engineered features: remaining lease in decimal years, storey midpoints and flat age.</li><li>Found perfect multicollinearity between remaining lease, flat age and lease start date (|r| = 0.9993) and kept only one of them.</li><li>Fitted a baseline model, then used Box-Cox analysis (optimal λ = −0.38) to compare log and reciprocal square-root transformations, choosing the log for interpretability.</li><li>Ran stepwise AIC selection, VIF checks, influence diagnostics (Cook&#39;s distance) and full residual checks for normality, constant variance, linearity and independence.</li><li>Interpreted every coefficient as a percentage price effect.</li></ol>
       </section>
       
 
       
-      <section class="reveal">
-        <h2 class="label">Results</h2>
-        <ul class="results"><li>Adjusted R² of 0.886, up from 0.841 for the untransformed baseline</li><li>Average prediction error (MAPE) of 8.62%</li><li>All regression assumptions checked and satisfied; no highly influential points</li></ul>
-      </section>
-      
-
-      
-      <section class="reveal">
-        <h2 class="label">Gallery</h2>
-        <div class="gallery">
+      <section class="results-section">
+        <h2 class="label reveal">Results &amp; conclusions</h2>
+        <ul class="results reveal"><li>Adjusted R² of 0.886, up from 0.841 for the untransformed baseline</li><li>Average prediction error (MAPE) of 8.62%</li><li>All key regression assumptions checked; no highly influential points (max Cook&#39;s D = 0.089)</li></ul>
+        <div class="reveal">
+<figure class="data-table">
+  <figcaption>Comparing the candidate models</figcaption>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Model</th><th scope="col">Response</th><th scope="col">Adjusted R²</th><th scope="col">AIC</th><th scope="col">Shapiro-Wilk W</th></tr></thead>
+      <tbody>
+        
+        <tr>
           
-          <figure><a href="../../static/projects/hdb-regression-st3131/eda.jpg" target="_blank" rel="noopener"><img src="../../static/projects/hdb-regression-st3131/eda.jpg" alt="Price distribution and Q-Q plot" loading="lazy"></a><figcaption>Price distribution and Q-Q plot</figcaption></figure>
+            <th scope="row">M₀ (baseline)</th>
           
+            <td>price</td>
+          
+            <td>0.8405</td>
+          
+            <td>61,118</td>
+          
+            <td>0.9607</td>
+          
+        </tr>
+        
+        <tr class="hl">
+          
+            <th scope="row">M₀ log (chosen)</th>
+          
+            <td>log(price)</td>
+          
+            <td>0.8858</td>
+          
+            <td>−3,686</td>
+          
+            <td>0.9764</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">M₀ Box-Cox</th>
+          
+            <td>1/√price</td>
+          
+            <td>0.8922</td>
+          
+            <td>−38,949</td>
+          
+            <td>0.9788</td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">The Box-Cox model fit marginally better, but its coefficients can&#39;t be read as price effects, so I chose the log model.</p>
+</figure>
+</div><div class="reveal">
+<figure class="data-table">
+  <figcaption>What drives the price (final model)</figcaption>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Factor</th><th scope="col">Effect on resale price</th></tr></thead>
+      <tbody>
+        
+        <tr>
+          
+            <th scope="row">Floor area</th>
+          
+            <td>+0.89% per extra square metre</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Storey</th>
+          
+            <td>+0.83% per floor higher</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Remaining lease</th>
+          
+            <td>+1.24% per extra year</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Executive vs 1-room flat</th>
+          
+            <td>+46.2%</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">4-room vs 1-room flat</th>
+          
+            <td>+37.8%</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Central Area vs Ang Mo Kio</th>
+          
+            <td>+43.4%</td>
+          
+        </tr>
+        
+        <tr>
+          
+            <th scope="row">Sembawang vs Ang Mo Kio</th>
+          
+            <td>−32.8%</td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">Each effect holds the other factors constant.</p>
+</figure>
+</div>
+        
+        <div class="conclusion reveal">
+          <h3>Conclusion</h3>
+          <p>The final log-linear model explains 88.6% of the variation in resale prices and predicts within 8.62% on average. It satisfies the key assumptions: residuals are approximately normal with constant variance, relationships are linear, and multicollinearity is under control. The only caveat is mild autocorrelation (Durbin-Watson 1.28), which is expected because nearby towns move together. The results match Singapore&#39;s familiar price gradient: central and southern towns command large premiums while northern and western towns are more affordable.</p>
         </div>
+        
+        <div class="reveal">
+<figure class="chart chart-bar">
+  <figcaption>Town premium or discount vs Ang Mo Kio (%)</figcaption>
+
+  
+    
+    
+    
+    
+    
+    
+    <div class="bars diverging" style="--zero: 41.82637547665033%">
+      
+      
+      
+      <div class="bar-row">
+        <span class="bar-label">Central Area</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="left: 41.82637547665033%; width: 53.73149111078097%"></span>
+        </span>
+        <span class="bar-value">43.4%</span>
+      </div>
+      
+      
+      <div class="bar-row">
+        <span class="bar-label">Marine Parade</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="left: 41.82637547665033%; width: 49.150695785668304%"></span>
+        </span>
+        <span class="bar-value">39.7%</span>
+      </div>
+      
+      
+      <div class="bar-row">
+        <span class="bar-label">Bukit Timah</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="left: 41.82637547665033%; width: 46.79839548358342%"></span>
+        </span>
+        <span class="bar-value">37.8%</span>
+      </div>
+      
+      
+      <div class="bar-row">
+        <span class="bar-label">Queenstown</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="left: 41.82637547665033%; width: 31.07512504333185%"></span>
+        </span>
+        <span class="bar-value">25.1%</span>
+      </div>
+      
+      
+      <div class="bar-row">
+        <span class="bar-label">Bishan</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="left: 41.82637547665033%; width: 29.589461694646662%"></span>
+        </span>
+        <span class="bar-value">23.9%</span>
+      </div>
+      
+      
+      <div class="bar-row neg">
+        <span class="bar-label">Woodlands</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="right: 58.17362452334967%; width: 24.7610558114198%"></span>
+        </span>
+        <span class="bar-value">−20.0%</span>
+      </div>
+      
+      
+      <div class="bar-row neg">
+        <span class="bar-label">Sengkang</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="right: 58.17362452334967%; width: 31.57034615956025%"></span>
+        </span>
+        <span class="bar-value">−25.5%</span>
+      </div>
+      
+      
+      <div class="bar-row neg">
+        <span class="bar-label">Bukit Panjang</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="right: 58.17362452334967%; width: 31.941761996731543%"></span>
+        </span>
+        <span class="bar-value">−25.8%</span>
+      </div>
+      
+      
+      <div class="bar-row neg">
+        <span class="bar-label">Choa Chu Kang</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="right: 58.17362452334967%; width: 38.379636507700695%"></span>
+        </span>
+        <span class="bar-value">−31.0%</span>
+      </div>
+      
+      
+      <div class="bar-row neg">
+        <span class="bar-label">Sembawang</span>
+        <span class="bar-track">
+          <span class="bar-fill" style="right: 58.17362452334967%; width: 40.60813153072847%"></span>
+        </span>
+        <span class="bar-value">−32.8%</span>
+      </div>
+      
+    </div>
+
+  
+  
+</figure>
+</div>
+        
+        <figure class="figure reveal">
+          <a class="lb" href="../../static/projects/hdb-regression-st3131/predicted-vs-actual.jpg" data-caption="Predicted vs actual resale prices: points close to the line mean accurate predictions"><img src="../../static/projects/hdb-regression-st3131/predicted-vs-actual.jpg" alt="Predicted vs actual resale prices: points close to the line mean accurate predictions"></a>
+          <figcaption>Predicted vs actual resale prices: points close to the line mean accurate predictions</figcaption>
+        </figure>
+        
       </section>
+      
+
+      
+      <section class="reveal">
+        <h2 class="label">What I learnt</h2>
+        <div class="learnt"><p>This project taught me that a good regression model is one you can defend, not just the one with the highest R². Box-Cox pointed to a transformation that fit slightly better, but I chose the log because its coefficients translate directly into percentage price effects people can use. I learnt the full adequacy-checking routine (residual plots, normality and independence tests, VIF and Cook&#39;s distance) and how to justify decisions such as dropping perfectly collinear variables. Compared with my first-year HDB project, it showed me the difference between predicting well and explaining why.</p></div>
+      </section>
+      
+
       
     </div>
 
@@ -109,10 +411,10 @@
         <h2 class="label">Dive deeper</h2>
         <ul class="files">
           
-          <li><a href="../../static/projects/hdb-regression-st3131/ST3131_HDB_Regression_Report.pdf" target="_blank" rel="noopener" download>
+          <li><a href="../../static/projects/hdb-regression-st3131/ST3131_HDB_Regression_Report.pdf" target="_blank" rel="noopener">
             <span class="ext">PDF</span><span>Statistical report (PDF)</span></a></li>
           
-          <li><a href="../../static/projects/hdb-regression-st3131/ST3131_HDB_Regression.R" target="_blank" rel="noopener" download>
+          <li><a href="../../static/projects/hdb-regression-st3131/ST3131_HDB_Regression.R" target="_blank" rel="noopener">
             <span class="ext">R</span><span>R code</span></a></li>
           
           
@@ -140,6 +442,7 @@
         <a class="btn" href="https://github.com/suryaaa03" target="_blank" rel="noopener">GitHub ↗</a>
         <a class="btn" href="../../static/uploads/Dhathathreyan_Natarajan_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
       </div>
+      <p class="contact-lines"><a href="mailto:dhathathreyan03@gmail.com">dhathathreyan03@gmail.com</a><span aria-hidden="true"> · </span><a href="tel:+6586086576">+65 8608 6576</a></p>
       <p class="fine">© 2026 Dhathathreyan Natarajan</p>
     </div>
   </footer>

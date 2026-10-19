@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "_macros.html" as m %}
 {# One page per project. "root" is "../../" here, so links reach back to the top of the site. #}
 {% block title %}{{ p.title }} · {{ profile.name }}{% endblock %}
 {% block description %}{{ p.summary }}{% endblock %}
@@ -25,7 +26,7 @@
   </header>
 
   {% if p.image %}
-  <figure class="wrap project-cover reveal"><img src="{{ root }}static/{{ p.image }}" alt="{{ p.title }}"></figure>
+  <figure class="wrap project-cover reveal"><img src="{{ root }}static/{{ p.image }}" alt=""></figure>
   {% endif %}
 
   <div class="wrap project-body">
@@ -37,6 +38,13 @@
       </section>
       {% endif %}
 
+      {% if p.mindmap %}
+      <section class="reveal">
+        <h2 class="label">The process at a glance</h2>
+        {{ m.mindmap(p.title.split(":")[0], p.mindmap) }}
+      </section>
+      {% endif %}
+
       {% if p.approach %}
       <section class="reveal">
         <h2 class="label">What I did</h2>
@@ -44,10 +52,31 @@
       </section>
       {% endif %}
 
-      {% if p.highlights %}
+      {% if p.highlights or p.tables or p.charts or p.figures or p.conclusion %}
+      <section class="results-section">
+        <h2 class="label reveal">Results &amp; conclusions</h2>
+        {% if p.highlights %}<ul class="results reveal">{% for h in p.highlights %}<li>{{ h }}</li>{% endfor %}</ul>{% endif %}
+        {% for t in p.tables or [] %}<div class="reveal">{{ m.table(t) }}</div>{% endfor %}
+        {% if p.conclusion %}
+        <div class="conclusion reveal">
+          <h3>Conclusion</h3>
+          {% for para in p.conclusion.split("\n\n") %}<p>{{ para }}</p>{% endfor %}
+        </div>
+        {% endif %}
+        {% for c in p.charts or [] %}<div class="reveal">{{ m.chart(c) }}</div>{% endfor %}
+        {% for f in p.figures or [] %}
+        <figure class="figure reveal">
+          <a class="lb" href="{{ root }}static/{{ f.path }}" data-caption="{{ f.label }}"><img src="{{ root }}static/{{ f.path }}" alt="{{ f.label }}"></a>
+          <figcaption>{{ f.label }}</figcaption>
+        </figure>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if p.learnings %}
       <section class="reveal">
-        <h2 class="label">Results</h2>
-        <ul class="results">{% for h in p.highlights %}<li>{{ h }}</li>{% endfor %}</ul>
+        <h2 class="label">What I learnt</h2>
+        <div class="learnt">{% for para in p.learnings.split("\n\n") %}<p>{{ para }}</p>{% endfor %}</div>
       </section>
       {% endif %}
 
@@ -56,7 +85,7 @@
         <h2 class="label">Gallery</h2>
         <div class="gallery">
           {% for g in p.gallery %}
-          <figure><a href="{{ root }}static/{{ g.path }}" target="_blank" rel="noopener"><img src="{{ root }}static/{{ g.path }}" alt="{{ g.label }}" loading="lazy"></a><figcaption>{{ g.label }}</figcaption></figure>
+          <figure><a class="lb" href="{{ root }}static/{{ g.path }}" data-caption="{{ g.label }}"><img src="{{ root }}static/{{ g.path }}" alt="{{ g.label }}" loading="lazy"></a><figcaption>{{ g.label }}</figcaption></figure>
           {% endfor %}
         </div>
       </section>
@@ -76,7 +105,7 @@
         <h2 class="label">Dive deeper</h2>
         <ul class="files">
           {% for f in p.downloads %}
-          <li><a href="{{ root }}static/{{ f.path }}" target="_blank" rel="noopener" download>
+          <li><a href="{{ root }}static/{{ f.path }}" target="_blank" rel="noopener">
             <span class="ext">{{ p.ext[f.path] }}</span><span>{{ f.label }}</span></a></li>
           {% endfor %}
           {% if p.github_url %}<li><a href="{{ p.github_url }}" target="_blank" rel="noopener"><span class="ext">GIT</span><span>Source code on GitHub ↗</span></a></li>{% endif %}

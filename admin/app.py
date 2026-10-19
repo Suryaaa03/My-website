@@ -20,10 +20,12 @@ from werkzeug.utils import secure_filename
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 import build  # noqa: E402  (our own build.py)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import textformats as tf  # noqa: E402  (plain-text editing for mind maps, tables, charts, skills)
 
 DATA_FILE = ROOT / "data" / "site.json"
 UPLOADS = ROOT / "static" / "uploads"
-IMAGE_TYPES = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
+IMAGE_TYPES = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
 FILE_TYPES = IMAGE_TYPES | {".pdf", ".py", ".r", ".ipynb", ".xlsx", ".xls", ".csv", ".pptx", ".docx", ".zip", ".txt", ".md"}
 
 app = Flask(__name__)
@@ -34,7 +36,8 @@ app.secret_key = "local-admin-only"  # only used for the little "Saved!" message
 # Each section of your resume is described here once. The same form template
 # (entry_form.html) draws the right inputs for any section from this list.
 # Field types: text, url, textarea, lines (one item per line),
-#              list (comma separated), select, checkbox, image
+#              list (comma separated), select, checkbox, image, files,
+#              mindmap / tables / charts (plain-text formats, see textformats.py)
 # ---------------------------------------------------------------------------
 SECTIONS = {
     "projects": {
@@ -48,8 +51,14 @@ SECTIONS = {
             {"name": "role", "label": "My role (e.g. Team lead · built the forecasting models)", "type": "text"},
             {"name": "team", "label": "Team (e.g. Team of 4, or Individual)", "type": "text"},
             {"name": "description", "label": "Overview: the problem and why it matters (blank line = new paragraph)", "type": "textarea"},
+            {"name": "mindmap", "label": "Process mind map: one stage per line, like  Data: 2,456 flats; 11 variables", "type": "mindmap"},
             {"name": "approach", "label": "What I did: one step per line", "type": "lines"},
-            {"name": "highlights", "label": "Results: one per line (numbers are great)", "type": "lines"},
+            {"name": "highlights", "label": "Key results: one per line (numbers are great)", "type": "lines"},
+            {"name": "tables", "label": "Results tables", "type": "tables"},
+            {"name": "conclusion", "label": "Conclusion: final results and what they mean", "type": "textarea"},
+            {"name": "charts", "label": "Comparison charts", "type": "charts"},
+            {"name": "figures", "label": "Comparison figures (images shown at the end of the results, e.g. predicted vs actual)", "type": "files"},
+            {"name": "learnings", "label": "What I learnt (a short paragraph)", "type": "textarea"},
             {"name": "tech", "label": "Tech used (comma separated, e.g. Python, Pandas, Flask)", "type": "list"},
             {"name": "github_url", "label": "GitHub link", "type": "url"},
             {"name": "demo_url", "label": "Live demo link", "type": "url"},
@@ -67,6 +76,7 @@ SECTIONS = {
             {"name": "end", "label": "End (e.g. Present)", "type": "text"},
             {"name": "summary", "label": "Short summary", "type": "textarea"},
             {"name": "bullets", "label": "Key points (one per line)", "type": "lines"},
+            {"name": "skills", "label": "Skills gained (comma separated; shown as tags on the journey map)", "type": "list"},
         ],
     },
     "education": {
@@ -79,6 +89,23 @@ SECTIONS = {
             {"name": "details", "label": "Details: modules, awards, CCAs (one per line)", "type": "lines"},
         ],
     },
+    "courses": {
+        "title": "Course",
+        "fields": [
+            {"name": "semester", "label": "Semester. Copy the exact text of an existing one to group them, e.g.  Year 3 · Semester 2 · AY2026/27 (Jan – May 2027)", "type": "text", "required": True},
+            {"name": "code", "label": "Course code (e.g. EC3304)", "type": "text", "required": True},
+            {"name": "title", "label": "Course title", "type": "text", "required": True},
+            {"name": "status", "label": "Status", "type": "select", "options": ["Completed", "In progress"]},
+            {"name": "description", "label": "What it covers (1–2 sentences; NUSMods has the official description)", "type": "textarea"},
+            {"name": "skills", "label": "Skills gained (comma separated)", "type": "list"},
+        ],
+    },
+}
+
+TEXT_FORMATS = {
+    "mindmap": (tf.mindmap_to_text, tf.parse_mindmap),
+    "tables": (tf.tables_to_text, tf.parse_tables),
+    "charts": (tf.charts_to_text, tf.parse_charts),
 }
 
 
@@ -119,6 +146,8 @@ def read_form(section, existing):
             entry[name] = [l.strip() for l in request.form.get(name, "").splitlines() if l.strip()]
         elif kind == "list":
             entry[name] = [s.strip() for s in request.form.get(name, "").split(",") if s.strip()]
+        elif kind in TEXT_FORMATS:
+            entry[name] = TEXT_FORMATS[kind][1](request.form.get(name, ""))
         elif kind == "files":
             kept = []
             for i, item in enumerate(existing.get(name) or []):
@@ -163,7 +192,7 @@ def profile():
     data = load()
     if request.method == "POST":
         p = data["profile"]
-        for key in ["name", "headline", "location", "about", "email", "linkedin", "github"]:
+        for key in ["name", "headline", "location", "about", "email", "phone", "linkedin", "github"]:
             p[key] = request.form.get(key, "").strip()
         p["open_to_work"] = "open_to_work" in request.form
 
@@ -179,22 +208,17 @@ def profile():
         elif request.form.get("remove_resume_file"):
             p["resume_file"] = ""
 
-        # Skills are typed as lines like:  Languages: Python, Java, SQL
-        skills = []
-        for line in request.form.get("skills", "").splitlines():
-            if ":" in line:
-                group, items = line.split(":", 1)
-                items = [s.strip() for s in items.split(",") if s.strip()]
-                if group.strip() and items:
-                    skills.append({"group": group.strip(), "items": items})
+        # Skills are typed as lines like:  Languages: Python; Java; SQL
+        # and explanations (for the click-to-explain bubbles) as lines like:  Python = A popular language...
+        skills = tf.parse_skills(request.form.get("skills", ""), request.form.get("skill_notes", ""))
         data["skills"] = skills
 
         save(data)
         flash("Profile saved and website rebuilt.", "ok")
         return redirect(url_for("dashboard"))
 
-    skills_text = "\n".join(f"{s['group']}: {', '.join(s['items'])}" for s in data["skills"])
-    return render_template("profile.html", p=data["profile"], skills_text=skills_text)
+    skills_text, notes_text = tf.skills_to_text(data["skills"])
+    return render_template("profile.html", p=data["profile"], skills_text=skills_text, notes_text=notes_text)
 
 
 @app.route("/<section>/new", methods=["GET", "POST"])
@@ -225,8 +249,10 @@ def edit_entry(section, entry_id=None):
         flash(f"{SECTIONS[section]['title']} saved and website rebuilt.", "ok")
         return redirect(url_for("dashboard") + f"#{section}")
 
+    as_text = {f["name"]: TEXT_FORMATS[f["type"]][0](existing.get(f["name"]))
+               for f in SECTIONS[section]["fields"] if f["type"] in TEXT_FORMATS}
     return render_template("entry_form.html", section=section, spec=SECTIONS[section],
-                           entry=existing, is_new=index is None)
+                           entry=existing, is_new=index is None, as_text=as_text)
 
 
 @app.route("/<section>/<entry_id>/delete", methods=["POST"])
