@@ -24,6 +24,7 @@ import build  # noqa: E402  (our own build.py)
 DATA_FILE = ROOT / "data" / "site.json"
 UPLOADS = ROOT / "static" / "uploads"
 IMAGE_TYPES = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
+FILE_TYPES = IMAGE_TYPES | {".pdf", ".py", ".r", ".ipynb", ".xlsx", ".xls", ".csv", ".pptx", ".docx", ".zip", ".txt", ".md"}
 
 app = Flask(__name__)
 app.secret_key = "local-admin-only"  # only used for the little "Saved!" messages
@@ -42,14 +43,18 @@ SECTIONS = {
             {"name": "title", "label": "Project name", "type": "text", "required": True},
             {"name": "category", "label": "Category", "type": "select",
              "options": ["University", "Personal", "Work", "Competition", "Other"]},
-            {"name": "year", "label": "Year (e.g. 2025)", "type": "text"},
+            {"name": "year", "label": "When (e.g. 2025, or Mar – May 2025)", "type": "text"},
             {"name": "summary", "label": "One-line summary (shown on the card)", "type": "text", "required": True},
-            {"name": "description", "label": "Full description (shown when someone clicks the card)", "type": "textarea"},
-            {"name": "highlights", "label": "Key results or what you did (one per line)", "type": "lines"},
+            {"name": "role", "label": "My role (e.g. Team lead · built the forecasting models)", "type": "text"},
+            {"name": "team", "label": "Team (e.g. Team of 4, or Individual)", "type": "text"},
+            {"name": "description", "label": "Overview: the problem and why it matters (blank line = new paragraph)", "type": "textarea"},
+            {"name": "approach", "label": "What I did: one step per line", "type": "lines"},
+            {"name": "highlights", "label": "Results: one per line (numbers are great)", "type": "lines"},
             {"name": "tech", "label": "Tech used (comma separated, e.g. Python, Pandas, Flask)", "type": "list"},
             {"name": "github_url", "label": "GitHub link", "type": "url"},
             {"name": "demo_url", "label": "Live demo link", "type": "url"},
-            {"name": "image", "label": "Screenshot / cover image", "type": "image"},
+            {"name": "image", "label": "Cover image (shown on the card and at the top of the project page)", "type": "image"},
+            {"name": "files", "label": "Files: reports, code, slides, extra screenshots (images appear in a gallery)", "type": "files"},
             {"name": "featured", "label": "Feature this project (shown first, with a badge)", "type": "checkbox"},
         ],
     },
@@ -88,9 +93,9 @@ def save(data):
     build.build()
 
 
-def save_upload(field_name, allowed):
+def save_upload(field_name, allowed, f=None):
     """Store an uploaded file in static/uploads/ and return its path, or None."""
-    f = request.files.get(field_name)
+    f = f or request.files.get(field_name)
     if not f or not f.filename:
         return None
     ext = Path(f.filename).suffix.lower()
@@ -114,6 +119,19 @@ def read_form(section, existing):
             entry[name] = [l.strip() for l in request.form.get(name, "").splitlines() if l.strip()]
         elif kind == "list":
             entry[name] = [s.strip() for s in request.form.get(name, "").split(",") if s.strip()]
+        elif kind == "files":
+            kept = []
+            for i, item in enumerate(existing.get(name) or []):
+                if request.form.get(f"remove_{name}_{i}"):
+                    continue
+                label = request.form.get(f"label_{name}_{i}", "").strip() or item["label"]
+                kept.append({"label": label, "path": item["path"]})
+            for upload in request.files.getlist(name):
+                path = save_upload(name, FILE_TYPES, upload)
+                if path:
+                    label = Path(upload.filename).stem.replace("_", " ").replace("-", " ")
+                    kept.append({"label": label, "path": path})
+            entry[name] = kept
         elif kind == "image":
             uploaded = save_upload(name, IMAGE_TYPES)
             if uploaded:
@@ -190,6 +208,15 @@ def edit_entry(section, entry_id=None):
 
     if request.method == "POST":
         entry = read_form(section, existing)
+        if section == "projects" and not entry.get("slug"):
+            # The slug is the project's web address (projects/<slug>/). It's set once
+            # and kept, so links you've shared keep working even if you rename the project.
+            taken = {p.get("slug") for p in items}
+            slug = base = build.slugify(entry.get("title", ""))
+            n = 2
+            while slug in taken:
+                slug, n = f"{base}-{n}", n + 1
+            entry["slug"] = slug
         if index is None:
             items.append(entry)
         else:

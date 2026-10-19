@@ -182,20 +182,57 @@ h1, h2, h3 { line-height: 1.15; margin: 0; }
 .contact .btn.primary { background: var(--bg); color: var(--ink); border-color: var(--bg); }
 .fine { font-size: 13px !important; margin-top: 64px !important; }
 
-/* ---------- project pop-up ---------- */
-dialog {
-  width: min(720px, calc(100% - 24px)); max-height: calc(100% - 48px); padding: 0;
-  border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--ink);
-  box-shadow: 0 24px 64px rgb(0 0 0 / .25);
+/* ---------- whole card is clickable ---------- */
+.card { position: relative; }
+.card-link { text-decoration: none; }
+.card-link::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
+.card-link:focus-visible { outline: none; }
+.card:has(.card-link:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
+.card-more { margin-top: auto !important; padding-top: 16px; font-size: 14px; font-weight: 600; color: var(--accent) !important; }
+
+/* ---------- project page ---------- */
+.project-hero { padding-top: clamp(32px, 6vw, 64px); padding-bottom: 32px; }
+.back { display: inline-block; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; margin-bottom: 28px; }
+.back:hover { color: var(--ink); }
+.project-hero h1 { font: 600 clamp(38px, 7vw, 68px)/1.02 var(--serif); letter-spacing: -0.02em; max-width: 18ch; }
+.project-hero .headline { max-width: 40ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 14px 40px; margin: 28px 0 0; }
+.facts div { min-width: 120px; }
+.facts dt { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.facts dd { margin: 4px 0 0; font-weight: 500; max-width: 38ch; }
+.project-cover { margin: 0 auto; }
+.project-cover img { width: 100%; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
+.project-body { display: grid; gap: 40px; padding-top: 56px; padding-bottom: 40px; }
+@media (min-width: 900px) { .project-body { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 64px; } }
+.project-main section, .project-side section { margin-bottom: 44px; }
+.project-main .label, .project-side .label { display: block; margin-bottom: 14px; }
+.prose.small p { font-size: clamp(18px, 2vw, 20px); max-width: 60ch; }
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+.steps li { counter-increment: step; position: relative; padding: 0 0 18px 44px; max-width: 64ch; }
+.steps li::before {
+  content: counter(step); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent); font: 600 13px/28px var(--sans); text-align: center;
 }
-dialog::backdrop { background: rgb(10 10 8 / .55); backdrop-filter: blur(3px); }
-dialog[open] { animation: pop .22s ease-out; }
-@keyframes pop { from { opacity: 0; transform: translateY(12px) scale(.98); } }
-.dialog-body { padding: 32px clamp(20px, 5vw, 40px) 36px; }
-.dialog-body h3 { font: 600 clamp(28px, 5vw, 38px) var(--serif); margin-bottom: 18px; padding-right: 40px; }
-.dialog-body h4 { font: 600 13px var(--sans); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 26px 0 0; }
-.detail-img { width: 100%; max-height: 380px; object-fit: cover; object-position: top; border-radius: 10px; border: 1px solid var(--line); margin-bottom: 20px; }
-.close { position: absolute; top: 16px; right: 16px; }
+.results { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.results li { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 10px; padding: 12px 16px; }
+.gallery { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.gallery figure { margin: 0; }
+.gallery img { border-radius: 10px; border: 1px solid var(--line); aspect-ratio: 16 / 10; object-fit: cover; object-position: top; width: 100%; background: var(--surface); }
+.gallery figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
+.project-side { align-self: start; }
+@media (min-width: 900px) { .project-side { position: sticky; top: 88px; } }
+.files { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.files a {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 10px; text-decoration: none;
+  background: var(--surface); border: 1px solid var(--line); font-weight: 500; font-size: 15px; transition: border-color .15s, transform .15s;
+}
+.files a:hover { border-color: var(--ink); transform: translateY(-1px); }
+.ext { flex: none; font: 600 11px var(--sans); letter-spacing: .05em; background: var(--ink); color: var(--bg); padding: 4px 6px; border-radius: 5px; min-width: 40px; text-align: center; }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding-top: 32px; padding-bottom: 24px; border-top: 1px solid var(--line); }
+.pager a { text-decoration: none; font: 600 clamp(16px, 2vw, 20px) var(--serif); }
+.pager a span { display: block; font: 500 13px var(--sans); color: var(--muted); margin-bottom: 4px; }
+.pager a:hover { color: var(--accent); }
+.pager .next { text-align: right; grid-column: 2; }
 
 /* ---------- gentle reveal-on-scroll ---------- */
 .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
@@ -203,5 +240,5 @@ dialog[open] { animation: pop .22s ease-out; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
-  .dot, dialog[open] { animation: none; }
+  .dot { animation: none; }
 }

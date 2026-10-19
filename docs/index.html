@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Surya · Builder of useful things</title>
-  <meta name="description" content="Surya: Builder of useful things. Projects, experience and resume.">
-  <meta property="og:title" content="Surya · Portfolio">
-  <meta property="og:description" content="Builder of useful things">
+  <title>Dhathathreyan Natarajan · Data Science &amp; Economics at NUS · Python, machine learning and financial modelling</title>
+  <meta name="description" content="Dhathathreyan Natarajan: Data Science &amp; Economics at NUS · Python, machine learning and financial modelling. Projects, experience and resume.">
+  <meta property="og:title" content="Dhathathreyan Natarajan · Data Science &amp; Economics at NUS · Python, machine learning and financial modelling">
+  <meta property="og:description" content="Dhathathreyan Natarajan: Data Science &amp; Economics at NUS · Python, machine learning and financial modelling. Projects, experience and resume.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -21,12 +21,12 @@
 
   <header class="nav">
     <div class="wrap nav-inner">
-      <a class="logo" href="#top" aria-label="Back to top">S<span>.</span></a>
+      <a class="logo" href="index.html#top" aria-label="Home">D<span>.</span></a>
       <nav aria-label="Sections">
-        <a href="#projects">Projects</a>
-        
-        
-        <a href="#skills">Skills</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#education">Education</a>
+        <a href="index.html#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch light or dark theme">
@@ -36,17 +36,18 @@
   </header>
 
   <main id="main">
+    
     <!-- ============ HERO ============ -->
     <section class="hero wrap" id="top">
       <div class="hero-text reveal">
         <p class="pill"><span class="dot"></span>Open to opportunities</p>
-        <h1>Surya</h1>
-        <p class="headline">Builder of useful things</p>
+        <h1>Dhathathreyan Natarajan</h1>
+        <p class="headline">Data Science &amp; Economics at NUS · Python, machine learning and financial modelling</p>
         <p class="meta">📍 Singapore</p>
         <div class="actions">
           <a class="btn primary" href="#projects">See my work</a>
-          
-          
+          <a class="btn" href="static/uploads/Dhathathreyan_Natarajan_Resume.pdf" target="_blank" rel="noopener">Download resume</a>
+          <a class="btn ghost" href="mailto:dhathathreyan03@gmail.com">Get in touch</a>
         </div>
       </div>
       
@@ -56,7 +57,7 @@
     <section class="wrap section split reveal" id="about">
       <h2 class="label">About</h2>
       <div class="prose">
-        <p>Write a short introduction about yourself here: what you study or do, what you love building, and what kind of role you&#39;re looking for. Edit this in the admin page.</p>
+        <p>I&#39;m a Data Science and Economics undergraduate at the National University of Singapore. I like taking messy, real-world data and turning it into something people can make decisions with, whether that&#39;s a forecast, a valuation or a policy recommendation.</p><p>Before university I served as a Combat Engineer Officer in the Singapore Armed Forces, where I led explosives training for 100 soldiers and took my unit through two major evaluations. It taught me to plan carefully, stay calm under pressure and own the outcome.</p><p>Since then I&#39;ve built a Python emissions-compliance optimiser for a shipping company&#39;s fleet, forecast humidity with LSTM and XGBoost models, built a retrieval-augmented generation (RAG) pipeline for maritime regulations, and valued companies with DCF models for stock pitch competitions. I also tutor mathematics at Tim Gan Math. I&#39;m happiest where data science meets economics and finance.</p>
       </div>
     </section>
     
@@ -65,18 +66,232 @@
     <section class="wrap section" id="projects">
       <div class="section-head reveal">
         <h2 class="label">Projects</h2>
-        <p class="lede">Things I've designed, built and shipped. Click any project for details.</p>
+        <p class="lede">Things I've built, analysed and pitched. Open any project to see the full write-up and files.</p>
       </div>
 
       
-        <div class="empty reveal">Projects are on their way. Check back soon.</div>
+        
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+          <button class="chip active" data-filter="all" type="button">All <span>9</span></button>
+          
+          <button class="chip" data-filter="Competition" type="button">Competition <span>5</span></button>
+          
+          <button class="chip" data-filter="University" type="button">University <span>3</span></button>
+          
+          <button class="chip" data-filter="Personal" type="button">Personal <span>1</span></button>
+          
+        </div>
+        
+
+        <div class="grid">
+          
+          <article class="card reveal" data-category="Competition">
+            <div class="card-media" style="--hue: 160">
+              <img src="static/projects/arrow-maritime-platform/cover.jpg" alt="" loading="lazy">
+              
+              <span class="badge">★ Featured</span>
+            </div>
+            <div class="card-body">
+              <p class="card-meta">Competition · 2025</p>
+              <h3><a class="card-link" href="projects/arrow-maritime-platform/index.html">ARROW: Maritime Intelligence Platform</a></h3>
+              <p>A shipbroking platform that pairs an AI market briefing (RAG) with route optimisation and fuel-strategy analysis.</p>
+              <ul class="tags"><li>Python</li><li>LangChain</li><li>ChromaDB</li><li>Hugging Face</li><li>Mistral-7B</li><li>+5</li></ul>
+              <p class="card-more">Read more →</p>
+            </div>
+          </article>
+          
+          <article class="card reveal" data-category="Competition">
+            <div class="card-media" style="--hue: 207">
+              <img src="static/projects/capcom-stock-pitch/cover.jpg" alt="" loading="lazy">
+              
+              <span class="badge">★ Featured</span>
+            </div>
+            <div class="card-body">
+              <p class="card-meta">Competition · 2026</p>
+              <h3><a class="card-link" href="projects/capcom-stock-pitch/index.html">Capcom Equity Research: Nanyang Capital Stock Pitch</a></h3>
+              <p>A BUY call on Capcom (TSE: 9697) with a ¥4,800 base-case target, built on a full three-statement and DCF model.</p>
+              <ul class="tags"><li>Excel</li><li>DCF valuation</li><li>Comparable company analysis</li><li>Scenario analysis</li><li>Financial statements</li></ul>
+              <p class="card-more">Read more →</p>
+            </div>
+          </article>
+          
+          <article class="card reveal" data-category="University">
+            <div class="card-media" style="--hue: 254">
+              <img src="static/projects/weather-humidity-prediction/cover.jpg" alt="" loading="lazy">
+              
+              <span class="badge">★ Featured</span>
+            </div>
+            <div class="card-body">
+              <p class="card-meta">University · Mar – May 2025</p>
+              <h3><a class="card-link" href="projects/weather-humidity-prediction/index.html">Weather Humidity Forecasting</a></h3>
+              <p>Forecasting relative humidity 1, 6 and 24 hours ahead with Random Forest, XGBoost, LSTM and a hybrid LSTM-XGBoost model.</p>
+              <ul class="tags"><li>Python</li><li>Pandas</li><li>scikit-learn</li><li>XGBoost</li><li>Keras / LSTM</li><li>+3</li></ul>
+              <p class="card-more">Read more →</p>
+            </div>
+          </article>
+          
+          <article class="card reveal" data-category="University">
+            <div class="card-media" style="--hue: 301">
+              <img src="static/projects/hdb-regression-st3131/cover.jpg" alt="" loading="lazy">
+              
+              
+            </div>
+            <div class="card-body">
+              <p class="card-meta">University · Apr 2026</p>
+              <h3><a class="card-link" href="projects/hdb-regression-st3131/index.html">HDB Resale Price Regression Model</a></h3>
+              <p>A statistically rigorous linear model of Singapore HDB resale prices that explains 88.6% of price variation.</p>
+              <ul class="tags"><li>R</li><li>Linear regression</li><li>Box-Cox</li><li>Stepwise AIC</li><li>Residual diagnostics</li></ul>
+              <p class="card-more">Read more →</p>
+            </div>
+          </article>
+          
+          <article class="card reveal" data-category="University">
+            <div class="card-media" style="--hue: 348">
+              <img src="static/projects/hdb-ml-dse1101/cover.jpg" alt="" loading="lazy">
+              
+              
+            </div>
+            <div class="card-body">
+              <p class="card-meta">University · Nov 2024</p>
+              <h3><a class="card-link" href="projects/hdb-ml-dse1101/index.html">Predicting HDB Resale Prices with Machine Learning</a></h3>
+              <p>Comparing linear regression, decision trees, k-NN and principal component regression to predict HDB resale prices.</p>
+              <ul class="tags"><li>R</li><li>Linear regression</li><li>Decision trees</li><li>k-NN</li><li>PCA / PCR</li><li>+1</li></ul>
+              <p class="card-more">Read more →</p>
+            </div>
+          </article>
+          
+          <article class="card reveal" data-category="Competition">
+            <div class="card-media placeholder" style="--hue: 35">
+              <span aria-hidden="true">R</span>
+              
+            </div>
+            <div class="card-body">
+              <p class="card-meta">Competition · Jun – Jul 2025</p>
+              <h3><a class="card-link" href="projects/mom-flfpr-essay/index.html">Raising Singapore&#39;s Female Labour Force Participation</a></h3>
+              <p>NTU x MOM essay competition: a data-driven country similarity index and a policy proposal for Singapore.</p>
+              <ul class="tags"><li>Python</li><li>Pandas</li><li>scikit-learn</li><li>SciPy</li><li>Fuzzy matching</li><li>+1</li></ul>
+              <p class="card-more">Read more →</p>
+            </div>
+          </article>
+          
+          <article class="card reveal" data-category="Personal">
+            <div class="card-media placeholder" style="--hue: 82">
+              <span aria-hidden="true">A</span>
+              
+            </div>
+            <div class="card-body">
+              <p class="card-meta">Personal · Ongoing</p>
+              <h3><a class="card-link" href="projects/algorithmic-trading-system/index.html">Algorithmic Trading System</a></h3>
+              <p>A Python system that pulls live and historical equity data and generates rule-based trading signals.</p>
+              <ul class="tags"><li>Python</li><li>Market-data APIs</li><li>Technical indicators</li><li>Backtesting</li></ul>
+              <p class="card-more">Read more →</p>
+            </div>
+          </article>
+          
+          <article class="card reveal" data-category="Competition">
+            <div class="card-media placeholder" style="--hue: 129">
+              <span aria-hidden="true">T</span>
+              
+            </div>
+            <div class="card-body">
+              <p class="card-meta">Competition · Aug 2024</p>
+              <h3><a class="card-link" href="projects/temasek-nus-stock-pitch/index.html">Temasek-NUS Stock Pitch Competition 2024</a></h3>
+              <p>Led a team researching investment opportunities, with a DCF valuation and a football field chart benchmarking 5 competitors.</p>
+              <ul class="tags"><li>Excel</li><li>DCF valuation</li><li>Comparable company analysis</li></ul>
+              <p class="card-more">Read more →</p>
+            </div>
+          </article>
+          
+          <article class="card reveal" data-category="Competition">
+            <div class="card-media placeholder" style="--hue: 176">
+              <span aria-hidden="true">T</span>
+              
+            </div>
+            <div class="card-body">
+              <p class="card-meta">Competition · Apr – Sep 2022</p>
+              <h3><a class="card-link" href="projects/tech-for-good-2022/index.html">Tech for Good 2022</a></h3>
+              <p>Developed a technology solution for the hard of hearing with a team of 5, from concept to final showcase.</p>
+              <ul class="tags"><li>Design thinking</li><li>Prototyping</li></ul>
+              <p class="card-more">Read more →</p>
+            </div>
+          </article>
+          
+        </div>
       
     </section>
 
     <!-- ============ EXPERIENCE ============ -->
     
+    <section class="wrap section" id="experience">
+      <div class="section-head reveal"><h2 class="label">Experience</h2></div>
+      <ol class="timeline">
+        
+        <li class="reveal">
+          <p class="when">May 2026 – Present</p>
+          <div>
+            <h3>Math Tutor <span class="at">· Tim Gan Math</span></h3>
+            <p>Teach mathematics, mathematical reasoning and exam preparation.</p>
+            <ul class="bullets"><li>Gauge each student&#39;s comfort level first, then connect new ideas to what they already know using real-world examples and simple language.</li><li>Break topics into smaller steps with frequent checks for students who need support, and stretch stronger students with harder questions.</li></ul>
+          </div>
+        </li>
+        
+        <li class="reveal">
+          <p class="when">May 2025 – Jul 2025</p>
+          <div>
+            <h3>Analysis &amp; Research Intern <span class="at">· Pacific Carriers Limited · Business Management Office</span></h3>
+            
+            <ul class="bullets"><li>Designed and built a Python optimiser (Pandas, NumPy) for FuelEU Maritime, IMO and EU ETS compliance, streamlining the team&#39;s emissions and carbon-cost calculations across the fleet.</li><li>Developed an Excel fleet database with an embedded DCF model to value fuel options, retrofits and energy-saving devices; traced and resolved inconsistencies in full-fleet outputs before results reached senior management.</li><li>Researched long-term vessel retrofit strategies and the transition to alternative fuels such as biofuels, turning the analysis into recommendations for senior stakeholders including the CFO.</li></ul>
+          </div>
+        </li>
+        
+        <li class="reveal">
+          <p class="when">Apr 2024 – Jul 2024</p>
+          <div>
+            <h3>Accountant <span class="at">· Plutus Corporate Services Pte Ltd</span></h3>
+            
+            <ul class="bullets"><li>Managed monthly accounts payable, accounts receivable and bank reconciliations in XERO; prepared ledger balances and P&amp;L statements in Excel.</li><li>Processed bills, invoices and bank statements in Excel for import into XERO, maintaining accurate client records.</li></ul>
+          </div>
+        </li>
+        
+        <li class="reveal">
+          <p class="when">Dec 2022 – Nov 2023</p>
+          <div>
+            <h3>Combat Engineer Officer <span class="at">· Singapore Armed Forces</span></h3>
+            
+            <ul class="bullets"><li>Commanded a unit through training and 2 major evaluations; planned and led explosives training for 100 soldiers.</li><li>Represented the unit in Exercise Wallaby, a 3-week overseas exercise in Australia, coordinating with other units.</li></ul>
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
 
     <!-- ============ EDUCATION ============ -->
+    
+    <section class="wrap section" id="education">
+      <div class="section-head reveal"><h2 class="label">Education</h2></div>
+      <ol class="timeline">
+        
+        <li class="reveal">
+          <p class="when">Aug 2024 – May 2028 (expected)</p>
+          <div>
+            <h3>National University of Singapore</h3>
+            <p class="sub">Bachelor of Science in Data Science and Economics</p>
+            <ul class="bullets"><li>Relevant modules: DSE1101 Introductory Data Science for Economics, IT1244 Artificial Intelligence: Technology and Impact, ST3131 Regression Analysis (projects below).</li></ul>
+          </div>
+        </li>
+        
+        <li class="reveal">
+          <p class="when">Feb 2020 – Nov 2021</p>
+          <div>
+            <h3>St. Joseph&#39;s Institution</h3>
+            <p class="sub">International Baccalaureate Diploma</p>
+            <ul class="bullets"><li>IB score: 42/45 (Higher Level: Mathematics, Economics, Chemistry).</li><li>Founding Vice President, Education and Career Guidance Committee.</li><li>Ran an Excel training workshop for children at a Chinese Development Association council.</li></ul>
+          </div>
+        </li>
+        
+      </ol>
+    </section>
     
 
     <!-- ============ SKILLS ============ -->
@@ -86,39 +301,64 @@
       <div class="skills">
         
         <div class="skill-group reveal">
-          <h3>Languages</h3>
-          <ul class="tags big"><li>Python</li><li>JavaScript</li><li>HTML &amp; CSS</li></ul>
+          <h3>Programming</h3>
+          <ul class="tags big"><li>Python</li><li>Pandas</li><li>NumPy</li><li>scikit-learn</li><li>R</li><li>Flask</li><li>HTML, CSS &amp; JavaScript</li></ul>
+        </div>
+        
+        <div class="skill-group reveal">
+          <h3>Machine learning</h3>
+          <ul class="tags big"><li>Random Forest</li><li>XGBoost</li><li>LSTM (Keras)</li><li>Hybrid LSTM-XGBoost</li><li>Bayesian optimisation (Optuna)</li><li>k-NN</li><li>Decision trees</li><li>PCA / PCR</li><li>Cross-validation</li></ul>
+        </div>
+        
+        <div class="skill-group reveal">
+          <h3>Statistics &amp; time series</h3>
+          <ul class="tags big"><li>Linear regression</li><li>Box-Cox transformation</li><li>Residual diagnostics</li><li>Stepwise selection (AIC)</li><li>Multicollinearity (VIF)</li><li>Stationarity testing (ADF, KPSS)</li><li>ACF / PACF</li></ul>
+        </div>
+        
+        <div class="skill-group reveal">
+          <h3>AI &amp; LLM</h3>
+          <ul class="tags big"><li>RAG pipelines</li><li>LangChain</li><li>ChromaDB</li><li>Hugging Face</li><li>Sentence embeddings</li><li>Prompt design</li></ul>
+        </div>
+        
+        <div class="skill-group reveal">
+          <h3>Finance</h3>
+          <ul class="tags big"><li>DCF valuation</li><li>Comparable company analysis</li><li>Scenario &amp; sensitivity analysis</li><li>Financial statements</li><li>Bookkeeping (XERO)</li><li>Bank reconciliations</li></ul>
+        </div>
+        
+        <div class="skill-group reveal">
+          <h3>Excel</h3>
+          <ul class="tags big"><li>Financial modelling</li><li>Pivot tables &amp; charts</li><li>Formulas</li><li>Data analysis</li></ul>
         </div>
         
         <div class="skill-group reveal">
           <h3>Tools</h3>
-          <ul class="tags big"><li>Git &amp; GitHub</li></ul>
+          <ul class="tags big"><li>Git &amp; GitHub</li><li>Jupyter &amp; Google Colab</li><li>Docker</li><li>Folium (mapping)</li></ul>
+        </div>
+        
+        <div class="skill-group reveal">
+          <h3>Languages</h3>
+          <ul class="tags big"><li>English (native)</li><li>Tamil (native)</li></ul>
         </div>
         
       </div>
     </section>
     
+
   </main>
 
-  <!-- ============ CONTACT ============ -->
   <footer class="contact" id="contact">
     <div class="wrap">
       <h2>Let's build something.</h2>
       <p>I'm always happy to talk about new roles, projects or ideas.</p>
       <div class="actions">
-        
-        
+        <a class="btn primary" href="mailto:dhathathreyan03@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/dhathathreyan/" target="_blank" rel="noopener">LinkedIn ↗</a>
         <a class="btn" href="https://github.com/suryaaa03" target="_blank" rel="noopener">GitHub ↗</a>
-        
+        <a class="btn" href="static/uploads/Dhathathreyan_Natarajan_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
       </div>
-      <p class="fine">© 2026 Surya</p>
+      <p class="fine">© 2026 Dhathathreyan Natarajan</p>
     </div>
   </footer>
-
-  <dialog id="project-dialog" aria-label="Project details">
-    <button class="icon-btn close" type="button" aria-label="Close">✕</button>
-    <div class="dialog-body"></div>
-  </dialog>
 
   <script src="static/main.js"></script>
 </body>

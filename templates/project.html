@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{# One page per project. "root" is "../../" here, so links reach back to the top of the site. #}
+{% block title %}{{ p.title }} · {{ profile.name }}{% endblock %}
+{% block description %}{{ p.summary }}{% endblock %}
+
+{% block content %}
+<article class="project-page">
+  <header class="wrap project-hero reveal">
+    <a class="back" href="{{ root }}index.html#projects">← All projects</a>
+    <p class="card-meta">{{ p.category }}{% if p.year %} · {{ p.year }}{% endif %}{% if p.featured %} · ★ Featured{% endif %}</p>
+    <h1>{{ p.title }}</h1>
+    <p class="headline">{{ p.summary }}</p>
+
+    <dl class="facts">
+      {% if p.role %}<div><dt>My role</dt><dd>{{ p.role }}</dd></div>{% endif %}
+      {% if p.team %}<div><dt>Team</dt><dd>{{ p.team }}</dd></div>{% endif %}
+      {% if p.year %}<div><dt>When</dt><dd>{{ p.year }}</dd></div>{% endif %}
+    </dl>
+
+    <div class="actions">
+      {% if p.github_url %}<a class="btn" href="{{ p.github_url }}" target="_blank" rel="noopener">View code on GitHub ↗</a>{% endif %}
+      {% if p.demo_url %}<a class="btn primary" href="{{ p.demo_url }}" target="_blank" rel="noopener">Live demo ↗</a>{% endif %}
+      {% if p.downloads %}<a class="btn ghost" href="#files">Report &amp; files ↓</a>{% endif %}
+    </div>
+  </header>
+
+  {% if p.image %}
+  <figure class="wrap project-cover reveal"><img src="{{ root }}static/{{ p.image }}" alt="{{ p.title }}"></figure>
+  {% endif %}
+
+  <div class="wrap project-body">
+    <div class="project-main">
+      {% if p.description %}
+      <section class="reveal">
+        <h2 class="label">Overview</h2>
+        <div class="prose small">{% for para in p.description.split("\n\n") %}<p>{{ para }}</p>{% endfor %}</div>
+      </section>
+      {% endif %}
+
+      {% if p.approach %}
+      <section class="reveal">
+        <h2 class="label">What I did</h2>
+        <ol class="steps">{% for a in p.approach %}<li>{{ a }}</li>{% endfor %}</ol>
+      </section>
+      {% endif %}
+
+      {% if p.highlights %}
+      <section class="reveal">
+        <h2 class="label">Results</h2>
+        <ul class="results">{% for h in p.highlights %}<li>{{ h }}</li>{% endfor %}</ul>
+      </section>
+      {% endif %}
+
+      {% if p.gallery %}
+      <section class="reveal">
+        <h2 class="label">Gallery</h2>
+        <div class="gallery">
+          {% for g in p.gallery %}
+          <figure><a href="{{ root }}static/{{ g.path }}" target="_blank" rel="noopener"><img src="{{ root }}static/{{ g.path }}" alt="{{ g.label }}" loading="lazy"></a><figcaption>{{ g.label }}</figcaption></figure>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+    </div>
+
+    <aside class="project-side">
+      {% if p.tech %}
+      <section class="reveal">
+        <h2 class="label">Built with</h2>
+        <ul class="tags">{% for t in p.tech %}<li>{{ t }}</li>{% endfor %}</ul>
+      </section>
+      {% endif %}
+
+      {% if p.downloads or p.github_url %}
+      <section class="reveal" id="files">
+        <h2 class="label">Dive deeper</h2>
+        <ul class="files">
+          {% for f in p.downloads %}
+          <li><a href="{{ root }}static/{{ f.path }}" target="_blank" rel="noopener" download>
+            <span class="ext">{{ p.ext[f.path] }}</span><span>{{ f.label }}</span></a></li>
+          {% endfor %}
+          {% if p.github_url %}<li><a href="{{ p.github_url }}" target="_blank" rel="noopener"><span class="ext">GIT</span><span>Source code on GitHub ↗</span></a></li>{% endif %}
+        </ul>
+      </section>
+      {% endif %}
+    </aside>
+  </div>
+
+  <nav class="wrap pager" aria-label="More projects">
+    {% if prev %}<a href="{{ root }}projects/{{ prev.slug }}/index.html"><span>← Previous</span>{{ prev.title }}</a>{% else %}<span></span>{% endif %}
+    {% if next %}<a class="next" href="{{ root }}projects/{{ next.slug }}/index.html"><span>Next →</span>{{ next.title }}</a>{% endif %}
+  </nav>
+</article>
+{% endblock %}

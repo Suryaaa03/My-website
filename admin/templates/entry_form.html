@@ -8,6 +8,17 @@
     {% if f.type == "checkbox" %}
       <div class="check"><input type="checkbox" id="{{ f.name }}" name="{{ f.name }}" {% if value %}checked{% endif %}>
         <label for="{{ f.name }}" style="margin:0">{{ f.label }}</label></div>
+    {% elif f.type == "files" %}
+      <label>{{ f.label }} <span class="hint">PDF, code, Excel, slides or images · you can pick several at once</span>
+        <input type="file" name="{{ f.name }}" multiple></label>
+      {% for item in value or [] %}
+        <div class="row" style="margin-top:8px">
+          <input type="text" name="label_{{ f.name }}_{{ loop.index0 }}" value="{{ item.label }}" style="flex:1;min-width:200px" title="Label shown on the site">
+          <span class="hint">{{ item.path.split('/')[-1] }}</span>
+          <span class="check" style="margin:0"><input type="checkbox" id="rm_{{ f.name }}_{{ loop.index0 }}" name="remove_{{ f.name }}_{{ loop.index0 }}">
+          <label for="rm_{{ f.name }}_{{ loop.index0 }}" style="margin:0" class="hint">Remove</label></span>
+        </div>
+      {% endfor %}
     {% elif f.type == "image" %}
       <label>{{ f.label }} <span class="hint">optional · PNG/JPG, a wide screenshot looks best</span>
         <input type="file" name="{{ f.name }}" accept="image/*"></label>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Predicting HDB Resale Prices with Machine Learning · Dhathathreyan Natarajan</title>
+  <meta name="description" content="Comparing linear regression, decision trees, k-NN and principal component regression to predict HDB resale prices.">
+  <meta property="og:title" content="Predicting HDB Resale Prices with Machine Learning · Dhathathreyan Natarajan">
+  <meta property="og:description" content="Comparing linear regression, decision trees, k-NN and principal component regression to predict HDB resale prices.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/style.css">
+  <script>
+    // Apply saved light/dark choice before the page paints (avoids a flash).
+    try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="../../index.html#top" aria-label="Home">D<span>.</span></a>
+      <nav aria-label="Sections">
+        <a href="../../index.html#projects">Projects</a>
+        <a href="../../index.html#experience">Experience</a>
+        <a href="../../index.html#education">Education</a>
+        <a href="../../index.html#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    
+<article class="project-page">
+  <header class="wrap project-hero reveal">
+    <a class="back" href="../../index.html#projects">← All projects</a>
+    <p class="card-meta">University · Nov 2024</p>
+    <h1>Predicting HDB Resale Prices with Machine Learning</h1>
+    <p class="headline">Comparing linear regression, decision trees, k-NN and principal component regression to predict HDB resale prices.</p>
+
+    <dl class="facts">
+      <div><dt>My role</dt><dd>Individual project</dd></div>
+      <div><dt>Team</dt><dd>Individual (DSE1101, NUS)</dd></div>
+      <div><dt>When</dt><dd>Nov 2024</dd></div>
+    </dl>
+
+    <div class="actions">
+      
+      
+      <a class="btn ghost" href="#files">Report &amp; files ↓</a>
+    </div>
+  </header>
+
+  
+  <figure class="wrap project-cover reveal"><img src="../../static/projects/hdb-ml-dse1101/cover.jpg" alt="Predicting HDB Resale Prices with Machine Learning"></figure>
+  
+
+  <div class="wrap project-body">
+    <div class="project-main">
+      
+      <section class="reveal">
+        <h2 class="label">Overview</h2>
+        <div class="prose small"><p>Buyers and sellers make better decisions when they understand what drives HDB resale prices. Working with a dataset of flat characteristics, I reduced 230 candidate predictors to 133, then built and compared four predictive models, judging them by RMSE and margin of error against the mean price of about $497,000.</p></div>
+      </section>
+      
+
+      
+      <section class="reveal">
+        <h2 class="label">What I did</h2>
+        <ol class="steps"><li>Log-transformed the right-skewed resale price to stabilise variance and reduce the pull of extreme values.</li><li>Used a 4,000/2,000 train-test split and 10-fold cross-validation for every model.</li><li>Built a linear model with forward selection (91 predictors), a decision tree tuned on the complexity parameter, and k-NN tuned on k.</li><li>Applied PCA to keep 95% of the variance, cutting 133 predictors to 69 components, and fitted a principal component regression.</li></ol>
+      </section>
+      
+
+      
+      <section class="reveal">
+        <h2 class="label">Results</h2>
+        <ul class="results"><li>Principal component regression was the most accurate: RMSE $40,092, an 8.06% margin of error</li><li>Beat linear regression (10.34%), decision tree (11.07%) and k-NN (15.12%)</li><li>Discussed limitations and next steps, such as ridge regression and adding economic factors like housing grants</li></ul>
+      </section>
+      
+
+      
+    </div>
+
+    <aside class="project-side">
+      
+      <section class="reveal">
+        <h2 class="label">Built with</h2>
+        <ul class="tags"><li>R</li><li>Linear regression</li><li>Decision trees</li><li>k-NN</li><li>PCA / PCR</li><li>Cross-validation</li></ul>
+      </section>
+      
+
+      
+      <section class="reveal" id="files">
+        <h2 class="label">Dive deeper</h2>
+        <ul class="files">
+          
+          <li><a href="../../static/projects/hdb-ml-dse1101/DSE1101_HDB_Resale_Report.pdf" target="_blank" rel="noopener" download>
+            <span class="ext">PDF</span><span>Project report (PDF)</span></a></li>
+          
+          <li><a href="../../static/projects/hdb-ml-dse1101/DSE1101_HDB_Resale_Models.R" target="_blank" rel="noopener" download>
+            <span class="ext">R</span><span>R code</span></a></li>
+          
+          
+        </ul>
+      </section>
+      
+    </aside>
+  </div>
+
+  <nav class="wrap pager" aria-label="More projects">
+    <a href="../../projects/hdb-regression-st3131/index.html"><span>← Previous</span>HDB Resale Price Regression Model</a>
+    <a class="next" href="../../projects/mom-flfpr-essay/index.html"><span>Next →</span>Raising Singapore&#39;s Female Labour Force Participation</a>
+  </nav>
+</article>
+
+  </main>
+
+  <footer class="contact" id="contact">
+    <div class="wrap">
+      <h2>Let's build something.</h2>
+      <p>I'm always happy to talk about new roles, projects or ideas.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:dhathathreyan03@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/dhathathreyan/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="https://github.com/suryaaa03" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn" href="../../static/uploads/Dhathathreyan_Natarajan_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+      </div>
+      <p class="fine">© 2026 Dhathathreyan Natarajan</p>
+    </div>
+  </footer>
+
+  <script src="../../static/main.js"></script>
+</body>
+</html>

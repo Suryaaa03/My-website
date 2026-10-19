@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ARROW: Maritime Intelligence Platform · Dhathathreyan Natarajan</title>
+  <meta name="description" content="A shipbroking platform that pairs an AI market briefing (RAG) with route optimisation and fuel-strategy analysis.">
+  <meta property="og:title" content="ARROW: Maritime Intelligence Platform · Dhathathreyan Natarajan">
+  <meta property="og:description" content="A shipbroking platform that pairs an AI market briefing (RAG) with route optimisation and fuel-strategy analysis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/style.css">
+  <script>
+    // Apply saved light/dark choice before the page paints (avoids a flash).
+    try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="../../index.html#top" aria-label="Home">D<span>.</span></a>
+      <nav aria-label="Sections">
+        <a href="../../index.html#projects">Projects</a>
+        <a href="../../index.html#experience">Experience</a>
+        <a href="../../index.html#education">Education</a>
+        <a href="../../index.html#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    
+<article class="project-page">
+  <header class="wrap project-hero reveal">
+    <a class="back" href="../../index.html#projects">← All projects</a>
+    <p class="card-meta">Competition · 2025 · ★ Featured</p>
+    <h1>ARROW: Maritime Intelligence Platform</h1>
+    <p class="headline">A shipbroking platform that pairs an AI market briefing (RAG) with route optimisation and fuel-strategy analysis.</p>
+
+    <dl class="facts">
+      <div><dt>My role</dt><dd>Built the retrieval-augmented generation (RAG) pipeline</dd></div>
+      <div><dt>Team</dt><dd>Team project with peers</dd></div>
+      <div><dt>When</dt><dd>2025</dd></div>
+    </dl>
+
+    <div class="actions">
+      <a class="btn" href="https://github.com/ChowchowWorks/Arrow-Case-Competition" target="_blank" rel="noopener">View code on GitHub ↗</a>
+      
+      
+    </div>
+  </header>
+
+  
+  <figure class="wrap project-cover reveal"><img src="../../static/projects/arrow-maritime-platform/cover.jpg" alt="ARROW: Maritime Intelligence Platform"></figure>
+  
+
+  <div class="wrap project-body">
+    <div class="project-main">
+      
+      <section class="reveal">
+        <h2 class="label">Overview</h2>
+        <div class="prose small"><p>Shipbrokers negotiate fixtures between shipowners and charterers using a mix of regulations, market reports and route knowledge scattered across dozens of documents. For the ARROW case competition our team built a web platform that brings this together: define a cargo and route, plan the voyage, compare fuel strategies, and get an AI-written market briefing grounded in real regulatory and market documents.</p><p>My part was the RAG pipeline behind the briefings and the AI assistant, which answers questions with maritime information drawn only from the document library.</p></div>
+      </section>
+      
+
+      
+      <section class="reveal">
+        <h2 class="label">What I did</h2>
+        <ol class="steps"><li>Indexed a library of 15 maritime documents (SOLAS, MARPOL, the ISM and ISPS codes, BIMCO charter parties, ISO 8217 fuel standards and Veson market reports) into a Chroma vector store using all-MiniLM-L6-v2 sentence embeddings.</li><li>Retrieved the most relevant passages for each voyage&#39;s inputs (ports, cargo, fuel type, laycan dates) and listed the source documents alongside each answer.</li><li>Prompted Mistral-7B-Instruct (via Hugging Face) to write a structured 800–900-word broker briefing covering route risks, cargo market conditions, fuel and compliance costs, negotiation leverage and valuation ranges, using only the retrieved context.</li><li>Served the pipeline as a Flask API, packaged with Docker, that feeds the platform&#39;s dashboard and chat assistant.</li><li>The team&#39;s route optimiser generated 3,789 candidate sea routes between export and import ports (direct and via hub ports), flagged high-risk war zones and ranked routes by distance, port charges and expected demurrage.</li><li>The fuel-strategy module compares a baseline fuel mix against alternative fuels and energy-saving devices over the vessel&#39;s life, with carbon pooling prices, discounting, ROI and price-sensitivity analysis.</li></ol>
+      </section>
+      
+
+      
+      <section class="reveal">
+        <h2 class="label">Results</h2>
+        <ul class="results"><li>End-to-end prototype: web dashboard, RAG briefing API and route optimiser working together</li><li>Briefings cite the regulatory and market documents they draw from, so brokers can check every claim</li><li>3,789 pre-computed routes, mapped interactively with Folium</li></ul>
+      </section>
+      
+
+      
+      <section class="reveal">
+        <h2 class="label">Gallery</h2>
+        <div class="gallery">
+          
+          <figure><a href="../../static/projects/arrow-maritime-platform/fuel-scenarios.jpg" target="_blank" rel="noopener"><img src="../../static/projects/arrow-maritime-platform/fuel-scenarios.jpg" alt="Fuel scenario inputs" loading="lazy"></a><figcaption>Fuel scenario inputs</figcaption></figure>
+          
+          <figure><a href="../../static/projects/arrow-maritime-platform/fuel-mix.jpg" target="_blank" rel="noopener"><img src="../../static/projects/arrow-maritime-platform/fuel-mix.jpg" alt="Fuel mix optimisation &amp; price sensitivity" loading="lazy"></a><figcaption>Fuel mix optimisation &amp; price sensitivity</figcaption></figure>
+          
+        </div>
+      </section>
+      
+    </div>
+
+    <aside class="project-side">
+      
+      <section class="reveal">
+        <h2 class="label">Built with</h2>
+        <ul class="tags"><li>Python</li><li>LangChain</li><li>ChromaDB</li><li>Hugging Face</li><li>Mistral-7B</li><li>Sentence Transformers</li><li>Flask</li><li>Docker</li><li>Folium</li><li>JavaScript</li></ul>
+      </section>
+      
+
+      
+      <section class="reveal" id="files">
+        <h2 class="label">Dive deeper</h2>
+        <ul class="files">
+          
+          <li><a href="https://github.com/ChowchowWorks/Arrow-Case-Competition" target="_blank" rel="noopener"><span class="ext">GIT</span><span>Source code on GitHub ↗</span></a></li>
+        </ul>
+      </section>
+      
+    </aside>
+  </div>
+
+  <nav class="wrap pager" aria-label="More projects">
+    <span></span>
+    <a class="next" href="../../projects/capcom-stock-pitch/index.html"><span>Next →</span>Capcom Equity Research: Nanyang Capital Stock Pitch</a>
+  </nav>
+</article>
+
+  </main>
+
+  <footer class="contact" id="contact">
+    <div class="wrap">
+      <h2>Let's build something.</h2>
+      <p>I'm always happy to talk about new roles, projects or ideas.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:dhathathreyan03@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/dhathathreyan/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="https://github.com/suryaaa03" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn" href="../../static/uploads/Dhathathreyan_Natarajan_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+      </div>
+      <p class="fine">© 2026 Dhathathreyan Natarajan</p>
+    </div>
+  </footer>
+
+  <script src="../../static/main.js"></script>
+</body>
+</html>

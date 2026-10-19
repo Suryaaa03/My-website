@@ -23,9 +23,12 @@ A personal website that showcases my projects, experience, education and resume.
 | `admin/app.py` | The admin page (Python/Flask). Runs at http://127.0.0.1:5000 |
 | `admin/templates/` | HTML for the admin screens |
 | `build.py` | Reads `site.json` → writes the finished site into `docs/` |
-| `templates/index.html` | The layout of the public website (Jinja2 template) |
+| `templates/base.html` | Shared layout: top menu, fonts and contact footer on every page |
+| `templates/index.html` | The home page (hero, about, project cards, experience, education, skills) |
+| `templates/project.html` | The layout of each project's own page (`docs/projects/<name>/`) |
 | `static/style.css` | All the colours, fonts and layout. Change `--accent` to re-colour the site |
-| `static/main.js` | Interactive bits: project filters, pop-ups, dark mode, scroll effects |
+| `static/main.js` | Interactive bits: project filters, dark mode, scroll effects |
+| `static/projects/` | Cover images, reports and code for each project |
 | `static/uploads/` | Images and resume PDF you upload through the admin page |
 | `docs/` | **The finished website.** Generated automatically, so don't edit it by hand |
 | `run_admin.bat` | Double-click to start the admin page on Windows |
@@ -84,7 +87,7 @@ The first push opens a browser window asking you to **sign in to GitHub**. That'
 ## Everyday use: adding a project
 
 1. **Double-click `run_admin.bat`** (or run `python admin/app.py`). Your browser opens the admin page.
-2. Click **+ Add project**, fill it in, and **Save**. The site rebuilds automatically.
+2. Click **+ Add project**, fill it in, and **Save**. Each project gets its own page with an overview, steps, results and downloadable files. The site rebuilds automatically.
 3. Click **Preview site ↗** to see exactly what recruiters will see.
 4. Close the black window (or press `Ctrl + C`) to stop the admin page.
 5. Publish your changes:

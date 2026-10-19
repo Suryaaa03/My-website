@@ -35,21 +35,8 @@ chips.forEach((chip) => {
   });
 });
 
-// ---------- 4. Click a project card -> pop-up with full details ----------
-const dialog = document.getElementById("project-dialog");
-const dialogBody = dialog.querySelector(".dialog-body");
-
-cards.forEach((card) => {
-  card.addEventListener("click", (event) => {
-    if (event.target.closest("a")) return; // let "Code" / "Live demo" links work normally
-    const detail = card.querySelector("template.detail");
-    dialogBody.replaceChildren(detail.content.cloneNode(true));
-    dialog.showModal();
-  });
-});
-dialog.querySelector(".close").addEventListener("click", () => dialog.close());
-// Clicking the dark area outside the pop-up also closes it.
-dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+// ---------- 4. Project cards ----------
+// Each card's title is a link; CSS stretches it over the whole card, so clicking anywhere opens the project page.
 
 // ---------- 5. Fade sections in as you scroll ----------
 const revealEls = document.querySelectorAll(".reveal");
@@ -69,12 +56,13 @@ if ("IntersectionObserver" in window) {
 
 // ---------- 6. Highlight the nav link for the section on screen ----------
 const links = document.querySelectorAll(".nav nav a");
-const sections = [...links].map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+const hashOf = (a) => "#" + a.getAttribute("href").split("#")[1];
+const sections = [...links].map((a) => document.querySelector(hashOf(a))).filter(Boolean);
 if ("IntersectionObserver" in window) {
   const spy = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        links.forEach((a) => a.classList.toggle("current", a.getAttribute("href") === "#" + entry.target.id));
+        links.forEach((a) => a.classList.toggle("current", hashOf(a) === "#" + entry.target.id));
       }
     });
   }, { rootMargin: "-45% 0px -50% 0px" });
