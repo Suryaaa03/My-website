@@ -23,7 +23,7 @@
 
     {% if profile.about %}
     <section class="wrap section split reveal" id="about">
-      <h2 class="label">About</h2>
+      <h2 class="label">About me</h2>
       <div class="prose">
         {% for para in profile.about.split("\n\n") %}<p>{{ para }}</p>{% endfor %}
       </div>
@@ -34,7 +34,8 @@
     <section class="wrap section" id="projects">
       <div class="section-head reveal">
         <h2 class="label">Projects</h2>
-        <p class="lede">Things I've built, analysed and pitched. Open any project to see the full write-up and files.</p>
+        <p class="lede">Things I've built, analysed and pitched.</p>
+        <p class="hint">Open any project for the full write-up, results and files.</p>
       </div>
 
       {% if projects %}
@@ -75,7 +76,8 @@
     <section class="wrap section" id="experience">
       <div class="section-head reveal">
         <h2 class="label">Experience</h2>
-        <p class="lede">My journey so far. Tap a stop to see what I did there.</p>
+        <p class="lede">My journey so far, from leading soldiers to analysing fleets and teaching maths.</p>
+        <p class="hint">Tap “What I did” on any stop for details.</p>
       </div>
       <ol class="journey">
         {% for e in experience|reverse %}
@@ -125,7 +127,8 @@
     <section class="wrap section" id="learning">
       <div class="section-head reveal">
         <h2 class="label">Learning journey</h2>
-        <p class="lede">What I've studied at NUS each semester, and the skills each one gave me. Open a course for details.</p>
+        <p class="lede">What I've studied at NUS each semester, and the skills each one gave me.</p>
+        <p class="hint">Open a course for a short description.</p>
       </div>
       <ol class="semesters">
         {% for s in semesters %}
@@ -161,7 +164,7 @@
     <section class="wrap section" id="skills">
       <div class="section-head reveal">
         <h2 class="label">Skills</h2>
-        <p class="lede">Tap any skill for a plain-English explanation.</p>
+        <p class="hint">Tap a skill for a short explanation.</p>
       </div>
       <div class="skills">
         {% for s in skills %}

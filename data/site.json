@@ -3,7 +3,7 @@
     "name": "Dhathathreyan Natarajan",
     "headline": "Data Science & Economics at NUS",
     "location": "Singapore",
-    "about": "I'm a Data Science and Economics undergraduate at the National University of Singapore. I like taking messy, real-world data and turning it into something people can make decisions with, whether that's a forecast, a valuation or a policy recommendation.\n\nBefore university I served as a Combat Engineer Officer in the Singapore Armed Forces, where I led explosives training for 100 soldiers and took my unit through two major evaluations. It taught me to plan carefully, stay calm under pressure and own the outcome.\n\nSince then I've built a Python emissions-compliance optimiser for a shipping company's fleet, forecast humidity with LSTM and XGBoost models, built a retrieval-augmented generation (RAG) pipeline for maritime regulations, and valued companies with DCF models for stock pitch competitions. I also tutor mathematics at Tim Gan Math. I'm happiest where data science meets economics and finance.",
+    "about": "I'm a Data Science and Economics undergraduate at the National University of Singapore, and at heart I'm a deeply curious person. My first instinct with anything new is to ask why: why a model behaves the way it does, why a market moves, why a result doesn't match my expectations. Knowing that something works is never quite enough for me. I want to understand how and why it works, so I go into each topic in depth until the logic makes sense from first principles. That habit has served me well in data science and economics, where the most valuable insights usually sit beneath the surface.\n\nPeople who work with me would describe me as a jovial team player. I enjoy the energy of working with others, I like keeping spirits up when the pressure is on, and I'm at my best when the whole team is pulling in the same direction. At the same time, I hold myself to a high standard on the details: the assumption buried in a spreadsheet, the mislabelled chart, the line of code that quietly leaks data. My time as a Combat Engineer Officer in the Singapore Armed Forces, where small oversights carry real consequences, reinforced that discipline, and I bring it to every project and team I'm part of.\n\nOutside of work and study, I like to stay active and keep exploring. I enjoy sports and love going on adventures, whether that means travelling somewhere unfamiliar, trying something I've never done before or seeing a familiar place from a new angle. Travelling has taught me to adapt quickly, stay comfortable with the unknown and connect with people from very different backgrounds. Those are the same qualities I bring to new problems, new teams and new challenges.",
     "email": "dhathathreyan03@gmail.com",
     "linkedin": "https://www.linkedin.com/in/dhathathreyan/",
     "github": "https://github.com/suryaaa03",
@@ -18,7 +18,7 @@
       "items": [
         {
           "name": "Python",
-          "note": "A popular, readable programming language. I use it for data analysis, machine learning and automation."
+          "note": "A popular, readable programming language, used across these projects for data analysis, machine learning and automation."
         },
         {
           "name": "Pandas",
@@ -34,11 +34,11 @@
         },
         {
           "name": "R",
-          "note": "A programming language built for statistics. I used it for my regression and predictive modelling projects."
+          "note": "A programming language built for statistics, used for the regression and predictive modelling projects."
         },
         {
           "name": "Flask",
-          "note": "A lightweight Python framework for building web apps and APIs. This site's admin page runs on it."
+          "note": "A lightweight Python framework for building web apps and APIs. It powers this website's admin page and the ARROW briefing API."
         },
         {
           "name": "Data structures & algorithms",
@@ -261,7 +261,7 @@
         },
         {
           "name": "Folium (mapping)",
-          "note": "A Python library for drawing interactive maps. I used it to plot shipping routes."
+          "note": "A Python library for drawing interactive maps, used to plot shipping routes in the ARROW project."
         },
         {
           "name": "Stata (in progress)",
@@ -274,11 +274,11 @@
       "items": [
         {
           "name": "Team leadership",
-          "note": "Led explosives training for 100 soldiers as an officer, and led my team in the Temasek-NUS stock pitch."
+          "note": "Led explosives training for 100 soldiers as a Combat Engineer Officer, and led the team in the Temasek-NUS Stock Pitch Competition."
         },
         {
           "name": "Teaching",
-          "note": "Explaining maths to students at different levels as a tutor at Tim Gan Math."
+          "note": "Explains mathematics to students of different levels as a tutor at Tim Gan Math."
         },
         {
           "name": "Science communication",
